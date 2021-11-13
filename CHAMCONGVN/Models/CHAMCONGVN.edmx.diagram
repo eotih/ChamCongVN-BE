@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d1b522bfed2c4ad3836294e550e12dfa" Name="Diagram1">
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_BacLuong" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Bangcap" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Calam" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Cauhinhcongthuc" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Congviec" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_ChamCong" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Checkin" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Checkout" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Chucvu" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Chuyenmon" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_NgachLuong" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Xindimuonvesom" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Xinnghiphep" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Xinquenchamcong" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DIC_Xingapdoitac" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Danhgianhanvien" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Danhsachbangluong" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Dicongtac" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_KyluatNhanvien" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_KhautruNhanvien" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_KhenthuongNhanvien" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Luonglamthem" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Luongtangca" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Luongtoithieu" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Nhanvien" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_Phongban" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_SoLuong" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_TamungNhanvien" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_ToNhom" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.PB_TuyenDung" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SYS_Nguoidung" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SYS_Quyen" Width="1.5" PointX="16.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DsChamCong" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.LoginRole" Width="1.5" PointX="12.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.tinh_luong" Width="1.5" PointX="14.75" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="ChamCongVNModel.FK_BacLuong_NgachLuong" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
