@@ -231,5 +231,180 @@ namespace ChamCongVN_BE.Controllers
             }
             return new Response { Status = "Sai", Message = "Sai" };
         }
+        // ------------------------------ Shift ------------------------------ //
+        [Route("AddOrEditShift")]
+        [HttpPost]
+        public object AddOrEditShift(Shift1 shift1)
+        {
+            if (shift1.ShiftID == 0)
+            {
+                Shift shift = new Shift
+                {
+                    ShiftName = shift1.ShiftName,
+                    StartShift = shift1.StartShift,
+                    EndShift = shift1.EndShift
+                };
+                db.Shifts.Add(shift);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Shifts.Where(x => x.ShiftID == shift1.ShiftID).FirstOrDefault();
+                if (obj.ShiftID > 0)
+                {
+                    obj.ShiftName = shift1.ShiftName;
+                    obj.StartShift = shift1.StartShift;
+                    obj.EndShift = shift1.EndShift;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("GetAllShift")]
+        [HttpGet]
+        public object GetAllShift()
+        {
+            var shift = db.Shifts.ToList();
+            return shift;
+        }
+
+        [Route("GetShiftByID")]
+        [HttpGet]
+        public object GetShiftByID(int ID)
+        {
+            var obj = db.Shifts.Where(x => x.ShiftID == ID).FirstOrDefault();
+            return obj;
+        }
+
+        [Route("DeleteShift")]
+        [HttpDelete]
+        public object DeleteShift(int ID)
+        {
+            var obj = db.Shifts.Where(x => x.ShiftID == ID).FirstOrDefault();
+            db.Shifts.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        // ------------------------------ Position ------------------------------ //
+        [Route("AddOrEditPosition")]
+        [HttpPost]
+        public object AddOrEditPosition(Position1 Position1)
+        {
+            if (Position1.PositionID == 0)
+            {
+                Position Position = new Position
+                {
+                    PositionName = Position1.PositionName,
+                    Note = Position1.Note,
+                };
+                db.Positions.Add(Position);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Positions.Where(x => x.PositionID == Position1.PositionID).FirstOrDefault();
+                if (obj.PositionID > 0)
+                {
+                    obj.PositionName = Position1.PositionName;
+                    obj.Note = Position1.Note;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("GetAllPosition")]
+        [HttpGet]
+        public object GetAllPosition()
+        {
+            var Position = db.Positions.ToList();
+            return Position;
+        }
+
+        [Route("GetPositionByID")]
+        [HttpGet]
+        public object GetPositionByID(int ID)
+        {
+            var obj = db.Positions.Where(x => x.PositionID == ID).FirstOrDefault();
+            return obj;
+        }
+
+        [Route("DeletePosition")]
+        [HttpDelete]
+        public object DeletePosition(int ID)
+        {
+            var obj = db.Positions.Where(x => x.PositionID == ID).FirstOrDefault();
+            db.Positions.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        // ------------------------------ Recruitments ------------------------------ //
+        
+        [Route("GetAllRecruitment")]
+        [HttpGet]
+        public object GetAllRecruitment()
+        {
+            var Recruitment = db.Recruitments.ToList();
+            return Recruitment;
+        }
+
+        [Route("GetRecruitmentByID")]
+        [HttpGet]
+        public object GetRecruitmentByID(int ID)
+        {
+            var obj = db.Recruitments.Where(x => x.RecruitmentID == ID).FirstOrDefault();
+            return obj;
+        }
+
+        [Route("DeleteRecruitment")]
+        [HttpDelete]
+        public object DeleteRecruitment(int ID)
+        {
+            var obj = db.Recruitments.Where(x => x.RecruitmentID == ID).FirstOrDefault();
+            db.Recruitments.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
     }
 }

@@ -21,42 +21,35 @@ namespace ChamCongVN_BE.Controllers
                           from position in db.Positions
                           from department in db.Departments
                           from work in db.Works
+                          where gr.GroupID == emp.GroupID
+                          where position.PositionID == emp.PositionID
+                          where department.DepartmentID == emp.DepartmentID
+                          where work.WorkID == emp.WorkID
                           select new
                           {
-                              emp.EmployeeID,
-                              ListDegree = db.DegreesOfEmployees.ToList(),
-                              ListSpeciality = db.SpecialityOfEmployees.ToList(),
-                              emp.GroupID,
-                              gr.GroupName,
-                              emp.PositionID,
-                              position.PositionName,
-                              emp.DepartmentID,
-                              department.DepartmentName,
-                              emp.WorkID,
+                              emp,
+                              ListDegree = db.DegreesOfEmployees.Where(x=>x.EmployeeID==emp.EmployeeID).ToList(),
+                              ListSpeciality = db.SpecialityOfEmployees.Where(x => x.EmployeeID == emp.EmployeeID).ToList(),
                               work.WorkName,
-                              emp.FullName,
-                              emp.NickName,
-                              emp.Gender,
-                              emp.Image,
-                              emp.DateOfBirth,
-                              emp.PlaceOfBirth,
-                              emp.Address,
-                              emp.TemporaryAddress,
-                              emp.Phone,
-                              emp.IdentityCard,
-                              emp.DateRange,
-                              emp.IssuedBy,
-                              emp.StartDate,
-                              emp.Health,
-                              emp.SocialInsurance,
-                              emp.HealthInsurance,
-                              emp.UnemploymentInsurance,
-                              emp.CreatedBy,
-                              emp.UpdatedBy,
-                              emp.CreatedAt,
-                              emp.UpdatedAt
+                              gr.GroupName,
+                              position.PositionName,
+                              department.DepartmentName
                           }).ToList();
             return result;
+        }
+        [Route("GetDegreeOfEmployeeByEmployeeID")]
+        [HttpGet]
+        public object GetDegreeDetailsByEmployeeID(int employeeid)
+        {
+            var obj = db.DegreesOfEmployees.Where(x => x.EmployeeID == employeeid).FirstOrDefault();
+            return obj;
+        }
+        [Route("GetEmployeeByEmployeeID")]
+        [HttpGet]
+        public object GetEmployeeByEmployeeID(int employeeid)
+        {
+            var obj = db.Employees.Where(x => x.EmployeeID == employeeid).FirstOrDefault();
+            return obj;
         }
     }
 }
