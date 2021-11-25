@@ -1,0 +1,1123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AbsentApplications">
+          <Key>
+            <PropertyRef Name="AbsentApplicationID" />
+          </Key>
+          <Property Name="AbsentApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="AbsentType" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AbsentDate" Type="date" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="UpdatedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Advances">
+          <Key>
+            <PropertyRef Name="AdvanceID" />
+          </Key>
+          <Property Name="AdvanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdvanceDate" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="Signer" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="SignDate" Type="date" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BonusSalary">
+          <Key>
+            <PropertyRef Name="BonusSalaryID" />
+          </Key>
+          <Property Name="BonusSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="BonusSalaryName" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CheckIns">
+          <Key>
+            <PropertyRef Name="CheckInCode" />
+          </Key>
+          <Property Name="CheckInCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="Device" Type="nvarchar(max)" />
+          <Property Name="Longtitude" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CheckOuts">
+          <Key>
+            <PropertyRef Name="CheckOutCode" />
+          </Key>
+          <Property Name="CheckOutCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="Device" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longtitude" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DeductionEmployees">
+          <Key>
+            <PropertyRef Name="DeductionEmployeeID" />
+          </Key>
+          <Property Name="DeductionEmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="DeductionName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DeductionDate" Type="datetime" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DegreeDetails">
+          <Key>
+            <PropertyRef Name="DegreeDetailID" />
+          </Key>
+          <Property Name="DegreeDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="DegreeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Degrees">
+          <Key>
+            <PropertyRef Name="DegreeID" />
+          </Key>
+          <Property Name="DegreeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DegreeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="WorkID" Type="int" Nullable="false" />
+          <Property Name="SalaryTableID" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="PlaceOfBirth" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TemporaryAddress" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IdentityCard" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateRange" Type="datetime" Nullable="false" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Health" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SocialInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="HealthInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UnemploymentInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaudatoryEmployees">
+          <Key>
+            <PropertyRef Name="LaudatoryEmployeeID" />
+          </Key>
+          <Property Name="LaudatoryEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="LaudatoryName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LaudatoryDate" Type="date" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Amount" Type="float" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OvertimeSalary">
+          <Key>
+            <PropertyRef Name="OvertimeSalaryID" />
+          </Key>
+          <Property Name="OvertimeSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="OvertimeSalaryName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Time" Type="float" Nullable="false" />
+          <Property Name="OvertimeType" Type="float" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recruitments">
+          <Key>
+            <PropertyRef Name="RecruitmentID" />
+          </Key>
+          <Property Name="RecruitmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="TemporaryAddress" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplyFor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LinkCV" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegulationEmployees">
+          <Key>
+            <PropertyRef Name="RegulationEmployeeID" />
+          </Key>
+          <Property Name="RegulationEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="RegulationName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RegulationDate" Type="datetime" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RegulationFormat" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="SalaryID" />
+          </Key>
+          <Property Name="SalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="SalaryTableID" Type="int" Nullable="false" />
+          <Property Name="CoefficientSalary" Type="float" Nullable="false" />
+          <Property Name="TotalWorkTime" Type="float" Nullable="false" />
+          <Property Name="TotalAbsentApplications" Type="int" Nullable="false" />
+          <Property Name="TotalAdvances" Type="float" Nullable="false" />
+          <Property Name="TotalOvertimeSalary" Type="float" Nullable="false" />
+          <Property Name="TotalBonusSalary" Type="float" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SalaryTable">
+          <Key>
+            <PropertyRef Name="SalaryTableID" />
+          </Key>
+          <Property Name="SalaryTableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalaryTableName" Type="int" Nullable="false" />
+          <Property Name="Month" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Year" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinSalary" Type="float" Nullable="false" />
+          <Property Name="TotalTimeRegulation" Type="float" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Shifts">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShiftName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartShift" Type="time" Precision="7" />
+          <Property Name="EndShift" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Specialities">
+          <Key>
+            <PropertyRef Name="SpecialtyID" />
+          </Key>
+          <Property Name="SpecialtyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecialtyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialityDetails">
+          <Key>
+            <PropertyRef Name="SpecialityDetailID" />
+          </Key>
+          <Property Name="SpecialityDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecialtyID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Works">
+          <Key>
+            <PropertyRef Name="WorkID" />
+          </Key>
+          <Property Name="WorkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.DegreesOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DegreesOfEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="DegreeName" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="DegreeName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SpecialityOfEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="SpecialtyName" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="SpecialtyName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ChamCongVNModelStoreContainer">
+          <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advances" EntityType="Self.Advances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BonusSalary" EntityType="Self.BonusSalary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckIns" EntityType="Self.CheckIns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckOuts" EntityType="Self.CheckOuts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeductionEmployees" EntityType="Self.DeductionEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DegreeDetails" EntityType="Self.DegreeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degrees" EntityType="Self.Degrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OvertimeSalary" EntityType="Self.OvertimeSalary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recruitments" EntityType="Self.Recruitments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryTable" EntityType="Self.SalaryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialities" EntityType="Self.Specialities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Works" EntityType="Self.Works" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DegreesOfEmployee" EntityType="Self.DegreesOfEmployee" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DegreesOfEmployee].[EmployeeID] AS [EmployeeID], 
+    [DegreesOfEmployee].[DegreeName] AS [DegreeName]
+    FROM [dbo].[DegreesOfEmployee] AS [DegreesOfEmployee]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SpecialityOfEmployee" EntityType="Self.SpecialityOfEmployee" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SpecialityOfEmployee].[EmployeeID] AS [EmployeeID], 
+    [SpecialityOfEmployee].[SpecialtyName] AS [SpecialtyName]
+    FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AbsentApplication">
+          <Key>
+            <PropertyRef Name="AbsentApplicationID" />
+          </Key>
+          <Property Name="AbsentApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AbsentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Advance">
+          <Key>
+            <PropertyRef Name="AdvanceID" />
+          </Key>
+          <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Signer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SignDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BonusSalary">
+          <Key>
+            <PropertyRef Name="BonusSalaryID" />
+          </Key>
+          <Property Name="BonusSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="BonusSalaryName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CheckIn">
+          <Key>
+            <PropertyRef Name="CheckInCode" />
+          </Key>
+          <Property Name="CheckInCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longtitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CheckOut">
+          <Key>
+            <PropertyRef Name="CheckOutCode" />
+          </Key>
+          <Property Name="CheckOutCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longtitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DeductionEmployee">
+          <Key>
+            <PropertyRef Name="DeductionEmployeeID" />
+          </Key>
+          <Property Name="DeductionEmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="DeductionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeductionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DegreeDetail">
+          <Key>
+            <PropertyRef Name="DegreeDetailID" />
+          </Key>
+          <Property Name="DegreeDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="DegreeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Degree">
+          <Key>
+            <PropertyRef Name="DegreeID" />
+          </Key>
+          <Property Name="DegreeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="WorkID" Type="Int32" Nullable="false" />
+          <Property Name="SalaryTableID" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NickName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdentityCard" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateRange" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IssuedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Health" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SocialInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HealthInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnemploymentInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LaudatoryEmployee">
+          <Key>
+            <PropertyRef Name="LaudatoryEmployeeID" />
+          </Key>
+          <Property Name="LaudatoryEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="LaudatoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LaudatoryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OvertimeSalary">
+          <Key>
+            <PropertyRef Name="OvertimeSalaryID" />
+          </Key>
+          <Property Name="OvertimeSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="OvertimeSalaryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Time" Type="Double" Nullable="false" />
+          <Property Name="OvertimeType" Type="Double" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recruitment">
+          <Key>
+            <PropertyRef Name="RecruitmentID" />
+          </Key>
+          <Property Name="RecruitmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplyFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkCV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RegulationEmployee">
+          <Key>
+            <PropertyRef Name="RegulationEmployeeID" />
+          </Key>
+          <Property Name="RegulationEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="RegulationName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegulationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegulationFormat" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="SalaryID" />
+          </Key>
+          <Property Name="SalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="SalaryTableID" Type="Int32" Nullable="false" />
+          <Property Name="CoefficientSalary" Type="Double" Nullable="false" />
+          <Property Name="TotalWorkTime" Type="Double" Nullable="false" />
+          <Property Name="TotalAbsentApplications" Type="Int32" Nullable="false" />
+          <Property Name="TotalAdvances" Type="Double" Nullable="false" />
+          <Property Name="TotalOvertimeSalary" Type="Double" Nullable="false" />
+          <Property Name="TotalBonusSalary" Type="Double" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SalaryTable">
+          <Key>
+            <PropertyRef Name="SalaryTableID" />
+          </Key>
+          <Property Name="SalaryTableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalaryTableName" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MinSalary" Type="Double" Nullable="false" />
+          <Property Name="TotalTimeRegulation" Type="Double" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Shift">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShiftName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartShift" Type="Time" Precision="7" />
+          <Property Name="EndShift" Type="Time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="SpecialtyID" />
+          </Key>
+          <Property Name="SpecialtyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialtyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialityDetail">
+          <Key>
+            <PropertyRef Name="SpecialityDetailID" />
+          </Key>
+          <Property Name="SpecialityDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecialtyID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="WorkID" />
+          </Key>
+          <Property Name="WorkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DegreesOfEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="DegreeName" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialityOfEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="SpecialtyName" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="SpecialtyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Advances" EntityType="Self.Advance" />
+          <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
+          <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
+          <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
+          <EntitySet Name="DeductionEmployees" EntityType="Self.DeductionEmployee" />
+          <EntitySet Name="DegreeDetails" EntityType="Self.DegreeDetail" />
+          <EntitySet Name="Degrees" EntityType="Self.Degree" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
+          <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
+          <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployee" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Salaries" EntityType="Self.Salary" />
+          <EntitySet Name="SalaryTables" EntityType="Self.SalaryTable" />
+          <EntitySet Name="Shifts" EntityType="Self.Shift" />
+          <EntitySet Name="Specialities" EntityType="Self.Speciality" />
+          <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetail" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Works" EntityType="Self.Work" />
+          <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
+          <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChamCongVNModelStoreContainer" CdmEntityContainer="ChamCongVNEntities">
+          <EntitySetMapping Name="AbsentApplications">
+            <EntityTypeMapping TypeName="ChamCongVNModel.AbsentApplication">
+              <MappingFragment StoreEntitySet="AbsentApplications">
+                <ScalarProperty Name="AbsentApplicationID" ColumnName="AbsentApplicationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="AbsentType" ColumnName="AbsentType" />
+                <ScalarProperty Name="AbsentDate" ColumnName="AbsentDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advances">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
+              <MappingFragment StoreEntitySet="Advances">
+                <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Signer" ColumnName="Signer" />
+                <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BonusSalaries">
+            <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
+              <MappingFragment StoreEntitySet="BonusSalary">
+                <ScalarProperty Name="BonusSalaryID" ColumnName="BonusSalaryID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="BonusSalaryName" ColumnName="BonusSalaryName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckIns">
+            <EntityTypeMapping TypeName="ChamCongVNModel.CheckIn">
+              <MappingFragment StoreEntitySet="CheckIns">
+                <ScalarProperty Name="CheckInCode" ColumnName="CheckInCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckOuts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.CheckOut">
+              <MappingFragment StoreEntitySet="CheckOuts">
+                <ScalarProperty Name="CheckOutCode" ColumnName="CheckOutCode" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeductionEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.DeductionEmployee">
+              <MappingFragment StoreEntitySet="DeductionEmployees">
+                <ScalarProperty Name="DeductionEmployeeID" ColumnName="DeductionEmployeeID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DeductionName" ColumnName="DeductionName" />
+                <ScalarProperty Name="DeductionDate" ColumnName="DeductionDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DegreeDetails">
+            <EntityTypeMapping TypeName="ChamCongVNModel.DegreeDetail">
+              <MappingFragment StoreEntitySet="DegreeDetails">
+                <ScalarProperty Name="DegreeDetailID" ColumnName="DegreeDetailID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degrees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Degree">
+              <MappingFragment StoreEntitySet="Degrees">
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+                <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+                <ScalarProperty Name="DateRange" ColumnName="DateRange" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Health" ColumnName="Health" />
+                <ScalarProperty Name="SocialInsurance" ColumnName="SocialInsurance" />
+                <ScalarProperty Name="HealthInsurance" ColumnName="HealthInsurance" />
+                <ScalarProperty Name="UnemploymentInsurance" ColumnName="UnemploymentInsurance" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LaudatoryEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.LaudatoryEmployee">
+              <MappingFragment StoreEntitySet="LaudatoryEmployees">
+                <ScalarProperty Name="LaudatoryEmployeeID" ColumnName="LaudatoryEmployeeID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="LaudatoryName" ColumnName="LaudatoryName" />
+                <ScalarProperty Name="LaudatoryDate" ColumnName="LaudatoryDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OvertimeSalaries">
+            <EntityTypeMapping TypeName="ChamCongVNModel.OvertimeSalary">
+              <MappingFragment StoreEntitySet="OvertimeSalary">
+                <ScalarProperty Name="OvertimeSalaryID" ColumnName="OvertimeSalaryID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="OvertimeSalaryName" ColumnName="OvertimeSalaryName" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="OvertimeType" ColumnName="OvertimeType" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Position">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recruitments">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Recruitment">
+              <MappingFragment StoreEntitySet="Recruitments">
+                <ScalarProperty Name="RecruitmentID" ColumnName="RecruitmentID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ApplyFor" ColumnName="ApplyFor" />
+                <ScalarProperty Name="LinkCV" ColumnName="LinkCV" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegulationEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.RegulationEmployee">
+              <MappingFragment StoreEntitySet="RegulationEmployees">
+                <ScalarProperty Name="RegulationEmployeeID" ColumnName="RegulationEmployeeID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="RegulationName" ColumnName="RegulationName" />
+                <ScalarProperty Name="RegulationDate" ColumnName="RegulationDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="RegulationFormat" ColumnName="RegulationFormat" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salaries">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Salary">
+              <MappingFragment StoreEntitySet="Salary">
+                <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
+                <ScalarProperty Name="CoefficientSalary" ColumnName="CoefficientSalary" />
+                <ScalarProperty Name="TotalWorkTime" ColumnName="TotalWorkTime" />
+                <ScalarProperty Name="TotalAbsentApplications" ColumnName="TotalAbsentApplications" />
+                <ScalarProperty Name="TotalAdvances" ColumnName="TotalAdvances" />
+                <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
+                <ScalarProperty Name="TotalBonusSalary" ColumnName="TotalBonusSalary" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryTables">
+            <EntityTypeMapping TypeName="ChamCongVNModel.SalaryTable">
+              <MappingFragment StoreEntitySet="SalaryTable">
+                <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
+                <ScalarProperty Name="SalaryTableName" ColumnName="SalaryTableName" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="MinSalary" ColumnName="MinSalary" />
+                <ScalarProperty Name="TotalTimeRegulation" ColumnName="TotalTimeRegulation" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Shift">
+              <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+                <ScalarProperty Name="StartShift" ColumnName="StartShift" />
+                <ScalarProperty Name="EndShift" ColumnName="EndShift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialities">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Speciality">
+              <MappingFragment StoreEntitySet="Specialities">
+                <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+                <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialityDetails">
+            <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityDetail">
+              <MappingFragment StoreEntitySet="SpecialityDetails">
+                <ScalarProperty Name="SpecialityDetailID" ColumnName="SpecialityDetailID" />
+                <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="ChamCongVNModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Works">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Work">
+              <MappingFragment StoreEntitySet="Works">
+                <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+                <ScalarProperty Name="WorkName" ColumnName="WorkName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DegreesOfEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.DegreesOfEmployee">
+              <MappingFragment StoreEntitySet="DegreesOfEmployee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialityOfEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
+              <MappingFragment StoreEntitySet="SpecialityOfEmployee">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

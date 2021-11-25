@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChamCongVNModelStoreContainer" CdmEntityContainer="ChamCongVNEntities">
+    <EntitySetMapping Name="AbsentApplications">
+      <EntityTypeMapping TypeName="ChamCongVNModel.AbsentApplication">
+        <MappingFragment StoreEntitySet="AbsentApplications">
+          <ScalarProperty Name="AbsentApplicationID" ColumnName="AbsentApplicationID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="AbsentType" ColumnName="AbsentType" />
+          <ScalarProperty Name="AbsentDate" ColumnName="AbsentDate" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Advances">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
+        <MappingFragment StoreEntitySet="Advances">
+          <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Signer" ColumnName="Signer" />
+          <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BonusSalaries">
+      <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
+        <MappingFragment StoreEntitySet="BonusSalary">
+          <ScalarProperty Name="BonusSalaryID" ColumnName="BonusSalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="BonusSalaryName" ColumnName="BonusSalaryName" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckIns">
+      <EntityTypeMapping TypeName="ChamCongVNModel.CheckIn">
+        <MappingFragment StoreEntitySet="CheckIns">
+          <ScalarProperty Name="CheckInCode" ColumnName="CheckInCode" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Device" ColumnName="Device" />
+          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckOuts">
+      <EntityTypeMapping TypeName="ChamCongVNModel.CheckOut">
+        <MappingFragment StoreEntitySet="CheckOuts">
+          <ScalarProperty Name="CheckOutCode" ColumnName="CheckOutCode" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Device" ColumnName="Device" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeductionEmployees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.DeductionEmployee">
+        <MappingFragment StoreEntitySet="DeductionEmployees">
+          <ScalarProperty Name="DeductionEmployeeID" ColumnName="DeductionEmployeeID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="DeductionName" ColumnName="DeductionName" />
+          <ScalarProperty Name="DeductionDate" ColumnName="DeductionDate" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DegreeDetails">
+      <EntityTypeMapping TypeName="ChamCongVNModel.DegreeDetail">
+        <MappingFragment StoreEntitySet="DegreeDetails">
+          <ScalarProperty Name="DegreeDetailID" ColumnName="DegreeDetailID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Degrees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Degree">
+        <MappingFragment StoreEntitySet="Degrees">
+          <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+          <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+          <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+          <ScalarProperty Name="DateRange" ColumnName="DateRange" />
+          <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Health" ColumnName="Health" />
+          <ScalarProperty Name="SocialInsurance" ColumnName="SocialInsurance" />
+          <ScalarProperty Name="HealthInsurance" ColumnName="HealthInsurance" />
+          <ScalarProperty Name="UnemploymentInsurance" ColumnName="UnemploymentInsurance" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LaudatoryEmployees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.LaudatoryEmployee">
+        <MappingFragment StoreEntitySet="LaudatoryEmployees">
+          <ScalarProperty Name="LaudatoryEmployeeID" ColumnName="LaudatoryEmployeeID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="LaudatoryName" ColumnName="LaudatoryName" />
+          <ScalarProperty Name="LaudatoryDate" ColumnName="LaudatoryDate" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OvertimeSalaries">
+      <EntityTypeMapping TypeName="ChamCongVNModel.OvertimeSalary">
+        <MappingFragment StoreEntitySet="OvertimeSalary">
+          <ScalarProperty Name="OvertimeSalaryID" ColumnName="OvertimeSalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="OvertimeSalaryName" ColumnName="OvertimeSalaryName" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="OvertimeType" ColumnName="OvertimeType" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Position">
+        <MappingFragment StoreEntitySet="Positions">
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+          <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recruitments">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Recruitment">
+        <MappingFragment StoreEntitySet="Recruitments">
+          <ScalarProperty Name="RecruitmentID" ColumnName="RecruitmentID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ApplyFor" ColumnName="ApplyFor" />
+          <ScalarProperty Name="LinkCV" ColumnName="LinkCV" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegulationEmployees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.RegulationEmployee">
+        <MappingFragment StoreEntitySet="RegulationEmployees">
+          <ScalarProperty Name="RegulationEmployeeID" ColumnName="RegulationEmployeeID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="RegulationName" ColumnName="RegulationName" />
+          <ScalarProperty Name="RegulationDate" ColumnName="RegulationDate" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="RegulationFormat" ColumnName="RegulationFormat" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salaries">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Salary">
+        <MappingFragment StoreEntitySet="Salary">
+          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
+          <ScalarProperty Name="CoefficientSalary" ColumnName="CoefficientSalary" />
+          <ScalarProperty Name="TotalWorkTime" ColumnName="TotalWorkTime" />
+          <ScalarProperty Name="TotalAbsentApplications" ColumnName="TotalAbsentApplications" />
+          <ScalarProperty Name="TotalAdvances" ColumnName="TotalAdvances" />
+          <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
+          <ScalarProperty Name="TotalBonusSalary" ColumnName="TotalBonusSalary" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalaryTables">
+      <EntityTypeMapping TypeName="ChamCongVNModel.SalaryTable">
+        <MappingFragment StoreEntitySet="SalaryTable">
+          <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
+          <ScalarProperty Name="SalaryTableName" ColumnName="SalaryTableName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MinSalary" ColumnName="MinSalary" />
+          <ScalarProperty Name="TotalTimeRegulation" ColumnName="TotalTimeRegulation" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shifts">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Shift">
+        <MappingFragment StoreEntitySet="Shifts">
+          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="StartShift" ColumnName="StartShift" />
+          <ScalarProperty Name="EndShift" ColumnName="EndShift" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specialities">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Speciality">
+        <MappingFragment StoreEntitySet="Specialities">
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecialityDetails">
+      <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityDetail">
+        <MappingFragment StoreEntitySet="SpecialityDetails">
+          <ScalarProperty Name="SpecialityDetailID" ColumnName="SpecialityDetailID" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="ChamCongVNModel.State">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Works">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Work">
+        <MappingFragment StoreEntitySet="Works">
+          <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+          <ScalarProperty Name="WorkName" ColumnName="WorkName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DegreesOfEmployees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.DegreesOfEmployee">
+        <MappingFragment StoreEntitySet="DegreesOfEmployee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecialityOfEmployees">
+      <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
+        <MappingFragment StoreEntitySet="SpecialityOfEmployee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
