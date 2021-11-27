@@ -375,36 +375,6 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
-        // ------------------------------ Recruitments ------------------------------ //
-        
-        [Route("GetAllRecruitment")]
-        [HttpGet]
-        public object GetAllRecruitment()
-        {
-            var Recruitment = db.Recruitments.ToList();
-            return Recruitment;
-        }
-
-        [Route("GetRecruitmentByID")]
-        [HttpGet]
-        public object GetRecruitmentByID(int ID)
-        {
-            var obj = db.Recruitments.Where(x => x.RecruitmentID == ID).FirstOrDefault();
-            return obj;
-        }
-
-        [Route("DeleteRecruitment")]
-        [HttpDelete]
-        public object DeleteRecruitment(int ID)
-        {
-            var obj = db.Recruitments.Where(x => x.RecruitmentID == ID).FirstOrDefault();
-            db.Recruitments.Remove(obj);
-            db.SaveChanges();
-            return new Response
-            {
-                Status = "Delete",
-                Message = "Delete Successfuly"
-            };
-        }
+       
     }
 }

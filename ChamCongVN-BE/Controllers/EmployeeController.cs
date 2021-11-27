@@ -12,7 +12,7 @@ namespace ChamCongVN_BE.Controllers
     public class EmployeeController : ApiController
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
-        [Route("ShowAllEmployees")]
+        [Route("GetAllGetAllEmployee")]
         [HttpGet]
         public object ShowAllEmployees()
         {
@@ -37,19 +37,36 @@ namespace ChamCongVN_BE.Controllers
                           }).ToList();
             return result;
         }
-        [Route("GetDegreeOfEmployeeByEmployeeID")]
+        // ------------------------------ Recruitments ------------------------------ //
+
+        [Route("GetAllRecruitment")]
         [HttpGet]
-        public object GetDegreeDetailsByEmployeeID(int employeeid)
+        public object GetAllRecruitment()
         {
-            var obj = db.DegreesOfEmployees.Where(x => x.EmployeeID == employeeid).FirstOrDefault();
+            var Recruitment = db.Recruitments.ToList();
+            return Recruitment;
+        }
+
+        [Route("GetRecruitmentByID")]
+        [HttpGet]
+        public object GetRecruitmentByID(int ID)
+        {
+            var obj = db.Recruitments.Where(x => x.RecruitmentID == ID).FirstOrDefault();
             return obj;
         }
-        [Route("GetEmployeeByEmployeeID")]
-        [HttpGet]
-        public object GetEmployeeByEmployeeID(int employeeid)
+
+        [Route("DeleteRecruitment")]
+        [HttpDelete]
+        public object DeleteRecruitment(int ID)
         {
-            var obj = db.Employees.Where(x => x.EmployeeID == employeeid).FirstOrDefault();
-            return obj;
+            var obj = db.Recruitments.Where(x => x.RecruitmentID == ID).FirstOrDefault();
+            db.Recruitments.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
         }
     }
 }

@@ -176,5 +176,179 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
+        // ------------------------------ Deduction Employee ------------------------------ //
+        [Route("AddOrEditDeductionEmployee")]
+        [HttpPost]
+        public object AddOrEditDeductionEmployee(DeductionEmployee1 de1)
+        {
+            if (de1.DeductionEmployeeID == 0)
+            {
+                DeductionEmployee DeductionEmployee = new DeductionEmployee
+                {
+                    EmployeeID = de1.EmployeeID,
+                    DeductionName = de1.DeductionName,
+                    DeductionDate = de1.DeductionDate,
+                    Reason = de1.Reason,
+                    Amount = de1.Amount,
+                    CreatedBy = de1.CreatedBy,
+                    CreatedAt = DateTime.Now
+                };
+                db.DeductionEmployees.Add(DeductionEmployee);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+
+            else
+            {
+                var obj = db.DeductionEmployees.Where(x => x.DeductionEmployeeID == de1.DeductionEmployeeID).FirstOrDefault();
+                if (obj.DeductionEmployeeID > 0)
+                {
+                    obj.EmployeeID = de1.EmployeeID;
+                    obj.DeductionName = de1.DeductionName;
+                    obj.DeductionDate = de1.DeductionDate;
+                    obj.Reason = de1.Reason;
+                    obj.Amount = de1.Amount;
+                    obj.UpdatedBy = de1.UpdatedBy;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("GetAllDeductionEmployee")]
+        [HttpGet]
+        public object GetAllDeductionEmployee()
+        {
+            var ot = (from deduc in db.DeductionEmployees
+                      from emp in db.Employees
+                      where deduc.EmployeeID == emp.EmployeeID
+                      select new
+                      {
+                          DeductionEmployee = deduc,
+                          Employee = emp
+                      }
+                           ).ToList();
+            return ot;
+        }
+        [Route("GetDeductionEmployeeByID")]
+        [HttpGet]
+        public object GetDeductionEmployeeByID(int ID)
+        {
+            var ot = db.DeductionEmployees.Where(x => x.DeductionEmployeeID == ID).FirstOrDefault();
+            return ot;
+        }
+        [Route("DeleteDeductionEmployee")]
+        [HttpDelete]
+        public object DeleteDeductionEmployee(int ID)
+        {
+            var obj = db.DeductionEmployees.Where(x => x.DeductionEmployeeID == ID).FirstOrDefault();
+            db.DeductionEmployees.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        // ------------------------------ Laudatory Employee ------------------------------ //
+        [Route("AddOrEditLaudatoryEmployee")]
+        [HttpPost]
+        public object AddOrEditLaudatoryEmployee(LaudatoryEmployee1 de1)
+        {
+            if (de1.LaudatoryEmployeeID == 0)
+            {
+                LaudatoryEmployee LaudatoryEmployee = new LaudatoryEmployee
+                {
+                    EmployeeID = de1.EmployeeID,
+                    LaudatoryName = de1.LaudatoryName,
+                    LaudatoryDate = de1.LaudatoryDate,
+                    Reason = de1.Reason,
+                    Amount = de1.Amount,
+                    CreatedBy = de1.CreatedBy,
+                    CreatedAt = DateTime.Now
+                };
+                db.LaudatoryEmployees.Add(LaudatoryEmployee);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+
+            else
+            {
+                var obj = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == de1.LaudatoryEmployeeID).FirstOrDefault();
+                if (obj.LaudatoryEmployeeID > 0)
+                {
+                    obj.EmployeeID = de1.EmployeeID;
+                    obj.LaudatoryName = de1.LaudatoryName;
+                    obj.LaudatoryDate = de1.LaudatoryDate;
+                    obj.Reason = de1.Reason;
+                    obj.Amount = de1.Amount;
+                    obj.UpdatedBy = de1.UpdatedBy;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("GetAllLaudatoryEmployee")]
+        [HttpGet]
+        public object GetAllLaudatoryEmployee()
+        {
+            var ot = (from deduc in db.LaudatoryEmployees
+                      from emp in db.Employees
+                      where deduc.EmployeeID == emp.EmployeeID
+                      select new
+                      {
+                          LaudatoryEmployee = deduc,
+                          Employee = emp
+                      }
+                           ).ToList();
+            return ot;
+        }
+        [Route("GetLaudatoryEmployeeByID")]
+        [HttpGet]
+        public object GetLaudatoryEmployeeByID(int ID)
+        {
+            var ot = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == ID).FirstOrDefault();
+            return ot;
+        }
+        [Route("DeleteLaudatoryEmployee")]
+        [HttpDelete]
+        public object DeleteLaudatoryEmployee(int ID)
+        {
+            var obj = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == ID).FirstOrDefault();
+            db.LaudatoryEmployees.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
     }
 }

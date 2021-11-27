@@ -87,7 +87,7 @@
     <Key>
       <PropertyRef Name="DeductionEmployeeID" />
     </Key>
-    <Property Name="DeductionEmployeeID" Type="int" Nullable="false" />
+    <Property Name="DeductionEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="DeductionName" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="DeductionDate" Type="datetime" Nullable="false" />
@@ -262,7 +262,7 @@
       <PropertyRef Name="SalaryTableID" />
     </Key>
     <Property Name="SalaryTableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SalaryTableName" Type="int" Nullable="false" />
+    <Property Name="SalaryTableName" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Month" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Year" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="MinSalary" Type="float" Nullable="false" />
