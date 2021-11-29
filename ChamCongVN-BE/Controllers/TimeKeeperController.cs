@@ -41,5 +41,53 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
+        // ------------------------------ Handle Send To Python ------------------------------ //
+        [Route("HandleSendToPython")]
+        [HttpGet]
+        public object HandleSendToPython(SendToPython send)
+        {
+            var PublicIP = Utilities.GetIPAddress();
+            if (PublicIP == send.PublicIP)
+            {
+                // Call API Python Overhere
+                return new Response
+                {
+                    Status = "Succees",
+                    Message = "Call Successfuly"
+                };
+            }
+            else
+            {
+                return new Response
+                {
+                    Status = "403",
+                    Message = "Access Denied"
+                };
+            }
+        }
+        [Route("CheckLocation")]
+        [HttpGet]
+        public object AddCheckIn(double latitude, double longtitude)
+        {
+            double a = 10.797407401664431;
+            double b = 106.70355907451703;
+            double radius = Utilities.Radius(a, b, latitude, longtitude);
+            if (radius < 50)
+            {
+                return new Response
+                {
+                    Status = "OK",
+                    Message = "Valid location"
+                };
+            }
+            else
+            {
+                return new Response
+                {
+                    Status = "Fail",
+                    Message = "Invalid location"
+                };
+            }
+        }
     }
 }

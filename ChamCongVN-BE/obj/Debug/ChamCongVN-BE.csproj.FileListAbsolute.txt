@@ -192,3 +192,9 @@ C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\obj\Debug\ChamCongVN-BE.csp
 C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\obj\Debug\ChamCongVN-BE.csproj.CopyComplete
 C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\obj\Debug\ChamCongVN-BE.dll
 C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\obj\Debug\ChamCongVN-BE.pdb
+C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\bin\ExcelDataReader.DataSet.dll
+C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\bin\ExcelDataReader.dll
+C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\bin\ExcelDataReader.pdb
+C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\bin\ExcelDataReader.xml
+C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\bin\ExcelDataReader.DataSet.pdb
+C:\Users\PC DELL\Desktop\ChamCongVN-BE\ChamCongVN-BE\bin\ExcelDataReader.DataSet.xml

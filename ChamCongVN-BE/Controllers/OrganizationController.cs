@@ -27,7 +27,7 @@ namespace ChamCongVN_BE.Controllers
                     RoleID = account.RoleID,
                     StateID = 1,
                     Email = account.Email,
-                    Password = account.Password,
+                    Password = Utilities.GetMD5(account.Password),
                     CreatedBy = account.CreatedBy,
                     CreatedAt = DateTime.Now
                 };
@@ -46,13 +46,16 @@ namespace ChamCongVN_BE.Controllers
             };
         }
 
-        [Route("EditStateAccount")]
+        [Route("EditAccount")]
         [HttpPost]
-        public object EditStateAccount(Account1 account)
+        public object EditAccount(Account1 account)
         {
             var obj = db.Accounts.Where(x => x.AccountID == account.AccountID).FirstOrDefault();
             if (obj.AccountID > 0)
             {
+                obj.EmployeeID = account.EmployeeID;
+                obj.Email = account.Email;
+                obj.RoleID = account.RoleID;
                 obj.StateID = account.StateID;
                 obj.UpdatedAt = DateTime.Now;
                 obj.UpdatedBy = account.UpdatedBy;
@@ -108,11 +111,21 @@ namespace ChamCongVN_BE.Controllers
         {
             var account = (from acc in db.Accounts
                            from emp in db.Employees
+                           from role in db.Roles
+                           from state in db.States
                            where acc.EmployeeID == emp.EmployeeID
+                           where role.RoleID == acc.RoleID
+                           where state.StateID == acc.StateID
                            select new
                            {
                                Account = acc,
-                               Employee = emp
+                               acc.AccountID,
+                               acc.EmployeeID,
+                               acc.RoleID,
+                               acc.StateID,
+                               Employee = emp,
+                               role.RoleName,
+                               state.StateName
                            }
                            ).ToList();
             return account;
@@ -205,12 +218,12 @@ namespace ChamCongVN_BE.Controllers
         // ------------------------------ Login ------------------------------ //
         [Route("Login")]
         [HttpPost]
-        public Response Login(string Email, string Password)
+        public Response Login(Login lg)
         {
             if (ModelState.IsValid)
             {
-                var f_password = Utilities.GetMD5(Password);
-                var user = db.Accounts.Where(s => s.Email.Equals(Email) && s.Password.Equals(f_password)).FirstOrDefault();
+                var f_password = Utilities.GetMD5(lg.Password);
+                var user = db.Accounts.Where(s => s.Email.Equals(lg.Email) && s.Password.Equals(f_password)).FirstOrDefault();
                 if (user != null)
                 {
                     return new Response()

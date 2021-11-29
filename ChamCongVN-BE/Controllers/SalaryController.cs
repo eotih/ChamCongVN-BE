@@ -238,7 +238,10 @@ namespace ChamCongVN_BE.Controllers
                       select new
                       {
                           DeductionEmployee = deduc,
-                          Employee = emp
+                          Employee = emp,
+                          emp.FullName,
+                          emp.EmployeeID,
+                          emp.Image
                       }
                            ).ToList();
             return ot;
@@ -325,7 +328,10 @@ namespace ChamCongVN_BE.Controllers
                       select new
                       {
                           LaudatoryEmployee = deduc,
-                          Employee = emp
+                          Employee = emp,
+                          emp.EmployeeID,
+                          emp.FullName,
+                          emp.Image
                       }
                            ).ToList();
             return ot;
