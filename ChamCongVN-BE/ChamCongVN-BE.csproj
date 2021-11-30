@@ -269,6 +269,10 @@
     </Compile>
     <Compile Include="Models\LaudatoryEmployee1.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Organization.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Organization1.cs" />
     <Compile Include="Models\OvertimeSalary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>

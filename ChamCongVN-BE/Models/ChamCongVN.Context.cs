@@ -38,6 +38,7 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<LaudatoryEmployee> LaudatoryEmployees { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OvertimeSalary> OvertimeSalaries { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Recruitment> Recruitments { get; set; }
