@@ -66,8 +66,8 @@
     <Property Name="Image" Type="nvarchar(max)" />
     <Property Name="Status" Type="nvarchar(max)" />
     <Property Name="Device" Type="nvarchar(max)" />
-    <Property Name="Longtitude" Type="nvarchar(max)" />
-    <Property Name="Latitude" Type="nvarchar(max)" />
+    <Property Name="Longitude" Type="varchar" MaxLength="50" />
+    <Property Name="Latitude" Type="varchar" MaxLength="50" />
     <Property Name="CreatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="CheckOuts">
@@ -79,8 +79,8 @@
     <Property Name="Image" Type="nvarchar(max)" />
     <Property Name="Status" Type="nvarchar(max)" />
     <Property Name="Device" Type="nvarchar(max)" />
-    <Property Name="Latitude" Type="nvarchar(max)" />
-    <Property Name="Longtitude" Type="nvarchar(max)" />
+    <Property Name="Latitude" Type="varchar" MaxLength="50" />
+    <Property Name="Longitude" Type="varchar" MaxLength="50" />
     <Property Name="CreatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="DeductionEmployees">
@@ -170,13 +170,26 @@
     <Property Name="LaudatoryEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="LaudatoryName" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="LaudatoryDate" Type="date" Nullable="false" />
+    <Property Name="LaudatoryDate" Type="datetime" Nullable="false" />
     <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Amount" Type="float" Nullable="false" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="150" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
     <Property Name="CreatedAt" Type="datetime" />
     <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="OrganizationID" />
+    </Key>
+    <Property Name="OrganizationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Logo" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" />
+    <Property Name="Latitude" Type="varchar" MaxLength="50" />
+    <Property Name="Longitude" Type="varchar" MaxLength="50" />
+    <Property Name="Website" Type="nvarchar(max)" />
+    <Property Name="PublicIP" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="OvertimeSalary">
     <Key>
@@ -346,6 +359,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OvertimeSalary" EntityType="Self.OvertimeSalary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Recruitments" EntityType="Self.Recruitments" Schema="dbo" store:Type="Tables" />

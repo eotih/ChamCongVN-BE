@@ -19,7 +19,7 @@ namespace ChamCongVN_BE.Models
         public string Logo { get; set; }
         public string Email { get; set; }
         public string Latitude { get; set; }
-        public string Longtitude { get; set; }
+        public string Longitude { get; set; }
         public string Website { get; set; }
         public string PublicIP { get; set; }
     }

@@ -20,7 +20,7 @@ namespace ChamCongVN_BE.Models
         public string Status { get; set; }
         public string Device { get; set; }
         public string Latitude { get; set; }
-        public string Longtitude { get; set; }
+        public string Longitude { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
     }
 }

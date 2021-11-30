@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dfb7fbaf683742cb836e11615e7ed9a3" Name="Diagram1">
+      <Diagram DiagramId="fae6b7a8cc1a4aaab3e8e77d8cc45970" Name="Diagram1">
         <EntityTypeShape EntityType="ChamCongVNModel.AbsentApplication" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.Account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.Advance" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

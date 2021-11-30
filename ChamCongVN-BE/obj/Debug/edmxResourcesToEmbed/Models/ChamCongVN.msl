@@ -70,7 +70,7 @@
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Device" ColumnName="Device" />
-          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
         </MappingFragment>
@@ -85,7 +85,7 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Device" ColumnName="Device" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -189,6 +189,20 @@
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
           <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizations">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Organization">
+        <MappingFragment StoreEntitySet="Organization">
+          <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

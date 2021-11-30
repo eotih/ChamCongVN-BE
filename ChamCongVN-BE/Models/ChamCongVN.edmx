@@ -71,7 +71,7 @@
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="Device" Type="nvarchar(max)" />
-          <Property Name="Longtitude" Type="varchar" MaxLength="50" />
+          <Property Name="Longitude" Type="varchar" MaxLength="50" />
           <Property Name="Latitude" Type="varchar" MaxLength="50" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
@@ -85,7 +85,7 @@
           <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="Device" Type="nvarchar(max)" />
           <Property Name="Latitude" Type="varchar" MaxLength="50" />
-          <Property Name="Longtitude" Type="varchar" MaxLength="50" />
+          <Property Name="Longitude" Type="varchar" MaxLength="50" />
           <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="DeductionEmployees">
@@ -192,7 +192,7 @@
           <Property Name="Logo" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar" MaxLength="200" />
           <Property Name="Latitude" Type="varchar" MaxLength="50" />
-          <Property Name="Longtitude" Type="varchar" MaxLength="50" />
+          <Property Name="Longitude" Type="varchar" MaxLength="50" />
           <Property Name="Website" Type="nvarchar(max)" />
           <Property Name="PublicIP" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -461,7 +461,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
         </EntityType>
@@ -475,7 +475,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="DeductionEmployee">
@@ -582,7 +582,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -841,7 +841,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Device" ColumnName="Device" />
-                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
               </MappingFragment>
@@ -856,7 +856,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Device" ColumnName="Device" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -971,7 +971,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
               </MappingFragment>

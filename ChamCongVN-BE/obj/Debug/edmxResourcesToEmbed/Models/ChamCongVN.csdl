@@ -66,8 +66,8 @@
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Longtitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="CheckOut">
@@ -79,8 +79,8 @@
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Longtitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="DeductionEmployee">
@@ -170,13 +170,26 @@
     <Property Name="LaudatoryEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="LaudatoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="LaudatoryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LaudatoryDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Amount" Type="Double" Nullable="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="OrganizationID" />
+    </Key>
+    <Property Name="OrganizationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="OvertimeSalary">
     <Key>
@@ -342,6 +355,7 @@
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="Groups" EntityType="Self.Group" />
     <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
     <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
     <EntitySet Name="Positions" EntityType="Self.Position" />
     <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
