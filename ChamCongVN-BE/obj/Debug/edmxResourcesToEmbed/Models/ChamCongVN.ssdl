@@ -190,6 +190,7 @@
     <Property Name="Longitude" Type="varchar" MaxLength="50" />
     <Property Name="Website" Type="nvarchar(max)" />
     <Property Name="PublicIP" Type="varchar" MaxLength="50" />
+    <Property Name="PythonIP" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="OvertimeSalary">
     <Key>
@@ -198,7 +199,7 @@
     <Property Name="OvertimeSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="OvertimeSalaryName" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="Time" Type="float" Nullable="false" />
+    <Property Name="Time" Type="datetime" Nullable="false" />
     <Property Name="OvertimeType" Type="float" Nullable="false" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="250" />
@@ -220,7 +221,7 @@
     <Property Name="RecruitmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Gender" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="DateOfBirth" Type="datetime" />
     <Property Name="Address" Type="nvarchar(max)" />
     <Property Name="TemporaryAddress" Type="nvarchar(max)" />
     <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />

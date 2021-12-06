@@ -15,5 +15,6 @@ namespace ChamCongVN_BE.Models
         public string Longtitude { get; set; }
         public string Website { get; set; }
         public string PublicIP { get; set; }
+        public string PythonIP { get; set; }
     }
 }

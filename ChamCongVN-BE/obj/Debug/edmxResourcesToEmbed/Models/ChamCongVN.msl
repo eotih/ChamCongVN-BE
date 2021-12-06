@@ -203,6 +203,7 @@
           <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
+          <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

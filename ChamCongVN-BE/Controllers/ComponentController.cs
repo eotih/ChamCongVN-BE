@@ -251,7 +251,6 @@ namespace ChamCongVN_BE.Controllers
                     Message = "Data Success"
                 };
             }
-
             else
             {
                 var obj = db.Departments.Where(x => x.DepartmentID == department1.DepartmentID).FirstOrDefault();

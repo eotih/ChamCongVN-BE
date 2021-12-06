@@ -195,6 +195,7 @@
           <Property Name="Longitude" Type="varchar" MaxLength="50" />
           <Property Name="Website" Type="nvarchar(max)" />
           <Property Name="PublicIP" Type="varchar" MaxLength="50" />
+          <Property Name="PythonIP" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="OvertimeSalary">
           <Key>
@@ -203,7 +204,7 @@
           <Property Name="OvertimeSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="OvertimeSalaryName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Time" Type="float" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
           <Property Name="OvertimeType" Type="float" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="250" />
@@ -225,7 +226,7 @@
           <Property Name="RecruitmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="TemporaryAddress" Type="nvarchar(max)" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -585,6 +586,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OvertimeSalary">
           <Key>
@@ -593,7 +595,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="OvertimeSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="OvertimeSalaryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Time" Type="Double" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="OvertimeType" Type="Double" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -615,7 +617,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="RecruitmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
@@ -974,6 +976,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
+                <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

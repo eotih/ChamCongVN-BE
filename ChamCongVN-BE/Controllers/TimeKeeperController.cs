@@ -12,6 +12,13 @@ namespace ChamCongVN_BE.Controllers
     public class TimeKeeperController : ApiController
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
+        [Route("GetAllCheckIn")]
+        [HttpGet]
+        public object GetAllCheckIn()
+        {
+            var obj = db.CheckIns.ToList();
+            return obj;
+        }
         [Route("AddCheckIn")]
         [HttpPost]
         public object AddCheckIn(CheckIn1 checkin1)
@@ -42,31 +49,96 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-        // ------------------------------ Handle ci To Python ------------------------------ //
-        [Route("CheckLocation")]
+        [Route("GetAllCheckOut")]
         [HttpGet]
-        public object AddCheckIn(double latitude, double longtitude)
+        public object GetAllCheckOut()
         {
-            double a = 10.797407401664431;
-            double b = 106.70355907451703;
-            double radius = Utilities.Radius(a, b, latitude, longtitude);
-            if (radius < 50)
-            {
-                return new Response
-                {
-                    Status = "OK",
-                    Message = "Valid location"
-                };
-            }
-            else
-            {
-                return new Response
-                {
-                    Status = "Fail",
-                    Message = "Invalid location"
-                };
-            }
+            var obj = db.CheckOuts.ToList();
+            return obj;
         }
+        [Route("AddCheckOut")]
+        [HttpPost]
+        public object AddCheckOut(CheckOut1 check)
+        {
+            if (check.CheckOutCode == 0)
+            {
+                CheckOut checkout = new CheckOut
+                {
+                    EmployeeID = check.EmployeeID,
+                    Image = check.Image,
+                    Status = check.Status,
+                    Device = check.Device,
+                    Latitude = check.Latitude,
+                    Longitude = check.Longitude,
+                    CreatedAt = DateTime.Now
+                };
+                db.CheckOuts.Add(checkout);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("GetAllTimeKeepingByEmployeeID")]
+        [HttpGet]
+        public object GetAllTimeKeepingByEmployeeID(int EmployeeID)
+        {
+            var empIn = db.CheckIns.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var empOut = db.CheckOuts.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var obj = (from ci in empIn
+                       from co in empOut
+                       where ci.EmployeeID == co.EmployeeID
+                       select new
+                       {
+                           checkin = ci,
+                           checkout = co
+                       }).ToList();
+            return obj;
+        }
+        [Route("GetAllTimeKeeping")]
+        [HttpGet]
+        public object GetAllTimeKeeping()
+        {
+            var obj = (from ci in db.CheckIns
+                       from co in db.CheckOuts
+                       from emp in db.Employees
+                       from dep in db.Departments
+                       where emp.DepartmentID == dep.DepartmentID
+                       where ci.EmployeeID == co.EmployeeID
+                       where emp.EmployeeID == co.EmployeeID
+                       where emp.EmployeeID == ci.EmployeeID
+                       select new
+                       {
+                           EmployeeName = emp.FullName,
+                           Department = dep.DepartmentName,
+                           checkin = ci,
+                           checkout = co
+                       }).ToList();
+            return obj;
+        }
+        [Route("GetCheckInByEmployeeID")]
+        [HttpGet]
+        public object GetCheckInByEmployeeID(int EmployeeID)
+        {
+            var ci = db.CheckIns.Where(x => x.EmployeeID == EmployeeID).ToList();
+            return ci;
+        }
+        [Route("GetCheckOutByEmployeeID")]
+        [HttpGet]
+        public object GetCheckOutByEmployeeID(int EmployeeID)
+        {
+            var ci = db.CheckOuts.Where(x => x.EmployeeID == EmployeeID).ToList();
+            return ci;
+        }
+        // ------------------------------ Handle ci To Python ------------------------------ //
+
         [Route("HandleciToPython")]
         [HttpPost]
         public async System.Threading.Tasks.Task<object> HandleciToPythonAsync(CheckIn1 ci)
