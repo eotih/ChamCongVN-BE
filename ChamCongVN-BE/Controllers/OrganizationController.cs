@@ -388,8 +388,8 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
-        // ------------------------------ Position ------------------------------ //
-        [Route("AddOrEditPosition")]
+        // ------------------------------ Organization ------------------------------ //
+        [Route("AddOrEditOrganization")]
         [HttpPost]
         public object AddOrEditOrganization(Organization1 or1)
         {
