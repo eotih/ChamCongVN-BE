@@ -67,6 +67,90 @@ namespace ChamCongVN_BE.Controllers
                           }).FirstOrDefault();
             return result;
         }
+        [Route("AddOrEditEmployee")]
+        [HttpPost]
+        public object AddOrEditEmployee(Employee1 emp1)
+        {
+            if (emp1.EmployeeID == 0)
+            {
+                Employee emp = new Employee
+                {
+                    GroupID = emp1.GroupID,
+                    PositionID = emp1.PositionID,
+                    DepartmentID = emp1.DepartmentID,
+                    WorkID = emp1.WorkID,
+                    SalaryTableID = emp1.SalaryTableID,
+                    FullName = emp1.FullName,
+                    NickName = emp1.NickName,
+                    Gender = emp1.Gender,
+                    Image = emp1.Image,
+                    DateOfBirth = emp1.DateOfBirth,
+                    PlaceOfBirth = emp1.PlaceOfBirth,
+                    Address = emp1.Address,
+                    TemporaryAddress = emp1.TemporaryAddress,
+                    Phone = emp1.Phone,
+                    IdentityCard = emp1.IdentityCard,
+                    DateRange = emp1.DateRange,
+                    IssuedBy = emp1.IssuedBy,
+                    StartDate = emp1.StartDate,
+                    Health = emp1.Health,
+                    SocialInsurance = emp1.SocialInsurance,
+                    HealthInsurance = emp1.HealthInsurance,
+                    UnemploymentInsurance = emp1.UnemploymentInsurance,
+                    CreatedBy = emp1.CreatedBy,
+                    CreatedAt = DateTime.Now
+                };
+                db.Employees.Add(emp);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Employees.Where(x => x.EmployeeID == emp1.EmployeeID).FirstOrDefault();
+                if (obj.EmployeeID > 0)
+                {
+                    obj.GroupID = emp1.GroupID;
+                    obj.PositionID = emp1.PositionID;
+                    obj.DepartmentID = emp1.DepartmentID;
+                    obj.WorkID = emp1.WorkID;
+                    obj.SalaryTableID = emp1.SalaryTableID;
+                    obj.FullName = emp1.FullName;
+                    obj.NickName = emp1.NickName;
+                    obj.Gender = emp1.Gender;
+                    obj.Image = emp1.Image;
+                    obj.DateOfBirth = emp1.DateOfBirth;
+                    obj.PlaceOfBirth = emp1.PlaceOfBirth;
+                    obj.Address = emp1.Address;
+                    obj.TemporaryAddress = emp1.TemporaryAddress;
+                    obj.Phone = emp1.Phone;
+                    obj.IdentityCard = emp1.IdentityCard;
+                    obj.DateRange = emp1.DateRange;
+                    obj.IssuedBy = emp1.IssuedBy;
+                    obj.StartDate = emp1.StartDate;
+                    obj.Health = emp1.Health;
+                    obj.SocialInsurance = emp1.SocialInsurance;
+                    obj.HealthInsurance = emp1.HealthInsurance;
+                    obj.UnemploymentInsurance = emp1.UnemploymentInsurance;
+                    obj.UpdatedBy = emp1.UpdatedBy;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
         // ------------------------------ Recruitments ------------------------------ //
 
         [Route("GetAllRecruitment")]

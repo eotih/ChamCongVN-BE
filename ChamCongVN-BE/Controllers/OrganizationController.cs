@@ -388,6 +388,89 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
-       
+        // ------------------------------ Position ------------------------------ //
+        [Route("AddOrEditPosition")]
+        [HttpPost]
+        public object AddOrEditOrganization(Organization1 or1)
+        {
+            if (or1.OrganizationID == 0)
+            {
+                Organization or = new Organization
+                {
+                    Name = or1.Name,
+                    Logo = or1.Logo,
+                    Email = or1.Email,
+                    Latitude = or1.Latitude,
+                    Longitude = or1.Longitude,
+                    Website = or1.Website,
+                    PublicIP = or1.PublicIP,
+                    PythonIP = or1.PythonIP,
+                };
+                db.Organizations.Add(or);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Organizations.Where(x => x.OrganizationID == or1.OrganizationID).FirstOrDefault();
+                if (obj.OrganizationID > 0)
+                {
+                    obj.Name = or1.Name;
+                    obj.Logo = or1.Logo;
+                    obj.Email = or1.Email;
+                    obj.Latitude = or1.Latitude;
+                    obj.Longitude = or1.Longitude;
+                    obj.Website = or1.Website;
+                    obj.PublicIP = or1.PublicIP;
+                    obj.PythonIP = or1.PythonIP;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("GetAllOrganization")]
+        [HttpGet]
+        public object GetAllOrganization()
+        {
+            var or = db.Organizations.ToList();
+            return or;
+        }
+
+        [Route("GetOrganizationByID")]
+        [HttpGet]
+        public object GetOrganizationByID(int ID)
+        {
+            var obj = db.Organizations.Where(x => x.OrganizationID == ID).FirstOrDefault();
+            return obj;
+        }
+
+        [Route("DeleteOrganization")]
+        [HttpDelete]
+        public object DeleteOrganization(int ID)
+        {
+            var obj = db.Organizations.Where(x => x.OrganizationID == ID).FirstOrDefault();
+            db.Organizations.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+
     }
 }
