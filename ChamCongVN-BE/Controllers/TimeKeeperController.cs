@@ -1,4 +1,6 @@
 ﻿using ChamCongVN_BE.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,9 @@ namespace ChamCongVN_BE.Controllers
         }
         [Route("AddCheckIn")]
         [HttpPost]
-        public object AddCheckIn(CheckIn1 checkin1)
+        public object AddCheckIn(TimeKeeper checkin1)
         {
-            if (checkin1.CheckInCode == 0)
+            if (checkin1.ID == 0)
             {
                 CheckIn checkin = new CheckIn
                 {
@@ -58,9 +60,9 @@ namespace ChamCongVN_BE.Controllers
         }
         [Route("AddCheckOut")]
         [HttpPost]
-        public object AddCheckOut(CheckOut1 check)
+        public object AddCheckOut(TimeKeeper check)
         {
-            if (check.CheckOutCode == 0)
+            if (check.ID == 0)
             {
                 CheckOut checkout = new CheckOut
                 {
@@ -139,12 +141,15 @@ namespace ChamCongVN_BE.Controllers
         }
         // ------------------------------ Handle ci To Python ------------------------------ //
 
-        [Route("HandleciToPython")]
+        [Route("HandleSendToPython")]
         [HttpPost]
-        public async System.Threading.Tasks.Task<object> HandleciToPythonAsync(CheckIn1 ci)
+        public async System.Threading.Tasks.Task<object> HandleciToPythonAsync(TimeKeeper ci)
         {
-            string apiPython = "http://192.168.1.8:6868/nhandienkhuonmat";
             var objOrganizations = db.Organizations.FirstOrDefault();
+            var dateTime = DateTime.Now;
+            var hour = dateTime.Hour;
+            var minute = dateTime.Minute;
+            string apiPython = objOrganizations.PythonIP + "nhandienkhuonmat";
 
             string IPOrganiztion = objOrganizations.PublicIP;
             string publicIPRequest = ci.PublicIP;
@@ -165,42 +170,80 @@ namespace ChamCongVN_BE.Controllers
                         client.BaseAddress = new Uri(apiPython);
                         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/form-data"));
                         MultipartFormDataContent form = new MultipartFormDataContent
-                    {
-                        { new StringContent(ci.Image), "facebase64" }
-                    };
-                        var response = await client.PostAsync(apiPython, form);
-                        if (response.IsSuccessStatusCode)
                         {
-                            var result = await response.Content.ReadAsStringAsync();
-                            // Get data from response and check if Name != "Unknown" add to database
-                            if (result != "Unknown")
                             {
-                                CheckIn checkin = new CheckIn
+                                new StringContent(ci.Image), "base64"
+                            }
+                        };
+                        var response = await client.PostAsync(apiPython, form);
+                        var success = response.IsSuccessStatusCode;
+                        if (success)
+                        {
+                            var responsebody = await response.Content.ReadAsStringAsync();
+                            var obj = JObject.Parse(responsebody);
+                            var objResult = obj["name"].ToString();
+                            if(objResult != "Unknown")
+                            {
+                                int empID = 1; // mai mốt sửa chỗ này thành employee nhân viên 
+                                var haveItCheckIn = db.CheckIns.Where(x => x.EmployeeID == empID).ToList();
+                                var haveItCheckOut = db.CheckOuts.Where(x => x.EmployeeID == empID).ToList();
+                                var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
+                                var checkOut = haveItCheckOut.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
+                                
+                                if (hour < 12)
                                 {
-                                    EmployeeID = ci.EmployeeID,
-                                    Image = ci.Image,
-                                    Status = ci.Status,
-                                    Device = ci.Device,
-                                    Latitude = ci.Latitude,
-                                    Longitude = ci.Longitude,
-                                    CreatedAt = DateTime.Now
-                                };
-                                db.CheckIns.Add(checkin);
-                                db.SaveChanges();
-                                return new Response
+                                    if (checkIn == null)
+                                    {
+                                        if (hour > 7 && minute > 15)
+                                        {
+                                            ci.Status = "Đi muộn";
+                                            AddCheckIn(ci);
+                                        }
+                                        else
+                                        {
+                                            ci.Status = "Đúng giờ";
+                                            AddCheckIn(ci);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        return new Response
+                                        {
+                                            Status = "403",
+                                            Message = "Bạn đã check in hôm nay rồi"
+                                        };
+                                    }
+                                }
+                                else
                                 {
-                                    Status = "Success",
-                                    Message = "Data Success"
-                                };
+                                    if (checkOut == null)
+                                    {
+                                        if (hour < 17)
+                                        {
+                                            ci.Status = "Về sớm";
+                                            AddCheckOut(ci);
+                                        }
+                                        else
+                                        {
+                                            ci.Status = "Đúng giờ";
+                                            AddCheckOut(ci);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        return new Response
+                                        {
+                                            Status = "403",
+                                            Message = "Bạn đã check out hôm nay rồi"
+                                        };
+                                    }
+                                }
                             }
                             else
                             {
-                                return new Response
-                                {
-                                    Status = "Error",
-                                    Message = "Data not insert"
-                                };
+                                return null;
                             }
+
                         }
                         return response;
                     }

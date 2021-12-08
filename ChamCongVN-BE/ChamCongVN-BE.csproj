@@ -232,11 +232,10 @@
     <Compile Include="Models\CheckIn.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CheckIn1.cs" />
+    <Compile Include="Models\TimeKeeper.cs" />
     <Compile Include="Models\CheckOut.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CheckOut1.cs" />
     <Compile Include="Models\DeductionEmployee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
