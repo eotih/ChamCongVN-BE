@@ -66,8 +66,8 @@
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="Double" />
+    <Property Name="Latitude" Type="Double" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="CheckOut">
@@ -79,8 +79,8 @@
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="Double" />
+    <Property Name="Longitude" Type="Double" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="DeductionEmployee">
@@ -186,8 +186,8 @@
     <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="Double" />
+    <Property Name="Longitude" Type="Double" />
     <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />

@@ -13,6 +13,7 @@
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="AbsentType" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="AbsentDate" Type="date" Nullable="false" />
+          <Property Name="NumberOfDays" Type="int" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="StateID" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
@@ -404,6 +405,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AbsentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
           <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StateID" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -781,6 +783,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="AbsentType" ColumnName="AbsentType" />
                 <ScalarProperty Name="AbsentDate" ColumnName="AbsentDate" />
+                <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="StateID" ColumnName="StateID" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

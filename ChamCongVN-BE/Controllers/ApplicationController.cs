@@ -25,6 +25,7 @@ namespace ChamCongVN_BE.Controllers
                     AbsentType = absentapplication1.AbsentType,
                     AbsentDate = absentapplication1.AbsentDate,
                     Reason = absentapplication1.Reason,
+                    NumberOfDays = absentapplication1.NumberOfDays,
                     StateID = 1,
                     CreatedBy = absentapplication1.CreatedBy,
                     CreatedAt = DateTime.Now
@@ -46,7 +47,7 @@ namespace ChamCongVN_BE.Controllers
                     obj.AbsentType = absentapplication1.AbsentType;
                     obj.AbsentDate = absentapplication1.AbsentDate;
                     obj.Reason = absentapplication1.Reason;
-                    obj.Reason = absentapplication1.Reason;
+                    obj.NumberOfDays = absentapplication1.NumberOfDays;
                     obj.UpdatedBy = absentapplication1.UpdatedBy;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
@@ -107,6 +108,13 @@ namespace ChamCongVN_BE.Controllers
         {
             var abs = db.AbsentApplications.Where(x => x.AbsentApplicationID == ID).FirstOrDefault();
             return abs;
+        }
+        [Route("GetAbsentApplicationByEmployeeID")]
+        [HttpGet]
+        public object GetEmployeeByID(int EmployeeID)
+        {
+            var obj = db.AbsentApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
+            return obj;
         }
         [Route("DeleteAbsentApplication")]
         [HttpDelete]

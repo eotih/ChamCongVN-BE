@@ -12,6 +12,7 @@ namespace ChamCongVN_BE.Models
         public string AbsentType { get; set; }
         public System.DateTime AbsentDate { get; set; }
         public string Reason { get; set; }
+        public int NumberOfDays { get; set; }
         public int StateID { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
