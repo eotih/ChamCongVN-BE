@@ -190,7 +190,7 @@ namespace ChamCongVN_BE.Controllers
                                 var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
                                 var checkOut = haveItCheckOut.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
                                 
-                                if (hour < 12)
+                                if (hour > 7 && hour < 12)
                                 {
                                     if (checkIn == null)
                                     {
