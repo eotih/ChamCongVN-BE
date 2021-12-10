@@ -491,7 +491,7 @@ namespace ChamCongVN_BE.Controllers
             else
             {
                 var obj = db.Levels.Where(x => x.LevelID == lv1.LevelID).FirstOrDefault();
-                if (obj.OverTimeID > 0)
+                if (obj.LevelID > 0)
                 {
                     obj.LevelName = lv1.LevelName;
                     obj.PositionID = lv1.PositionID;
