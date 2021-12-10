@@ -68,6 +68,7 @@
         <MappingFragment StoreEntitySet="CheckIns">
           <ScalarProperty Name="CheckInCode" ColumnName="CheckInCode" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Device" ColumnName="Device" />
@@ -82,6 +83,7 @@
         <MappingFragment StoreEntitySet="CheckOuts">
           <ScalarProperty Name="CheckOutCode" ColumnName="CheckOutCode" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Device" ColumnName="Device" />
@@ -193,6 +195,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Levels">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Level">
+        <MappingFragment StoreEntitySet="Levels">
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Organizations">
       <EntityTypeMapping TypeName="ChamCongVNModel.Organization">
         <MappingFragment StoreEntitySet="Organization">
@@ -205,6 +217,21 @@
           <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
           <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OverTimes">
+      <EntityTypeMapping TypeName="ChamCongVNModel.OverTime">
+        <MappingFragment StoreEntitySet="OverTimes">
+          <ScalarProperty Name="OverTimeID" ColumnName="OverTimeID" />
+          <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+          <ScalarProperty Name="OverTimeName" ColumnName="OverTimeName" />
+          <ScalarProperty Name="OverTimeDate" ColumnName="OverTimeDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -362,26 +389,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="GetAllTimeKeepings">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
+        <MappingFragment StoreEntitySet="GetAllTimeKeeping">
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
+          <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
+          <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
+          <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
+          <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+          <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SpecialityOfEmployees">
       <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="GetAllTimeKeepings">
-      <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
-        <MappingFragment StoreEntitySet="GetAllTimeKeeping">
-          <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
-          <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
-          <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
-          <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
-          <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
-          <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

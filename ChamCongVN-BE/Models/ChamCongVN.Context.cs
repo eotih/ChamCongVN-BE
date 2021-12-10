@@ -38,7 +38,9 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<LaudatoryEmployee> LaudatoryEmployees { get; set; }
+        public virtual DbSet<Level> Levels { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<OverTime> OverTimes { get; set; }
         public virtual DbSet<OvertimeSalary> OvertimeSalaries { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Recruitment> Recruitments { get; set; }
@@ -52,7 +54,7 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<DegreesOfEmployee> DegreesOfEmployees { get; set; }
-        public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
         public virtual DbSet<GetAllTimeKeeping> GetAllTimeKeepings { get; set; }
+        public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
     }
 }

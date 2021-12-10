@@ -12,16 +12,11 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckOut
+    public partial class Level
     {
-        public int CheckOutCode { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public Nullable<int> ShiftID { get; set; }
-        public string Image { get; set; }
-        public string Status { get; set; }
-        public string Device { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public int LevelID { get; set; }
+        public string PositionID { get; set; }
+        public string LevelName { get; set; }
+        public string Coefficient { get; set; }
     }
 }

@@ -317,6 +317,84 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
+        // ------------------------------ OverTime ------------------------------ //
+        [Route("AddOrEditOverTime")]
+        [HttpPost]
+        public object AddOrEditOverTime(OverTime1 OverTime1)
+        {
+            if (OverTime1.OverTimeID == 0)
+            {
+                OverTime OverTime = new OverTime
+                {
+                    OverTimeName = OverTime1.OverTimeName,
+                    DepartmentID = OverTime1.DepartmentID,
+                    OverTimeDate = OverTime1.OverTimeDate,
+                    IsActive = OverTime1.IsActive,
+                    Quantity = OverTime1.Quantity,
+                    CreatedBy = OverTime1.CreatedBy
+                };
+                db.OverTimes.Add(OverTime);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.OverTimes.Where(x => x.OverTimeID == OverTime1.OverTimeID).FirstOrDefault();
+                if (obj.OverTimeID > 0)
+                {
+                    obj.OverTimeName = OverTime1.OverTimeName;
+                    obj.DepartmentID = OverTime1.DepartmentID;
+                    obj.OverTimeDate = OverTime1.OverTimeDate;
+                    obj.Quantity = OverTime1.Quantity;
+                    obj.UpdatedBy = OverTime1.UpdatedBy;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("GetAllOverTime")]
+        [HttpGet]
+        public object GetAllOverTime()
+        {
+            var OverTime = db.OverTimes.ToList();
+            return OverTime;
+        }
+
+        [Route("GetOverTimeByID")]
+        [HttpGet]
+        public object GetOverTimeByID(int ID)
+        {
+            var obj = db.OverTimes.Where(x => x.OverTimeID == ID).FirstOrDefault();
+            return obj;
+        }
+
+        [Route("DeleteOverTime")]
+        [HttpDelete]
+        public object DeleteOverTime(int ID)
+        {
+            var obj = db.OverTimes.Where(x => x.OverTimeID == ID).FirstOrDefault();
+            db.OverTimes.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
         // ------------------------------ Position ------------------------------ //
         [Route("AddOrEditPosition")]
         [HttpPost]
@@ -381,6 +459,80 @@ namespace ChamCongVN_BE.Controllers
         {
             var obj = db.Positions.Where(x => x.PositionID == ID).FirstOrDefault();
             db.Positions.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        // ------------------------------ Level ------------------------------ //
+        [Route("AddOrEditLevel")]
+        [HttpPost]
+        public object AddOrEditLevel(Level1 lv1)
+        {
+            if (lv1.LevelID == 0)
+            {
+                Level lv = new Level
+                {
+                    LevelName = lv1.LevelName,
+                    PositionID = lv1.PositionID,
+                    Coefficient = lv1.Coefficient
+                    
+                };
+                db.Levels.Add(lv);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+            else
+            {
+                var obj = db.Levels.Where(x => x.LevelID == lv1.LevelID).FirstOrDefault();
+                if (obj.OverTimeID > 0)
+                {
+                    obj.LevelName = lv1.LevelName;
+                    obj.PositionID = lv1.PositionID;
+                    obj.Coefficient = lv1.Coefficient;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("GetAllLevels")]
+        [HttpGet]
+        public object GetAllLevels()
+        {
+            var lv = db.Levels.ToList();
+            return lv;
+        }
+
+        [Route("GetLevelByID")]
+        [HttpGet]
+        public object GetLevelByID(int ID)
+        {
+            var obj = db.Levels.Where(x => x.LevelID == ID).FirstOrDefault();
+            return obj;
+        }
+
+        [Route("DeleteLevel")]
+        [HttpDelete]
+        public object DeleteLevel(int ID)
+        {
+            var obj = db.Levels.Where(x => x.LevelID == ID).FirstOrDefault();
+            db.Levels.Remove(obj);
             db.SaveChanges();
             return new Response
             {

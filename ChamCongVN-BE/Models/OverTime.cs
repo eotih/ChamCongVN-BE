@@ -12,16 +12,16 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckOut
+    public partial class OverTime
     {
-        public int CheckOutCode { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
+        public int OverTimeID { get; set; }
+        public Nullable<int> DepartmentID { get; set; }
         public Nullable<int> ShiftID { get; set; }
-        public string Image { get; set; }
-        public string Status { get; set; }
-        public string Device { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public string OverTimeName { get; set; }
+        public Nullable<System.DateTime> OverTimeDate { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
     }
 }

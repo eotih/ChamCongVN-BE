@@ -64,6 +64,7 @@
     </Key>
     <Property Name="CheckInCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="ShiftID" Type="Int32" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -77,6 +78,7 @@
     </Key>
     <Property Name="CheckOutCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="ShiftID" Type="Int32" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -179,6 +181,15 @@
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="LevelID" />
+    </Key>
+    <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PositionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LevelName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Coefficient" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
   <EntityType Name="Organization">
     <Key>
       <PropertyRef Name="OrganizationID" />
@@ -192,6 +203,20 @@
     <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="OverTime">
+    <Key>
+      <PropertyRef Name="OverTimeID" />
+    </Key>
+    <Property Name="OverTimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="Int32" />
+    <Property Name="ShiftID" Type="Int32" />
+    <Property Name="OverTimeName" Type="String" MaxLength="220" FixedLength="false" Unicode="true" />
+    <Property Name="OverTimeDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="OvertimeSalary">
     <Key>
@@ -335,6 +360,22 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityType Name="GetAllTimeKeeping">
+    <Key>
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="Department" />
+    </Key>
+    <Property Name="EmployeeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="SpecialityOfEmployee">
     <Key>
       <PropertyRef Name="EmployeeID" />
@@ -357,7 +398,9 @@
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="Groups" EntityType="Self.Group" />
     <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
+    <EntitySet Name="Levels" EntityType="Self.Level" />
     <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
     <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
     <EntitySet Name="Positions" EntityType="Self.Position" />
     <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
@@ -371,23 +414,7 @@
     <EntitySet Name="States" EntityType="Self.State" />
     <EntitySet Name="Works" EntityType="Self.Work" />
     <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
+    <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
-    <EntitySet Name="GetAllTimeKeepings" EntityType="ChamCongVNModel.GetAllTimeKeeping" />
   </EntityContainer>
-  <EntityType Name="GetAllTimeKeeping">
-    <Key>
-      <PropertyRef Name="EmployeeName" />
-      <PropertyRef Name="EmployeeID" />
-      <PropertyRef Name="Department" />
-    </Key>
-    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="Department" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

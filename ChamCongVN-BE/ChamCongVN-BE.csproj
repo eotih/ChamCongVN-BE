@@ -232,97 +232,105 @@
     <Compile Include="Models\CheckIn.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetAllTimeKeeping.cs">
-      <DependentUpon>ChamCongVN.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TimeKeeper.cs" />
     <Compile Include="Models\CheckOut.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeductionEmployee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DeductionEmployee1.cs" />
     <Compile Include="Models\Degree.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Degree1.cs" />
     <Compile Include="Models\DegreeDetail.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DegreeDetail1.cs" />
     <Compile Include="Models\DegreesOfEmployee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Department1.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employee1.cs" />
+    <Compile Include="Models\GetAllTimeKeeping.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Group.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Group1.cs" />
     <Compile Include="Models\LaudatoryEmployee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LaudatoryEmployee1.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Level.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Level1.cs" />
     <Compile Include="Models\Organization.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Organization1.cs" />
+    <Compile Include="Models\OverTime.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OvertimeSalary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OvertimeSalary1.cs" />
+    <Compile Include="Models\OverTime1.cs" />
     <Compile Include="Models\Position.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Position1.cs" />
     <Compile Include="Models\Recruitment.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Recruitment1.cs" />
     <Compile Include="Models\RegulationEmployee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RegulationEmployee1.cs" />
-    <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Role1.cs" />
     <Compile Include="Models\Salary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Salary1.cs" />
     <Compile Include="Models\SalaryTable.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SalaryTable1.cs" />
-    <Compile Include="Models\SentToPython.cs" />
     <Compile Include="Models\Shift.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Shift1.cs" />
     <Compile Include="Models\Speciality.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Speciality1.cs" />
     <Compile Include="Models\SpecialityDetail.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SpecialityDetail1.cs" />
     <Compile Include="Models\SpecialityOfEmployee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\State.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TimeKeeper.cs" />
+    <Compile Include="Models\DeductionEmployee1.cs" />
+    <Compile Include="Models\Degree1.cs" />
+    <Compile Include="Models\DegreeDetail1.cs" />
+    <Compile Include="Models\Department1.cs" />
+    <Compile Include="Models\Employee1.cs" />
+    <Compile Include="Models\Group1.cs" />
+    <Compile Include="Models\LaudatoryEmployee1.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Organization1.cs" />
+    <Compile Include="Models\OvertimeSalary1.cs" />
+    <Compile Include="Models\Position1.cs" />
+    <Compile Include="Models\Recruitment1.cs" />
+    <Compile Include="Models\RegulationEmployee1.cs" />
+    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Role1.cs" />
+    <Compile Include="Models\Salary1.cs" />
+    <Compile Include="Models\SalaryTable1.cs" />
+    <Compile Include="Models\SentToPython.cs" />
+    <Compile Include="Models\Shift1.cs" />
+    <Compile Include="Models\Speciality1.cs" />
+    <Compile Include="Models\SpecialityDetail1.cs" />
     <Compile Include="Models\State1.cs" />
     <Compile Include="Models\TokenManager.cs" />
     <Compile Include="Models\Utilities.cs" />

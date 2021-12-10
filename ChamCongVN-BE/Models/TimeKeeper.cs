@@ -9,6 +9,7 @@ namespace ChamCongVN_BE.Models
     {
         public int ID { get; set; }
         public Nullable<int> EmployeeID { get; set; }
+        public Nullable<int> ShiftID { get; set; }
         public string Image { get; set; }
         public string Status { get; set; }
         public string Device { get; set; }
