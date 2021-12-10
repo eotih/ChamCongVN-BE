@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="ChamCongVNModel.Work" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.DegreesOfEmployee" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.SpecialityOfEmployee" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetAllTimeKeeping" Width="1.5" PointX="0.75" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

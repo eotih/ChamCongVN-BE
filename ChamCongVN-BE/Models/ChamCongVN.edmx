@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AbsentApplications">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
@@ -343,6 +343,24 @@ warning 6002: The table/view 'ChamCongVN.dbo.DegreesOfEmployee' does not have a 
           <Property Name="DegreeName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetAllTimeKeeping">
+          <Key>
+            <PropertyRef Name="EmployeeName" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Department" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CheckInImage" Type="nvarchar(max)" />
+          <Property Name="CheckOutImage" Type="nvarchar(max)" />
+          <Property Name="CheckInCreatedAt" Type="datetime" />
+          <Property Name="CheckOutCreatedAt" Type="datetime" />
+          <Property Name="CheckOutStatus" Type="nvarchar(max)" />
+          <Property Name="CheckInStatus" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SpecialityOfEmployee">
           <Key>
@@ -385,6 +403,19 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [DegreesOfEmployee].[DegreeName] AS [DegreeName]
     FROM [dbo].[DegreesOfEmployee] AS [DegreesOfEmployee]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="GetAllTimeKeeping" EntityType="Self.GetAllTimeKeeping" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetAllTimeKeeping].[EmployeeName] AS [EmployeeName], 
+    [GetAllTimeKeeping].[EmployeeID] AS [EmployeeID], 
+    [GetAllTimeKeeping].[Department] AS [Department], 
+    [GetAllTimeKeeping].[CheckInImage] AS [CheckInImage], 
+    [GetAllTimeKeeping].[CheckOutImage] AS [CheckOutImage], 
+    [GetAllTimeKeeping].[CheckInCreatedAt] AS [CheckInCreatedAt], 
+    [GetAllTimeKeeping].[CheckOutCreatedAt] AS [CheckOutCreatedAt], 
+    [GetAllTimeKeeping].[CheckOutStatus] AS [CheckOutStatus], 
+    [GetAllTimeKeeping].[CheckInStatus] AS [CheckInStatus]
+    FROM [dbo].[GetAllTimeKeeping] AS [GetAllTimeKeeping]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SpecialityOfEmployee" EntityType="Self.SpecialityOfEmployee" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SpecialityOfEmployee].[EmployeeID] AS [EmployeeID], 
@@ -392,8 +423,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -769,7 +799,24 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="Works" EntityType="Self.Work" />
           <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
           <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+          <EntitySet Name="GetAllTimeKeepings" EntityType="ChamCongVNModel.GetAllTimeKeeping" />
         </EntityContainer>
+        <EntityType Name="GetAllTimeKeeping">
+          <Key>
+            <PropertyRef Name="EmployeeName" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1142,6 +1189,21 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               <MappingFragment StoreEntitySet="SpecialityOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetAllTimeKeepings">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
+              <MappingFragment StoreEntitySet="GetAllTimeKeeping">
+                <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
+                <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+                <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
+                <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
+                <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
+                <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

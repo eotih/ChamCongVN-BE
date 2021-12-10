@@ -108,20 +108,18 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetAllTimeKeeping()
         {
-            var obj = (from ci in db.CheckIns
-                       from co in db.CheckOuts
-                       from emp in db.Employees
-                       from dep in db.Departments
-                       where emp.DepartmentID == dep.DepartmentID
-                       where ci.EmployeeID == co.EmployeeID
-                       where emp.EmployeeID == co.EmployeeID
-                       where emp.EmployeeID == ci.EmployeeID
+            var obj = (from res in db.GetAllTimeKeepings
                        select new
                        {
-                           EmployeeName = emp.FullName,
-                           Department = dep.DepartmentName,
-                           checkin = ci,
-                           checkout = co
+                           res.EmployeeName,
+                           res.EmployeeID,
+                           res.Department,
+                           res.CheckInImage,
+                           res.CheckOutImage,
+                           res.CheckInCreatedAt,
+                           res.CheckOutCreatedAt,
+                           res.CheckOutStatus,
+                           res.CheckInStatus
                        }).ToList();
             return obj;
         }

@@ -8,6 +8,7 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AbsentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
     <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StateID" Type="Int32" Nullable="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -371,5 +372,22 @@
     <EntitySet Name="Works" EntityType="Self.Work" />
     <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+    <EntitySet Name="GetAllTimeKeepings" EntityType="ChamCongVNModel.GetAllTimeKeeping" />
   </EntityContainer>
+  <EntityType Name="GetAllTimeKeeping">
+    <Key>
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="Department" />
+    </Key>
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Department" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -53,5 +53,6 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<DegreesOfEmployee> DegreesOfEmployees { get; set; }
         public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
+        public virtual DbSet<GetAllTimeKeeping> GetAllTimeKeepings { get; set; }
     }
 }

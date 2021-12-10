@@ -232,6 +232,9 @@
     <Compile Include="Models\CheckIn.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAllTimeKeeping.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TimeKeeper.cs" />
     <Compile Include="Models\CheckOut.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>

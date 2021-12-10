@@ -8,6 +8,7 @@
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="AbsentType" ColumnName="AbsentType" />
           <ScalarProperty Name="AbsentDate" ColumnName="AbsentDate" />
+          <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
           <ScalarProperty Name="Reason" ColumnName="Reason" />
           <ScalarProperty Name="StateID" ColumnName="StateID" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -366,6 +367,21 @@
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetAllTimeKeepings">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
+        <MappingFragment StoreEntitySet="GetAllTimeKeeping">
+          <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
+          <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+          <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
+          <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
+          <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
+          <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
