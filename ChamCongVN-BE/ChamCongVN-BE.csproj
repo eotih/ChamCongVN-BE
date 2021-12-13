@@ -253,6 +253,9 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeForAccount.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetAllTimeKeeping.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>

@@ -96,7 +96,13 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-
+        [Route("GetEmployeeForAccount")]
+        [HttpGet]
+        public object GetEmployeeForAccount()
+        {
+            var account = db.EmployeeForAccounts.ToList();
+            return account;
+        }
         [Route("GetAccountByID")]
         [HttpGet]
         public object GetAccountByID(int ID)

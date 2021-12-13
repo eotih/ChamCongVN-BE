@@ -359,6 +359,14 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityType Name="EmployeeForAccount">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityType Name="GetAllTimeKeeping">
     <Key>
       <PropertyRef Name="EmployeeName" />
@@ -369,17 +377,18 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="GetCountCheckedIn">
     <Key>
-      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="FullName" />
     </Key>
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="GetCountHaventCheckedIn">
     <Key>
@@ -432,6 +441,7 @@
     <EntitySet Name="States" EntityType="Self.State" />
     <EntitySet Name="Works" EntityType="Self.Work" />
     <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
+    <EntitySet Name="EmployeeForAccounts" EntityType="Self.EmployeeForAccount" />
     <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
     <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />

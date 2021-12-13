@@ -367,6 +367,16 @@ warning 6002: The table/view 'ChamCongVN.dbo.DegreesOfEmployee' does not have a 
           <Property Name="DegreeName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.EmployeeForAccount' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeeForAccount">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="FullName" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GetAllTimeKeeping">
           <Key>
@@ -378,11 +388,11 @@ warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a 
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="Department" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CheckInImage" Type="nvarchar(max)" />
-          <Property Name="CheckOutImage" Type="nvarchar(max)" />
-          <Property Name="CheckInCreatedAt" Type="datetime" />
-          <Property Name="CheckOutCreatedAt" Type="datetime" />
-          <Property Name="CheckOutStatus" Type="nvarchar(max)" />
           <Property Name="CheckInStatus" Type="nvarchar(max)" />
+          <Property Name="CheckInCreatedAt" Type="datetime" />
+          <Property Name="CheckOutImage" Type="nvarchar(max)" />
+          <Property Name="CheckOutStatus" Type="nvarchar(max)" />
+          <Property Name="CheckOutCreatedAt" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.GetCountCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -455,17 +465,23 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [DegreesOfEmployee].[DegreeName] AS [DegreeName]
     FROM [dbo].[DegreesOfEmployee] AS [DegreesOfEmployee]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="EmployeeForAccount" EntityType="Self.EmployeeForAccount" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeForAccount].[EmployeeID] AS [EmployeeID], 
+    [EmployeeForAccount].[FullName] AS [FullName]
+    FROM [dbo].[EmployeeForAccount] AS [EmployeeForAccount]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="GetAllTimeKeeping" EntityType="Self.GetAllTimeKeeping" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [GetAllTimeKeeping].[EmployeeName] AS [EmployeeName], 
     [GetAllTimeKeeping].[EmployeeID] AS [EmployeeID], 
     [GetAllTimeKeeping].[Department] AS [Department], 
     [GetAllTimeKeeping].[CheckInImage] AS [CheckInImage], 
-    [GetAllTimeKeeping].[CheckOutImage] AS [CheckOutImage], 
+    [GetAllTimeKeeping].[CheckInStatus] AS [CheckInStatus], 
     [GetAllTimeKeeping].[CheckInCreatedAt] AS [CheckInCreatedAt], 
-    [GetAllTimeKeeping].[CheckOutCreatedAt] AS [CheckOutCreatedAt], 
+    [GetAllTimeKeeping].[CheckOutImage] AS [CheckOutImage], 
     [GetAllTimeKeeping].[CheckOutStatus] AS [CheckOutStatus], 
-    [GetAllTimeKeeping].[CheckInStatus] AS [CheckInStatus]
+    [GetAllTimeKeeping].[CheckOutCreatedAt] AS [CheckOutCreatedAt]
     FROM [dbo].[GetAllTimeKeeping] AS [GetAllTimeKeeping]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GetCountCheckedIn" EntityType="Self.GetCountCheckedIn" store:Type="Views" store:Schema="dbo">
@@ -856,6 +872,14 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
+        <EntityType Name="EmployeeForAccount">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="FullName" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="GetAllTimeKeeping">
           <Key>
             <PropertyRef Name="EmployeeName" />
@@ -866,11 +890,11 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
-          <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
-          <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="GetCountCheckedIn">
           <Key>
@@ -930,6 +954,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="States" EntityType="Self.State" />
           <EntitySet Name="Works" EntityType="Self.Work" />
           <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
+          <EntitySet Name="EmployeeForAccounts" EntityType="Self.EmployeeForAccount" />
           <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
           <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
           <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
@@ -1329,6 +1354,14 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeForAccounts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.EmployeeForAccount">
+              <MappingFragment StoreEntitySet="EmployeeForAccount">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="GetAllTimeKeepings">
             <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
               <MappingFragment StoreEntitySet="GetAllTimeKeeping">
@@ -1336,11 +1369,11 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
-                <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
-                <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
-                <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
-                <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
                 <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
+                <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
+                <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
+                <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+                <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

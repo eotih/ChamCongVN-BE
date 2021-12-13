@@ -54,6 +54,7 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<DegreesOfEmployee> DegreesOfEmployees { get; set; }
+        public virtual DbSet<EmployeeForAccount> EmployeeForAccounts { get; set; }
         public virtual DbSet<GetAllTimeKeeping> GetAllTimeKeepings { get; set; }
         public virtual DbSet<GetCountCheckedIn> GetCountCheckedIns { get; set; }
         public virtual DbSet<GetCountHaventCheckedIn> GetCountHaventCheckedIns { get; set; }

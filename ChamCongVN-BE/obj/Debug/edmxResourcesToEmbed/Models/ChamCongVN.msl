@@ -388,6 +388,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeForAccounts">
+      <EntityTypeMapping TypeName="ChamCongVNModel.EmployeeForAccount">
+        <MappingFragment StoreEntitySet="EmployeeForAccount">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GetAllTimeKeepings">
       <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
         <MappingFragment StoreEntitySet="GetAllTimeKeeping">
@@ -395,11 +403,11 @@
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Department" ColumnName="Department" />
           <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
-          <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
-          <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
-          <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
-          <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
           <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
+          <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
+          <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
+          <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+          <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -407,6 +415,7 @@
       <EntityTypeMapping TypeName="ChamCongVNModel.GetCountCheckedIn">
         <MappingFragment StoreEntitySet="GetCountCheckedIn">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
