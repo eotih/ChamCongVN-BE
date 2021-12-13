@@ -417,19 +417,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="GetCountLates">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
+        <MappingFragment StoreEntitySet="GetCountLates">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SpecialityOfEmployees">
       <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="GetCountLates">
-      <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
-        <MappingFragment StoreEntitySet="GetCountLates">
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

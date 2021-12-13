@@ -57,7 +57,7 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<GetAllTimeKeeping> GetAllTimeKeepings { get; set; }
         public virtual DbSet<GetCountCheckedIn> GetCountCheckedIns { get; set; }
         public virtual DbSet<GetCountHaventCheckedIn> GetCountHaventCheckedIns { get; set; }
-        public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
         public virtual DbSet<GetCountLate> GetCountLates { get; set; }
+        public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
     }
 }

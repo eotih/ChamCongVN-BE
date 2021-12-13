@@ -387,6 +387,13 @@
     </Key>
     <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
+  <EntityType Name="GetCountLate">
+    <Key>
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityType Name="SpecialityOfEmployee">
     <Key>
       <PropertyRef Name="EmployeeID" />
@@ -428,14 +435,7 @@
     <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
     <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
+    <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
-    <EntitySet Name="GetCountLates" EntityType="ChamCongVNModel.GetCountLate" />
   </EntityContainer>
-  <EntityType Name="GetCountLate">
-    <Key>
-      <PropertyRef Name="FullName" />
-    </Key>
-    <Property Name="EmployeeID" Type="Int32" />
-    <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

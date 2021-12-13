@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AbsentApplications">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
@@ -490,7 +490,8 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -881,6 +882,13 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="GetCountLate">
+          <Key>
+            <PropertyRef Name="FullName" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="SpecialityOfEmployee">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -922,16 +930,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
           <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
           <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
+          <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
           <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
-          <EntitySet Name="GetCountLates" EntityType="ChamCongVNModel.GetCountLate" />
         </EntityContainer>
-        <EntityType Name="GetCountLate">
-          <Key>
-            <PropertyRef Name="FullName" />
-          </Key>
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1354,19 +1355,19 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GetCountLates">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
+              <MappingFragment StoreEntitySet="GetCountLates">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SpecialityOfEmployees">
             <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
               <MappingFragment StoreEntitySet="SpecialityOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GetCountLates">
-            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
-              <MappingFragment StoreEntitySet="GetCountLates">
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
