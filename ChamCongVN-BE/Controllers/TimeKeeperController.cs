@@ -181,10 +181,11 @@ namespace ChamCongVN_BE.Controllers
                             var responsebody = await response.Content.ReadAsStringAsync();
                             var obj = JObject.Parse(responsebody);
                             var objResult = obj["name"].ToString();
+                            var objResult1 = obj["name"].ToString();
                             if (responsebody != null)
                             {
-                                var empID = objResult[0];
-
+                                var empID = Convert.ToInt32(objResult.Substring(0, 1));
+                                ci.EmployeeID = empID;
                                 var haveItCheckIn = db.CheckIns.Where(x => x.EmployeeID == empID).ToList();
                                 var haveItCheckOut = db.CheckOuts.Where(x => x.EmployeeID == empID).ToList();
                                 var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
@@ -214,7 +215,7 @@ namespace ChamCongVN_BE.Controllers
                                         };
                                     }
                                 }
-                                else if(hour >= 13 && hour <= 17)
+                                else if(hour >= 13 && hour <= 19)
                                 {
                                     if (checkOut == null)
                                     {
@@ -238,6 +239,7 @@ namespace ChamCongVN_BE.Controllers
                                         };
                                     }
                                 }
+                                /*
                                 else if(dateTime.TimeOfDay >= checkTime.StartTime && minute <= 30)
                                 {
                                     if(minute <= 15)
@@ -263,7 +265,7 @@ namespace ChamCongVN_BE.Controllers
                                         ci.Status = "Đi muộn";
                                         AddCheckIn(ci);
                                     }
-                                }
+                                }*/
                             }
                             else
                             {
