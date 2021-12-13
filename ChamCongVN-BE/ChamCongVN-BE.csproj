@@ -256,6 +256,15 @@
     <Compile Include="Models\GetAllTimeKeeping.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetCountCheckedIn.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCountHaventCheckedIn.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetCountLate.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Group.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
@@ -272,10 +281,10 @@
     <Compile Include="Models\OverTime.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OverTime1.cs" />
     <Compile Include="Models\OvertimeSalary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OverTime1.cs" />
     <Compile Include="Models\Position.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>

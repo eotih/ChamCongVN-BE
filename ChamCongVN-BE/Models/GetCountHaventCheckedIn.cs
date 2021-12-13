@@ -12,15 +12,8 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckIn
+    public partial class GetCountHaventCheckedIn
     {
-        public int CheckInCode { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public string Image { get; set; }
-        public string Status { get; set; }
-        public string Device { get; set; }
-        public Nullable<double> Longitude { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public int EmployeeID { get; set; }
     }
 }

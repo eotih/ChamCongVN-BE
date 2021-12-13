@@ -64,7 +64,6 @@
     </Key>
     <Property Name="CheckInCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeID" Type="Int32" />
-    <Property Name="ShiftID" Type="Int32" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -78,7 +77,6 @@
     </Key>
     <Property Name="CheckOutCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeID" Type="Int32" />
-    <Property Name="ShiftID" Type="Int32" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -210,8 +208,9 @@
     </Key>
     <Property Name="OverTimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DepartmentID" Type="Int32" />
-    <Property Name="ShiftID" Type="Int32" />
     <Property Name="OverTimeName" Type="String" MaxLength="220" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="Time" Precision="7" />
+    <Property Name="EndTime" Type="Time" Precision="7" />
     <Property Name="OverTimeDate" Type="DateTime" Precision="3" />
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="Quantity" Type="Int32" />
@@ -376,6 +375,18 @@
     <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="GetCountCheckedIn">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="GetCountHaventCheckedIn">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
   <EntityType Name="SpecialityOfEmployee">
     <Key>
       <PropertyRef Name="EmployeeID" />
@@ -415,6 +426,16 @@
     <EntitySet Name="Works" EntityType="Self.Work" />
     <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
     <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
+    <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
+    <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+    <EntitySet Name="GetCountLates" EntityType="ChamCongVNModel.GetCountLate" />
   </EntityContainer>
+  <EntityType Name="GetCountLate">
+    <Key>
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

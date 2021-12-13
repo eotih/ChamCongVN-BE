@@ -64,7 +64,6 @@
     </Key>
     <Property Name="CheckInCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeID" Type="int" />
-    <Property Name="ShiftID" Type="int" />
     <Property Name="Image" Type="nvarchar(max)" />
     <Property Name="Status" Type="nvarchar(max)" />
     <Property Name="Device" Type="nvarchar(max)" />
@@ -78,7 +77,6 @@
     </Key>
     <Property Name="CheckOutCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeID" Type="int" />
-    <Property Name="ShiftID" Type="int" />
     <Property Name="Image" Type="nvarchar(max)" />
     <Property Name="Status" Type="nvarchar(max)" />
     <Property Name="Device" Type="nvarchar(max)" />
@@ -210,8 +208,9 @@
     </Key>
     <Property Name="OverTimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DepartmentID" Type="int" />
-    <Property Name="ShiftID" Type="int" />
     <Property Name="OverTimeName" Type="nvarchar" MaxLength="220" />
+    <Property Name="StartTime" Type="time" Precision="7" />
+    <Property Name="EndTime" Type="time" Precision="7" />
     <Property Name="OverTimeDate" Type="datetime" />
     <Property Name="IsActive" Type="bit" />
     <Property Name="Quantity" Type="int" />
@@ -381,6 +380,31 @@ warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a 
     <Property Name="CheckInStatus" Type="nvarchar(max)" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetCountCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetCountCheckedIn">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetCountHaventCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetCountHaventCheckedIn">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetCountLates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetCountLates">
+    <Key>
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SpecialityOfEmployee">
     <Key>
@@ -437,6 +461,22 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [GetAllTimeKeeping].[CheckOutStatus] AS [CheckOutStatus], 
     [GetAllTimeKeeping].[CheckInStatus] AS [CheckInStatus]
     FROM [dbo].[GetAllTimeKeeping] AS [GetAllTimeKeeping]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GetCountCheckedIn" EntityType="Self.GetCountCheckedIn" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetCountCheckedIn].[EmployeeID] AS [EmployeeID]
+    FROM [dbo].[GetCountCheckedIn] AS [GetCountCheckedIn]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GetCountHaventCheckedIn" EntityType="Self.GetCountHaventCheckedIn" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetCountHaventCheckedIn].[EmployeeID] AS [EmployeeID]
+    FROM [dbo].[GetCountHaventCheckedIn] AS [GetCountHaventCheckedIn]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GetCountLates" EntityType="Self.GetCountLates" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetCountLates].[EmployeeID] AS [EmployeeID], 
+    [GetCountLates].[FullName] AS [FullName]
+    FROM [dbo].[GetCountLates] AS [GetCountLates]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="SpecialityOfEmployee" EntityType="Self.SpecialityOfEmployee" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

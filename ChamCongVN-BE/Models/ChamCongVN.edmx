@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AbsentApplications">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
@@ -69,7 +69,6 @@
           </Key>
           <Property Name="CheckInCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
-          <Property Name="ShiftID" Type="int" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="Device" Type="nvarchar(max)" />
@@ -83,7 +82,6 @@
           </Key>
           <Property Name="CheckOutCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
-          <Property Name="ShiftID" Type="int" />
           <Property Name="Image" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar(max)" />
           <Property Name="Device" Type="nvarchar(max)" />
@@ -215,8 +213,9 @@
           </Key>
           <Property Name="OverTimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DepartmentID" Type="int" />
-          <Property Name="ShiftID" Type="int" />
           <Property Name="OverTimeName" Type="nvarchar" MaxLength="220" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndTime" Type="time" Precision="7" />
           <Property Name="OverTimeDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Quantity" Type="int" />
@@ -386,6 +385,31 @@ warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a 
           <Property Name="CheckInStatus" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetCountCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetCountCheckedIn">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetCountHaventCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetCountHaventCheckedIn">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetCountLates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetCountLates">
+          <Key>
+            <PropertyRef Name="FullName" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SpecialityOfEmployee">
           <Key>
@@ -443,6 +467,22 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [GetAllTimeKeeping].[CheckInStatus] AS [CheckInStatus]
     FROM [dbo].[GetAllTimeKeeping] AS [GetAllTimeKeeping]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="GetCountCheckedIn" EntityType="Self.GetCountCheckedIn" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetCountCheckedIn].[EmployeeID] AS [EmployeeID]
+    FROM [dbo].[GetCountCheckedIn] AS [GetCountCheckedIn]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GetCountHaventCheckedIn" EntityType="Self.GetCountHaventCheckedIn" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetCountHaventCheckedIn].[EmployeeID] AS [EmployeeID]
+    FROM [dbo].[GetCountHaventCheckedIn] AS [GetCountHaventCheckedIn]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GetCountLates" EntityType="Self.GetCountLates" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetCountLates].[EmployeeID] AS [EmployeeID], 
+    [GetCountLates].[FullName] AS [FullName]
+    FROM [dbo].[GetCountLates] AS [GetCountLates]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SpecialityOfEmployee" EntityType="Self.SpecialityOfEmployee" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SpecialityOfEmployee].[EmployeeID] AS [EmployeeID], 
@@ -450,8 +490,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -519,7 +558,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           </Key>
           <Property Name="CheckInCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="ShiftID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -533,7 +571,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           </Key>
           <Property Name="CheckOutCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="ShiftID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -665,8 +702,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           </Key>
           <Property Name="OverTimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartmentID" Type="Int32" />
-          <Property Name="ShiftID" Type="Int32" />
           <Property Name="OverTimeName" Type="String" MaxLength="220" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
           <Property Name="OverTimeDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Quantity" Type="Int32" />
@@ -831,6 +869,18 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="GetCountCheckedIn">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="GetCountHaventCheckedIn">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="SpecialityOfEmployee">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -870,8 +920,18 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="Works" EntityType="Self.Work" />
           <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
           <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
+          <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
+          <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
           <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+          <EntitySet Name="GetCountLates" EntityType="ChamCongVNModel.GetCountLate" />
         </EntityContainer>
+        <EntityType Name="GetCountLate">
+          <Key>
+            <PropertyRef Name="FullName" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -945,7 +1005,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               <MappingFragment StoreEntitySet="CheckIns">
                 <ScalarProperty Name="CheckInCode" ColumnName="CheckInCode" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Device" ColumnName="Device" />
@@ -960,7 +1019,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               <MappingFragment StoreEntitySet="CheckOuts">
                 <ScalarProperty Name="CheckOutCode" ColumnName="CheckOutCode" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Device" ColumnName="Device" />
@@ -1102,8 +1160,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               <MappingFragment StoreEntitySet="OverTimes">
                 <ScalarProperty Name="OverTimeID" ColumnName="OverTimeID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="OverTimeName" ColumnName="OverTimeName" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="OverTimeDate" ColumnName="OverTimeDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -1281,11 +1340,33 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GetCountCheckedIns">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountCheckedIn">
+              <MappingFragment StoreEntitySet="GetCountCheckedIn">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetCountHaventCheckedIns">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountHaventCheckedIn">
+              <MappingFragment StoreEntitySet="GetCountHaventCheckedIn">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SpecialityOfEmployees">
             <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
               <MappingFragment StoreEntitySet="SpecialityOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetCountLates">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
+              <MappingFragment StoreEntitySet="GetCountLates">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

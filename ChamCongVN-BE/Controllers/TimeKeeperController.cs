@@ -11,9 +11,11 @@ using System.Web.Http;
 
 namespace ChamCongVN_BE.Controllers
 {
+    [RoutePrefix("TimeKeeper")]
     public class TimeKeeperController : ApiController
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
+        public  DateTime dateTime = DateTime.Now;
         [Route("GetAllCheckIn")]
         [HttpGet]
         public object GetAllCheckIn()
@@ -144,14 +146,13 @@ namespace ChamCongVN_BE.Controllers
         public async System.Threading.Tasks.Task<object> HandleciToPythonAsync(TimeKeeper ci)
         {
             var objOrganizations = db.Organizations.FirstOrDefault();
-            var dateTime = DateTime.Now;
             var hour = dateTime.Hour;
             var minute = dateTime.Minute;
+            var objOvertime = db.OverTimes.ToList();
+            var checkTime = objOvertime.Where(x => x.StartTime <= dateTime.TimeOfDay && x.EndTime >= dateTime.TimeOfDay).FirstOrDefault();
             string apiPython = objOrganizations.PythonIP + "nhandienkhuonmat";
-
             string IPOrganiztion = objOrganizations.PublicIP;
             string publicIPRequest = ci.PublicIP;
-
             double latOrganiztion = Convert.ToDouble(objOrganizations.Latitude);
             double longOrganiztion = Convert.ToDouble(objOrganizations.Longitude);
             double latRequest = Convert.ToDouble(ci.Latitude);
@@ -180,19 +181,20 @@ namespace ChamCongVN_BE.Controllers
                             var responsebody = await response.Content.ReadAsStringAsync();
                             var obj = JObject.Parse(responsebody);
                             var objResult = obj["name"].ToString();
-                            if(objResult != "Unknown")
+                            if (responsebody != null)
                             {
-                                int empID = 1; // mai mốt sửa chỗ này thành employee nhân viên 
+                                var empID = objResult[0];
+
                                 var haveItCheckIn = db.CheckIns.Where(x => x.EmployeeID == empID).ToList();
                                 var haveItCheckOut = db.CheckOuts.Where(x => x.EmployeeID == empID).ToList();
                                 var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
                                 var checkOut = haveItCheckOut.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
                                 
-                                if (hour > 7 && hour < 12)
+                                if (hour >= 8 && hour < 12)
                                 {
                                     if (checkIn == null)
                                     {
-                                        if (hour > 7 && minute > 15)
+                                        if (hour >= 8 && minute >= 15)
                                         {
                                             ci.Status = "Đi muộn";
                                             AddCheckIn(ci);
@@ -212,7 +214,7 @@ namespace ChamCongVN_BE.Controllers
                                         };
                                     }
                                 }
-                                else
+                                else if(hour >= 13 && hour <= 17)
                                 {
                                     if (checkOut == null)
                                     {
@@ -234,6 +236,32 @@ namespace ChamCongVN_BE.Controllers
                                             Status = "403",
                                             Message = "Bạn đã check out hôm nay rồi"
                                         };
+                                    }
+                                }
+                                else if(dateTime.TimeOfDay >= checkTime.StartTime && minute <= 30)
+                                {
+                                    if(minute <= 15)
+                                    {
+                                        ci.Status = "Đúng giờ";
+                                        AddCheckIn(ci);
+                                    }
+                                    else
+                                    {
+                                        ci.Status = "Đi muộn";
+                                        AddCheckIn(ci);
+                                    }
+                                }
+                                else if(dateTime.TimeOfDay >= checkTime.EndTime && minute > 30)
+                                {
+                                    if(minute <= 15)
+                                    {
+                                        ci.Status = "Đúng giờ";
+                                        AddCheckIn(ci);
+                                    }
+                                    else
+                                    {
+                                        ci.Status = "Đi muộn";
+                                        AddCheckIn(ci);
                                     }
                                 }
                             }
@@ -276,5 +304,26 @@ namespace ChamCongVN_BE.Controllers
                 };
             }
         }
+        [Route("GetCountCheckedIn")]
+        [HttpGet]
+        public object GetCountCheckedIn()
+        {
+            var ci = db.GetCountCheckedIns.ToList();
+            return ci;
+        }
+        [Route("GetCountHaventCheckedIn")]
+        [HttpGet]
+        public object GetCountHaventCheckedIn()
+        {
+            var ci = db.GetCountHaventCheckedIns.ToList();
+            return ci;
+        }[Route("GetCountLate")]
+        [HttpGet]
+        public object GetCountLate()
+        {
+            var ci = db.GetCountLates.ToList();
+            return ci;
+        }
+
     }
 }

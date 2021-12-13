@@ -68,7 +68,6 @@
         <MappingFragment StoreEntitySet="CheckIns">
           <ScalarProperty Name="CheckInCode" ColumnName="CheckInCode" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Device" ColumnName="Device" />
@@ -83,7 +82,6 @@
         <MappingFragment StoreEntitySet="CheckOuts">
           <ScalarProperty Name="CheckOutCode" ColumnName="CheckOutCode" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Device" ColumnName="Device" />
@@ -225,8 +223,9 @@
         <MappingFragment StoreEntitySet="OverTimes">
           <ScalarProperty Name="OverTimeID" ColumnName="OverTimeID" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
-          <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
           <ScalarProperty Name="OverTimeName" ColumnName="OverTimeName" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="OverTimeDate" ColumnName="OverTimeDate" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
@@ -404,11 +403,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="GetCountCheckedIns">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetCountCheckedIn">
+        <MappingFragment StoreEntitySet="GetCountCheckedIn">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetCountHaventCheckedIns">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetCountHaventCheckedIn">
+        <MappingFragment StoreEntitySet="GetCountHaventCheckedIn">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SpecialityOfEmployees">
       <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetCountLates">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
+        <MappingFragment StoreEntitySet="GetCountLates">
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

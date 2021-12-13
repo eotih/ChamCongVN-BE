@@ -329,6 +329,8 @@ namespace ChamCongVN_BE.Controllers
                     OverTimeName = OverTime1.OverTimeName,
                     DepartmentID = OverTime1.DepartmentID,
                     OverTimeDate = OverTime1.OverTimeDate,
+                    StartTime = OverTime1.StartTime,
+                    EndTime = OverTime1.EndTime,
                     IsActive = OverTime1.IsActive,
                     Quantity = OverTime1.Quantity,
                     CreatedBy = OverTime1.CreatedBy
@@ -348,6 +350,8 @@ namespace ChamCongVN_BE.Controllers
                 {
                     obj.OverTimeName = OverTime1.OverTimeName;
                     obj.DepartmentID = OverTime1.DepartmentID;
+                    obj.StartTime = OverTime1.StartTime;
+                    obj.EndTime = OverTime1.EndTime;
                     obj.OverTimeDate = OverTime1.OverTimeDate;
                     obj.Quantity = OverTime1.Quantity;
                     obj.UpdatedBy = OverTime1.UpdatedBy;
