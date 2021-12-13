@@ -15,8 +15,8 @@ namespace ChamCongVN_BE.Models
     public partial class Level
     {
         public int LevelID { get; set; }
-        public string PositionID { get; set; }
+        public Nullable<int> PositionID { get; set; }
         public string LevelName { get; set; }
-        public string Coefficient { get; set; }
+        public Nullable<double> Coefficient { get; set; }
     }
 }

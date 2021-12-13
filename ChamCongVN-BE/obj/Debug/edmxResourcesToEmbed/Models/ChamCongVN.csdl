@@ -184,9 +184,9 @@
       <PropertyRef Name="LevelID" />
     </Key>
     <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PositionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="LevelName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Coefficient" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PositionID" Type="Int32" />
+    <Property Name="LevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Coefficient" Type="Double" />
   </EntityType>
   <EntityType Name="Organization">
     <Key>

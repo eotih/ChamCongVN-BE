@@ -519,8 +519,15 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetAllLevels()
         {
-            var lv = db.Levels.ToList();
-            return lv;
+            var result = (from lv in db.Levels
+                          from position in db.Positions
+                          where position.PositionID == lv.PositionID
+                          select new
+                          {
+                              Level = lv,
+                              position.PositionName
+                          }).ToList();
+            return result;
         }
 
         [Route("GetLevelByID")]

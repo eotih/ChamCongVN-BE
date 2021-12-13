@@ -189,9 +189,9 @@
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PositionID" Type="nchar" MaxLength="10" />
-          <Property Name="LevelName" Type="nchar" MaxLength="10" />
-          <Property Name="Coefficient" Type="nchar" MaxLength="10" />
+          <Property Name="PositionID" Type="int" />
+          <Property Name="LevelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Coefficient" Type="float" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>
@@ -679,9 +679,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             <PropertyRef Name="LevelID" />
           </Key>
           <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PositionID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="LevelName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Coefficient" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="LevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coefficient" Type="Double" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>

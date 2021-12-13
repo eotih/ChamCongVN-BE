@@ -184,9 +184,9 @@
       <PropertyRef Name="LevelID" />
     </Key>
     <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PositionID" Type="nchar" MaxLength="10" />
-    <Property Name="LevelName" Type="nchar" MaxLength="10" />
-    <Property Name="Coefficient" Type="nchar" MaxLength="10" />
+    <Property Name="PositionID" Type="int" />
+    <Property Name="LevelName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Coefficient" Type="float" />
   </EntityType>
   <EntityType Name="Organization">
     <Key>
