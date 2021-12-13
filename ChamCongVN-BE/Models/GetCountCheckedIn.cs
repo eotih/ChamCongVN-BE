@@ -14,6 +14,7 @@ namespace ChamCongVN_BE.Models
     
     public partial class GetCountCheckedIn
     {
-        public int EmployeeID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string FullName { get; set; }
     }
 }

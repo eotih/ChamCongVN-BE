@@ -388,9 +388,10 @@ warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a 
 warning 6002: The table/view 'ChamCongVN.dbo.GetCountCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GetCountCheckedIn">
           <Key>
-            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="FullName" />
           </Key>
-          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.GetCountHaventCheckedIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -469,7 +470,8 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           </EntitySet>
           <EntitySet Name="GetCountCheckedIn" EntityType="Self.GetCountCheckedIn" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [GetCountCheckedIn].[EmployeeID] AS [EmployeeID]
+    [GetCountCheckedIn].[EmployeeID] AS [EmployeeID], 
+    [GetCountCheckedIn].[FullName] AS [FullName]
     FROM [dbo].[GetCountCheckedIn] AS [GetCountCheckedIn]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GetCountHaventCheckedIn" EntityType="Self.GetCountHaventCheckedIn" store:Type="Views" store:Schema="dbo">
@@ -872,9 +874,10 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
         </EntityType>
         <EntityType Name="GetCountCheckedIn">
           <Key>
-            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="FullName" />
           </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="GetCountHaventCheckedIn">
           <Key>
@@ -1345,6 +1348,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             <EntityTypeMapping TypeName="ChamCongVNModel.GetCountCheckedIn">
               <MappingFragment StoreEntitySet="GetCountCheckedIn">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
