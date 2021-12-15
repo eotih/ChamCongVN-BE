@@ -7,7 +7,7 @@
           <ScalarProperty Name="AbsentApplicationID" ColumnName="AbsentApplicationID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="AbsentType" ColumnName="AbsentType" />
-          <ScalarProperty Name="AbsentDate" ColumnName="AbsentDate" />
+          <ScalarProperty Name="AbsentDateBegin" ColumnName="AbsentDateBegin" />
           <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
           <ScalarProperty Name="Reason" ColumnName="Reason" />
           <ScalarProperty Name="StateID" ColumnName="StateID" />
@@ -215,6 +215,21 @@
           <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
           <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OverTimeApplications">
+      <EntityTypeMapping TypeName="ChamCongVNModel.OverTimeApplication">
+        <MappingFragment StoreEntitySet="OverTimeApplications">
+          <ScalarProperty Name="OverTimeApplicationID" ColumnName="OverTimeApplicationID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="OverTimeID" ColumnName="OverTimeID" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

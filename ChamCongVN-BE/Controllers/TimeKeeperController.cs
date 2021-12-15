@@ -269,16 +269,16 @@ namespace ChamCongVN_BE.Controllers
                             }
                             else
                             {
-                                return null;
+                                return responsebody;
                             }
 
                         }
                         return response;
                     }
                 }
-                catch
+                catch(Exception err)
                 {
-                    return null;
+                    return err;
                 }
             }
             else if (radius > 50)

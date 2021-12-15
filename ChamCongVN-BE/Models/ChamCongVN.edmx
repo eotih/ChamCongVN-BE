@@ -12,7 +12,7 @@
           <Property Name="AbsentApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="AbsentType" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="AbsentDate" Type="date" Nullable="false" />
+          <Property Name="AbsentDateBegin" Type="date" Nullable="false" />
           <Property Name="NumberOfDays" Type="int" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="StateID" Type="int" Nullable="false" />
@@ -206,6 +206,20 @@
           <Property Name="Website" Type="nvarchar(max)" />
           <Property Name="PublicIP" Type="varchar" MaxLength="50" />
           <Property Name="PythonIP" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="OverTimeApplications">
+          <Key>
+            <PropertyRef Name="OverTimeApplicationID" />
+          </Key>
+          <Property Name="OverTimeApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="OverTimeID" Type="int" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="OverTimes">
           <Key>
@@ -446,6 +460,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OverTimes" EntityType="Self.OverTimes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OvertimeSalary" EntityType="Self.OvertimeSalary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
@@ -520,7 +535,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="AbsentApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AbsentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AbsentDateBegin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
           <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StateID" Type="Int32" Nullable="false" />
@@ -714,6 +729,20 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OverTimeApplication">
+          <Key>
+            <PropertyRef Name="OverTimeApplicationID" />
+          </Key>
+          <Property Name="OverTimeApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="OverTimeID" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="OverTime">
           <Key>
@@ -940,6 +969,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
           <EntitySet Name="Levels" EntityType="Self.Level" />
           <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplication" />
           <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
           <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
           <EntitySet Name="Positions" EntityType="Self.Position" />
@@ -973,7 +1003,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="AbsentApplicationID" ColumnName="AbsentApplicationID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="AbsentType" ColumnName="AbsentType" />
-                <ScalarProperty Name="AbsentDate" ColumnName="AbsentDate" />
+                <ScalarProperty Name="AbsentDateBegin" ColumnName="AbsentDateBegin" />
                 <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="StateID" ColumnName="StateID" />
@@ -1181,6 +1211,21 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
                 <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OverTimeApplications">
+            <EntityTypeMapping TypeName="ChamCongVNModel.OverTimeApplication">
+              <MappingFragment StoreEntitySet="OverTimeApplications">
+                <ScalarProperty Name="OverTimeApplicationID" ColumnName="OverTimeApplicationID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="OverTimeID" ColumnName="OverTimeID" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

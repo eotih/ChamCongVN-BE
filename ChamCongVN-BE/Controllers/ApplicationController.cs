@@ -23,7 +23,7 @@ namespace ChamCongVN_BE.Controllers
                 {
                     EmployeeID = absentapplication1.EmployeeID,
                     AbsentType = absentapplication1.AbsentType,
-                    AbsentDate = absentapplication1.AbsentDate,
+                    AbsentDateBegin = absentapplication1.AbsentDateBegin,
                     Reason = absentapplication1.Reason,
                     NumberOfDays = absentapplication1.NumberOfDays,
                     StateID = 1,
@@ -45,7 +45,7 @@ namespace ChamCongVN_BE.Controllers
                 if (obj.AbsentApplicationID > 0)
                 {
                     obj.AbsentType = absentapplication1.AbsentType;
-                    obj.AbsentDate = absentapplication1.AbsentDate;
+                    obj.AbsentDateBegin = absentapplication1.AbsentDateBegin;
                     obj.Reason = absentapplication1.Reason;
                     obj.NumberOfDays = absentapplication1.NumberOfDays;
                     obj.UpdatedBy = absentapplication1.UpdatedBy;
@@ -111,7 +111,7 @@ namespace ChamCongVN_BE.Controllers
         }
         [Route("GetAbsentApplicationByEmployeeID")]
         [HttpGet]
-        public object GetEmployeeByID(int EmployeeID)
+        public object GetAbsentApplicationByEmployeeID(int EmployeeID)
         {
             var obj = db.AbsentApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
             return obj;
@@ -122,6 +122,119 @@ namespace ChamCongVN_BE.Controllers
         {
             var obj = db.AbsentApplications.Where(x => x.AbsentApplicationID == ID).FirstOrDefault();
             db.AbsentApplications.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = "Delete",
+                Message = "Delete Successfuly"
+            };
+        }
+        //--------------------------- OverTime Application------------------------//
+        [Route("AddOrEditOverTimeApplications")]
+        [HttpPost]
+        public object AddOrEditOverTimeApplications(OverTimeApplication1 OverTimeapplication1)
+        {
+            if (OverTimeapplication1.OverTimeApplicationID == 0)
+            {
+                OverTimeApplication OverTime = new OverTimeApplication
+                {
+                    EmployeeID = OverTimeapplication1.EmployeeID,
+                    OverTimeID = OverTimeapplication1.OverTimeID,
+                    Note = OverTimeapplication1.Note,
+                    StateID = 1,
+                    CreatedBy = OverTimeapplication1.CreatedBy,
+                    CreatedAt = DateTime.Now
+                };
+                db.OverTimeApplications.Add(OverTime);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Success",
+                    Message = "Data Success"
+                };
+            }
+
+            else
+            {
+                var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == OverTimeapplication1.OverTimeApplicationID).FirstOrDefault();
+                if (obj.OverTimeApplicationID > 0)
+                {
+                    obj.OverTimeID = OverTimeapplication1.OverTimeID;
+                    obj.Note = OverTimeapplication1.Note;
+                    obj.UpdatedBy = OverTimeapplication1.UpdatedBy;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                    return new Response
+                    {
+                        Status = "Updated",
+                        Message = "Updated Successfully"
+                    };
+                }
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("EditStateOverTimeApplication")]
+        [HttpPost]
+        public object EditStateOverTimeApplication(OverTimeApplication1 OverTime)
+        {
+            var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == OverTime.OverTimeApplicationID).FirstOrDefault();
+            if (obj.OverTimeApplicationID > 0)
+            {
+                obj.StateID = OverTime.StateID;
+                obj.UpdatedAt = DateTime.Now;
+                obj.UpdatedBy = OverTime.UpdatedBy;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = "Updated",
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = "Error",
+                Message = "Data not insert"
+            };
+        }
+        [Route("GetAllOverTimeApplication")]
+        [HttpGet]
+        public object GetAllOverTimeApplication()
+        {
+            var abs = (from OverTime in db.OverTimeApplications
+                       from emp in db.Employees
+                       where OverTime.EmployeeID == emp.EmployeeID
+                       select new
+                       {
+                           OverTimeApplications = OverTime,
+                           Employee = emp
+                       }
+                           ).ToList();
+            return abs;
+        }
+        [Route("GetOverTimeApplicationByID")]
+        [HttpGet]
+        public object GetOverTimeApplicationByID(int ID)
+        {
+            var abs = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == ID).FirstOrDefault();
+            return abs;
+        }
+        [Route("GetOverTimeApplicationByEmployeeID")]
+        [HttpGet]
+        public object GetOverTimeApplicationByEmployeeID(int EmployeeID)
+        {
+            var obj = db.OverTimeApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
+            return obj;
+        }
+        [Route("DeleteOverTimeApplication")]
+        [HttpDelete]
+        public object DeleteOverTimeApplication(int ID)
+        {
+            var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == ID).FirstOrDefault();
+            db.OverTimeApplications.Remove(obj);
             db.SaveChanges();
             return new Response
             {

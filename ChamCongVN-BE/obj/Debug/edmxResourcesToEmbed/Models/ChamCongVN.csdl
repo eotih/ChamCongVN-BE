@@ -7,7 +7,7 @@
     <Property Name="AbsentApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="AbsentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AbsentDateBegin" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
     <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StateID" Type="Int32" Nullable="false" />
@@ -201,6 +201,20 @@
     <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="OverTimeApplication">
+    <Key>
+      <PropertyRef Name="OverTimeApplicationID" />
+    </Key>
+    <Property Name="OverTimeApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="OverTimeID" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="OverTime">
     <Key>
@@ -427,6 +441,7 @@
     <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
     <EntitySet Name="Levels" EntityType="Self.Level" />
     <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplication" />
     <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
     <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
     <EntitySet Name="Positions" EntityType="Self.Position" />

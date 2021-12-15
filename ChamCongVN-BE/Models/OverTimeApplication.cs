@@ -12,15 +12,13 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AbsentApplication
+    public partial class OverTimeApplication
     {
-        public int AbsentApplicationID { get; set; }
+        public int OverTimeApplicationID { get; set; }
         public int EmployeeID { get; set; }
-        public string AbsentType { get; set; }
-        public System.DateTime AbsentDateBegin { get; set; }
-        public int NumberOfDays { get; set; }
-        public string Reason { get; set; }
         public int StateID { get; set; }
+        public int OverTimeID { get; set; }
+        public string Note { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }

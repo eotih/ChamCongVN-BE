@@ -380,7 +380,15 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetAllOverTime()
         {
-            var OverTime = db.OverTimes.ToList();
+            var OverTime = (from overtime in db.OverTimes
+                            from dep in db.Departments
+                            where overtime.DepartmentID == dep.DepartmentID
+                            select new
+                            {
+                                Overtime = overtime,
+                                Department = dep.DepartmentName
+                            })
+                .ToList();
             return OverTime;
         }
 
