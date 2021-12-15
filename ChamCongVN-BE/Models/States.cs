@@ -12,10 +12,9 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Position
+    public partial class States
     {
-        public int PositionID { get; set; }
-        public string PositionName { get; set; }
-        public string Note { get; set; }
+        public int StateID { get; set; }
+        public string StateName { get; set; }
     }
 }

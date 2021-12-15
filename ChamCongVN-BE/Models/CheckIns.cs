@@ -12,18 +12,15 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AbsentApplication
+    public partial class CheckIns
     {
-        public int AbsentApplicationID { get; set; }
-        public int EmployeeID { get; set; }
-        public string AbsentType { get; set; }
-        public System.DateTime AbsentDateBegin { get; set; }
-        public int NumberOfDays { get; set; }
-        public string Reason { get; set; }
-        public int StateID { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        public int CheckInCode { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string Image { get; set; }
+        public string Status { get; set; }
+        public string Device { get; set; }
+        public Nullable<double> Longitude { get; set; }
+        public Nullable<double> Latitude { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

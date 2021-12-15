@@ -12,10 +12,11 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Degree
+    public partial class Levels
     {
-        public int DegreeID { get; set; }
-        public string DegreeName { get; set; }
-        public string Note { get; set; }
+        public int LevelID { get; set; }
+        public Nullable<int> PositionID { get; set; }
+        public string LevelName { get; set; }
+        public Nullable<double> Coefficient { get; set; }
     }
 }

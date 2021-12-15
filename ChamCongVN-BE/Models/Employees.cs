@@ -12,7 +12,7 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Employees
     {
         public int EmployeeID { get; set; }
         public int GroupID { get; set; }

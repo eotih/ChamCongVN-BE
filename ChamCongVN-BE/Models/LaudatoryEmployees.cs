@@ -12,12 +12,12 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DeductionEmployee
+    public partial class LaudatoryEmployees
     {
-        public int DeductionEmployeeID { get; set; }
+        public int LaudatoryEmployeeID { get; set; }
         public int EmployeeID { get; set; }
-        public string DeductionName { get; set; }
-        public System.DateTime DeductionDate { get; set; }
+        public string LaudatoryName { get; set; }
+        public System.DateTime LaudatoryDate { get; set; }
         public string Reason { get; set; }
         public double Amount { get; set; }
         public string CreatedBy { get; set; }

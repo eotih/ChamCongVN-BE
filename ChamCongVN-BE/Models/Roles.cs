@@ -12,16 +12,9 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Advance
+    public partial class Roles
     {
-        public int AdvanceID { get; set; }
-        public int EmployeeID { get; set; }
-        public string Reason { get; set; }
-        public System.DateTime AdvanceDate { get; set; }
-        public double Amount { get; set; }
-        public string Signer { get; set; }
-        public System.DateTime SignDate { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     }
 }

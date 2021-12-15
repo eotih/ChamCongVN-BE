@@ -12,15 +12,16 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckOut
+    public partial class Advances
     {
-        public int CheckOutCode { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public string Image { get; set; }
-        public string Status { get; set; }
-        public string Device { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
+        public int AdvanceID { get; set; }
+        public int EmployeeID { get; set; }
+        public string Reason { get; set; }
+        public System.DateTime AdvanceDate { get; set; }
+        public double Amount { get; set; }
+        public string Signer { get; set; }
+        public System.DateTime SignDate { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
+        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

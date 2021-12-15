@@ -12,16 +12,11 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OverTimeApplication
+    public partial class Departments
     {
-        public int OverTimeApplicationID { get; set; }
-        public int EmployeeID { get; set; }
-        public int StateID { get; set; }
-        public int OverTimeID { get; set; }
+        public int DepartmentID { get; set; }
+        public string DepartmentName { get; set; }
+        public string Phone { get; set; }
         public string Note { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }
