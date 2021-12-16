@@ -15,7 +15,7 @@ namespace ChamCongVN_BE.Controllers
         ChamCongVNEntities db = new ChamCongVNEntities();
 
         // ------------------------------ Accounts ------------------------------ //
-        [Route("AddAccount")]
+        [Route("Account")]
         [HttpPost]
         public object AddAccount(Account1 account)
         {
@@ -35,22 +35,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("EditAccount")]
-        [HttpPost]
+        [Route("Account/{id?}")]
+        [HttpPut]
         public object EditAccount(Account1 account)
         {
-            var obj = db.Accounts.Where(x => x.AccountID == account.AccountID).FirstOrDefault();
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Accounts.Where(x => x.AccountID == id).FirstOrDefault();
             if (obj.AccountID > 0)
             {
                 obj.EmployeeID = account.EmployeeID;
@@ -62,22 +63,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Updated",
+                    Status = 200,
                     Message = "Updated Successfully"
                 };
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("EditPasswordAccount")]
-        [HttpPost]
+        [Route("Account/Password/{id?}")]
+        [HttpPut]
         public object EditPasswordAccount(Account1 account)
         {
-            var obj = db.Accounts.Where(x => x.AccountID == account.AccountID).FirstOrDefault();
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Accounts.Where(x => x.AccountID == id).FirstOrDefault();
             if (obj.AccountID > 0)
             {
                 obj.Password = account.Password;
@@ -86,24 +88,24 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Updated",
+                    Status = 200,
                     Message = "Updated Successfully"
                 };
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
-        [Route("GetEmployeeForAccount")]
+        [Route("Account")]
         [HttpGet]
         public object GetEmployeeForAccount()
         {
             var account = db.EmployeeForAccounts.ToList();
             return account;
         }
-        [Route("GetAccountByID")]
+        [Route("Account/{id?}")]
         [HttpGet]
         public object GetAccountByID(int ID)
         {
@@ -111,7 +113,7 @@ namespace ChamCongVN_BE.Controllers
             return account;
         }
 
-        [Route("GetAllAccount")]
+        [Route("Account")]
         [HttpGet]
         public object GetAllAccount()
         {
@@ -137,7 +139,7 @@ namespace ChamCongVN_BE.Controllers
             return account;
         }
 
-        [Route("DeleteAccount")]
+        [Route("Account/{id?}")]
         [HttpDelete]
         public object DeleteAccount(int ID)
         {
@@ -146,15 +148,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status =200,
                 Message = "Delete Successfuly"
             };
         }
 
         // ------------------------------ Roles ------------------------------ //
-        [Route("AddOrEditRole")]
+        [Route("Role")]
         [HttpPost]
-        public object AddOrEditRole(Role1 role1)
+        public object AddRole(Role1 role1)
         {
             if (role1.RoleID == 0)
             {
@@ -166,32 +168,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
-            {
-                var obj = db.Roles.Where(x => x.RoleID == role1.RoleID).FirstOrDefault();
-                if (obj.RoleID > 0)
-                {
-                    obj.RoleName = role1.RoleName;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllRole")]
+        [Route("Role/{id?}")]
+        [HttpPut]
+        public object EditRole(Role1 role1)
+        {
+            // Get id from routeParam
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Roles.Where(x => x.RoleID == id).FirstOrDefault();
+            if (obj.RoleID > 0)
+            {
+                obj.RoleName = role1.RoleName;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("Role")]
         [HttpGet]
         public object GetAllRole()
         {
@@ -199,7 +211,7 @@ namespace ChamCongVN_BE.Controllers
             return role;
         }
 
-        [Route("GetRoleByID")]
+        [Route("Role/{id?}")]
         [HttpGet]
         public object GetRoleByID(int ID)
         {
@@ -207,7 +219,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteRole")]
+        [Route("Role/{id?}")]
         [HttpDelete]
         public object DeleteRole(int ID)
         {
@@ -216,7 +228,7 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
@@ -234,7 +246,7 @@ namespace ChamCongVN_BE.Controllers
                 {
                     return new Response()
                     {
-                        Status = "Success",
+                        Status = 200,
                         Message = TokenManager.GenerateToken
                         (
                             user.AccountID,
@@ -246,14 +258,14 @@ namespace ChamCongVN_BE.Controllers
             }
             else
             {
-                return new Response { Status = "Fail", Message = "Login Fail" };
+                return new Response { Status = 500, Message = "Login Fail" };
             }
-            return new Response { Status = "Sai", Message = "Sai" };
+            return new Response { Status = 500, Message = "Sai" };
         }
         // ------------------------------ Shift ------------------------------ //
-        [Route("AddOrEditShift")]
+        [Route("Shift")]
         [HttpPost]
-        public object AddOrEditShift(Shift1 shift1)
+        public object AddShift(Shift1 shift1)
         {
             if (shift1.ShiftID == 0)
             {
@@ -267,13 +279,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
+            return new Response
             {
-                var obj = db.Shifts.Where(x => x.ShiftID == shift1.ShiftID).FirstOrDefault();
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("Shift/{id?}")]
+        [HttpPut]
+        public object EditShift(Shift1 shift1)
+        {
+            {
+                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+                var obj = db.Shifts.Where(x => x.ShiftID == id).FirstOrDefault();
                 if (obj.ShiftID > 0)
                 {
                     obj.ShiftName = shift1.ShiftName;
@@ -282,19 +304,19 @@ namespace ChamCongVN_BE.Controllers
                     db.SaveChanges();
                     return new Response
                     {
-                        Status = "Updated",
+                        Status = 200,
                         Message = "Updated Successfully"
                     };
                 }
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllShift")]
+        [Route("Shift")]
         [HttpGet]
         public object GetAllShift()
         {
@@ -302,7 +324,7 @@ namespace ChamCongVN_BE.Controllers
             return shift;
         }
 
-        [Route("GetShiftByID")]
+        [Route("Shift/{id?}")]
         [HttpGet]
         public object GetShiftByID(int ID)
         {
@@ -310,7 +332,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteShift")]
+        [Route("Shift/{id?}")]
         [HttpDelete]
         public object DeleteShift(int ID)
         {
@@ -319,14 +341,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status =200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ OverTime ------------------------------ //
-        [Route("AddOrEditOverTime")]
+        [Route("OverTime")]
         [HttpPost]
-        public object AddOrEditOverTime(OverTime1 OverTime1)
+        public object AddOverTime(OverTime1 OverTime1)
         {
             if (OverTime1.OverTimeID == 0)
             {
@@ -345,13 +367,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
+            return new Response
             {
-                var obj = db.OverTimes.Where(x => x.OverTimeID == OverTime1.OverTimeID).FirstOrDefault();
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("OverTime/{id?}")]
+        [HttpPut]
+        public object EditOverTime(OverTime1 OverTime1)
+        {
+            {
+                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+                var obj = db.OverTimes.Where(x => x.OverTimeID == id).FirstOrDefault();
                 if (obj.OverTimeID > 0)
                 {
                     obj.OverTimeName = OverTime1.OverTimeName;
@@ -364,19 +396,19 @@ namespace ChamCongVN_BE.Controllers
                     db.SaveChanges();
                     return new Response
                     {
-                        Status = "Updated",
+                        Status = 200,
                         Message = "Updated Successfully"
                     };
                 }
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllOverTime")]
+        [Route("OverTime")]
         [HttpGet]
         public object GetAllOverTime()
         {
@@ -392,7 +424,7 @@ namespace ChamCongVN_BE.Controllers
             return OverTime;
         }
 
-        [Route("GetOverTimeByID")]
+        [Route("OverTime/{id?}")]
         [HttpGet]
         public object GetOverTimeByID(int ID)
         {
@@ -400,7 +432,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteOverTime")]
+        [Route("OverTime/{id?}")]
         [HttpDelete]
         public object DeleteOverTime(int ID)
         {
@@ -409,14 +441,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status =200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Position ------------------------------ //
-        [Route("AddOrEditPosition")]
+        [Route("Position")]
         [HttpPost]
-        public object AddOrEditPosition(Position1 Position1)
+        public object AddPosition(Position1 Position1)
         {
             if (Position1.PositionID == 0)
             {
@@ -429,13 +461,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
+            return new Response
             {
-                var obj = db.Positions.Where(x => x.PositionID == Position1.PositionID).FirstOrDefault();
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("Position/{id?}")]
+        [HttpPut]
+        public object EditPosition(Position1 Position1)
+        {
+            {
+                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+                var obj = db.Positions.Where(x => x.PositionID == id).FirstOrDefault();
                 if (obj.PositionID > 0)
                 {
                     obj.PositionName = Position1.PositionName;
@@ -443,19 +485,19 @@ namespace ChamCongVN_BE.Controllers
                     db.SaveChanges();
                     return new Response
                     {
-                        Status = "Updated",
+                        Status = 200,
                         Message = "Updated Successfully"
                     };
                 }
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllPosition")]
+        [Route("Position")]
         [HttpGet]
         public object GetAllPosition()
         {
@@ -463,7 +505,7 @@ namespace ChamCongVN_BE.Controllers
             return Position;
         }
 
-        [Route("GetPositionByID")]
+        [Route("Position/{id?}")]
         [HttpGet]
         public object GetPositionByID(int ID)
         {
@@ -471,7 +513,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeletePosition")]
+        [Route("Position/{id?}")]
         [HttpDelete]
         public object DeletePosition(int ID)
         {
@@ -480,12 +522,12 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status =200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Level ------------------------------ //
-        [Route("AddOrEditLevel")]
+        [Route("Level")]
         [HttpPost]
         public object AddOrEditLevel(Level1 lv1)
         {
@@ -502,13 +544,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
+            return new Response
             {
-                var obj = db.Levels.Where(x => x.LevelID == lv1.LevelID).FirstOrDefault();
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("Level/{id?}")]
+        [HttpPut]
+        public object EditLevel(Level1 lv1)
+        {
+            {
+                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+                var obj = db.Levels.Where(x => x.LevelID == id).FirstOrDefault();
                 if (obj.LevelID > 0)
                 {
                     obj.LevelName = lv1.LevelName;
@@ -517,19 +569,19 @@ namespace ChamCongVN_BE.Controllers
                     db.SaveChanges();
                     return new Response
                     {
-                        Status = "Updated",
+                        Status = 200,
                         Message = "Updated Successfully"
                     };
                 }
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllLevels")]
+        [Route("Level")]
         [HttpGet]
         public object GetAllLevels()
         {
@@ -544,7 +596,7 @@ namespace ChamCongVN_BE.Controllers
             return result;
         }
 
-        [Route("GetLevelByID")]
+        [Route("Level/{id?}")]
         [HttpGet]
         public object GetLevelByID(int ID)
         {
@@ -552,7 +604,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteLevel")]
+        [Route("Level/{id?}")]
         [HttpDelete]
         public object DeleteLevel(int ID)
         {
@@ -561,14 +613,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status =200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Organization ------------------------------ //
-        [Route("AddOrEditOrganization")]
+        [Route("Organization")]
         [HttpPost]
-        public object AddOrEditOrganization(Organization1 or1)
+        public object AddOrganization(Organization1 or1)
         {
             if (or1.OrganizationID == 0)
             {
@@ -587,13 +639,23 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
+            return new Response
             {
-                var obj = db.Organizations.Where(x => x.OrganizationID == or1.OrganizationID).FirstOrDefault();
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("Organization/{id?}")]
+        [HttpPut]
+        public object EditOrganization(Organization1 or1)
+        {
+            {
+                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+                var obj = db.Organizations.Where(x => x.OrganizationID == id).FirstOrDefault();
                 if (obj.OrganizationID > 0)
                 {
                     obj.Name = or1.Name;
@@ -607,19 +669,19 @@ namespace ChamCongVN_BE.Controllers
                     db.SaveChanges();
                     return new Response
                     {
-                        Status = "Updated",
+                        Status = 200,
                         Message = "Updated Successfully"
                     };
                 }
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllOrganization")]
+        [Route("Organization")]
         [HttpGet]
         public object GetAllOrganization()
         {
@@ -627,7 +689,7 @@ namespace ChamCongVN_BE.Controllers
             return or;
         }
 
-        [Route("GetOrganizationByID")]
+        [Route("Organization/{id?}")]
         [HttpGet]
         public object GetOrganizationByID(int ID)
         {
@@ -635,7 +697,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteOrganization")]
+        [Route("Organization/{id?}")]
         [HttpDelete]
         public object DeleteOrganization(int ID)
         {
@@ -644,7 +706,7 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status =200,
                 Message = "Delete Successfuly"
             };
         }

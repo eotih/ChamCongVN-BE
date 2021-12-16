@@ -15,15 +15,16 @@ namespace ChamCongVN_BE.Controllers
     public class TimeKeeperController : ApiController
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
-        public  DateTime dateTime = DateTime.Now;
-        [Route("GetAllCheckIn")]
+        public DateTime dateTime = DateTime.Now;
+
+        [Route("CheckIn")]
         [HttpGet]
         public object GetAllCheckIn()
         {
             var obj = db.CheckIns.ToList();
             return obj;
         }
-        [Route("AddCheckIn")]
+        [Route("CheckIn")]
         [HttpPost]
         public object AddCheckIn(TimeKeeper checkin1)
         {
@@ -43,24 +44,25 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
             return new Response
             {
-                Status = "Error",
-                Message = "Data not insert"
+                Status = 500,
+                Message = "Data Not Insert"
             };
+
         }
-        [Route("GetAllCheckOut")]
+        [Route("CheckOut")]
         [HttpGet]
         public object GetAllCheckOut()
         {
             var obj = db.CheckOuts.ToList();
             return obj;
         }
-        [Route("AddCheckOut")]
+        [Route("CheckOut")]
         [HttpPost]
         public object AddCheckOut(TimeKeeper check)
         {
@@ -80,17 +82,19 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
             return new Response
             {
-                Status = "Error",
-                Message = "Data not insert"
+                Status = 500,
+                Message = "Data Not Insert"
             };
+
         }
-        [Route("GetAllTimeKeepingByEmployeeID")]
+
+        [Route("GetAllTimeKeeping/{id?}")]
         [HttpGet]
         public object GetAllTimeKeepingByEmployeeID(int EmployeeID)
         {
@@ -125,14 +129,15 @@ namespace ChamCongVN_BE.Controllers
                        }).ToList();
             return obj;
         }
-        [Route("GetCheckInByEmployeeID")]
+
+        [Route("CheckIn/{id?}")]
         [HttpGet]
         public object GetCheckInByEmployeeID(int EmployeeID)
         {
             var ci = db.CheckIns.Where(x => x.EmployeeID == EmployeeID).ToList();
             return ci;
         }
-        [Route("GetCheckOutByEmployeeID")]
+        [Route("CheckOut/{id?}")]
         [HttpGet]
         public object GetCheckOutByEmployeeID(int EmployeeID)
         {
@@ -190,7 +195,7 @@ namespace ChamCongVN_BE.Controllers
                                 var haveItCheckOut = db.CheckOuts.Where(x => x.EmployeeID == empID).ToList();
                                 var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
                                 var checkOut = haveItCheckOut.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
-                                
+
                                 if (hour >= 8 && hour < 12)
                                 {
                                     if (checkIn == null)
@@ -210,12 +215,12 @@ namespace ChamCongVN_BE.Controllers
                                     {
                                         return new Response
                                         {
-                                            Status = "403",
+                                            Status = 403,
                                             Message = "Bạn đã check in hôm nay rồi"
                                         };
                                     }
                                 }
-                                else if(hour >= 13 && hour <= 19)
+                                else if (hour >= 13 && hour <= 19)
                                 {
                                     if (checkOut == null)
                                     {
@@ -234,7 +239,7 @@ namespace ChamCongVN_BE.Controllers
                                     {
                                         return new Response
                                         {
-                                            Status = "403",
+                                            Status = 403,
                                             Message = "Bạn đã check out hôm nay rồi"
                                         };
                                     }
@@ -276,7 +281,7 @@ namespace ChamCongVN_BE.Controllers
                         return response;
                     }
                 }
-                catch(Exception err)
+                catch (Exception err)
                 {
                     return err;
                 }
@@ -285,7 +290,7 @@ namespace ChamCongVN_BE.Controllers
             {
                 return new Response
                 {
-                    Status = "403",
+                    Status = 403,
                     Message = "Vui lòng vào đúng phạm vi công ty"
                 };
             }
@@ -293,7 +298,7 @@ namespace ChamCongVN_BE.Controllers
             {
                 return new Response
                 {
-                    Status = "403",
+                    Status = 403,
                     Message = "Vui lòng vào mạng công ty"
                 };
             }
@@ -301,25 +306,27 @@ namespace ChamCongVN_BE.Controllers
             {
                 return new Response
                 {
-                    Status = "403",
+                    Status = 403,
                     Message = "Access Deined"
                 };
             }
         }
-        [Route("GetCountCheckedIn")]
+
+        [Route("CheckIn/checked")]
         [HttpGet]
         public object GetCountCheckedIn()
         {
             var ci = db.GetCountCheckedIns.ToList();
             return ci;
         }
-        [Route("GetCountHaventCheckedIn")]
+        [Route("CheckIn/unchecked")]
         [HttpGet]
         public object GetCountHaventCheckedIn()
         {
             var ci = db.GetCountHaventCheckedIns.ToList();
             return ci;
-        }[Route("GetCountLate")]
+        }
+        [Route("CheckIn/late")]
         [HttpGet]
         public object GetCountLate()
         {

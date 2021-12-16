@@ -14,7 +14,7 @@ namespace ChamCongVN_BE.Controllers
         ChamCongVNEntities db = new ChamCongVNEntities();
 
         // ------------------------------ States ------------------------------ //
-        [Route("AddOrEditState")]
+        [Route("State")]
         [HttpPost]
         public object AddOrEditState(State1 state1)
         {
@@ -28,33 +28,41 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.States.Where(x => x.StateID == state1.StateID).FirstOrDefault();
-                if (obj.StateID > 0)
-                {
-                    obj.StateName = state1.StateName;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllState")]
+        [Route("State/{id?}")]
+        [HttpPut]
+        public object EditState(State1 state1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.States.Where(x => x.StateID == id).FirstOrDefault();
+            if (obj.StateID > 0)
+            {
+                obj.StateName = state1.StateName;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Updated"
+            };
+        }
+
+        [Route("State")]
         [HttpGet]
         public object GetAllState()
         {
@@ -62,7 +70,7 @@ namespace ChamCongVN_BE.Controllers
             return state;
         }
 
-        [Route("GetStateByID")]
+        [Route("State/{id?}")]
         [HttpGet]
         public object GetStateByID(int ID)
         {
@@ -70,7 +78,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteState")]
+        [Route("State/{id?}")]
         [HttpDelete]
         public object DeleteState(int ID)
         {
@@ -79,15 +87,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
 
         // ------------------------------ Works ------------------------------ //
-        [Route("AddOrEditWork")]
+        [Route("Work")]
         [HttpPost]
-        public object AddOrEditWork(Work1 work1)
+        public object AddWork(Work1 work1)
         {
             if (work1.WorkID == 0)
             {
@@ -100,34 +108,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.Works.Where(x => x.WorkID == work1.WorkID).FirstOrDefault();
-                if (obj.WorkID > 0)
-                {
-                    obj.WorkName = work1.WorkName;
-                    obj.Note = work1.Note;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllWork")]
+        [Route("Work")]
+        [HttpPut]
+        public object EditWork(Work1 work1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Works.Where(x => x.WorkID == id).FirstOrDefault();
+            if (obj.WorkID > 0)
+            {
+                obj.WorkName = work1.WorkName;
+                obj.Note = work1.Note;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Updated"
+            };
+        }
+
+        [Route("Work")]
         [HttpGet]
         public object GetAllWork()
         {
@@ -135,7 +151,7 @@ namespace ChamCongVN_BE.Controllers
             return work;
         }
 
-        [Route("GetWorkByID")]
+        [Route("Work/{id?}")]
         [HttpGet]
         public object GetWorkByID(int ID)
         {
@@ -143,7 +159,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteWork")]
+        [Route("Work")]
         [HttpDelete]
         public object DeleteWork(int ID)
         {
@@ -152,15 +168,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
 
         // ------------------------------ Groups ------------------------------ //
-        [Route("AddOrEditGroup")]
+        [Route("Group")]
         [HttpPost]
-        public object AddOrEditGroup(Group1 group1)
+        public object AddGroup(Group1 group1)
         {
             if (group1.GroupID == 0)
             {
@@ -173,34 +189,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.Groups.Where(x => x.GroupID == group1.GroupID).FirstOrDefault();
-                if (obj.GroupID > 0)
-                {
-                    obj.GroupName = group1.GroupName;
-                    obj.Note = group1.Note;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllGroup")]
+        [Route("Group")]
+        [HttpPut]
+        public object EditGroup(Group1 group1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Groups.Where(x => x.GroupID == id).FirstOrDefault();
+            if (obj.GroupID > 0)
+            {
+                obj.GroupName = group1.GroupName;
+                obj.Note = group1.Note;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 200,
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("Group")]
         [HttpGet]
         public object GetAllGroup()
         {
@@ -208,7 +232,7 @@ namespace ChamCongVN_BE.Controllers
             return group;
         }
 
-        [Route("GetGroupByID")]
+        [Route("Group/{id?}")]
         [HttpGet]
         public object GetGroupByID(int ID)
         {
@@ -216,7 +240,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteGroup")]
+        [Route("Group/{id?}")]
         [HttpDelete]
         public object DeleteGroup(int ID)
         {
@@ -225,15 +249,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
 
         // ------------------------------ Departments ------------------------------ //
-        [Route("AddOrEditDepartment")]
+        [Route("Department")]
         [HttpPost]
-        public object AddOrEditDepartment(Department1 department1)
+        public object AddDepartment(Department1 department1)
         {
             if (department1.DepartmentID == 0)
             {
@@ -247,34 +271,43 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
-            {
-                var obj = db.Departments.Where(x => x.DepartmentID == department1.DepartmentID).FirstOrDefault();
-                if (obj.DepartmentID > 0)
-                {
-                    obj.DepartmentName = department1.DepartmentName;
-                    obj.Phone = department1.Phone;
-                    obj.Note = department1.Note;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllDepartment")]
+        [Route("Department/{id?}")]
+        [HttpPut]
+        public object EditDepartment(Department1 department1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Departments.Where(x => x.DepartmentID == department1.DepartmentID).FirstOrDefault();
+            if (obj.DepartmentID > 0)
+            {
+                obj.DepartmentName = department1.DepartmentName;
+                obj.Phone = department1.Phone;
+                obj.Note = department1.Note;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Updated"
+            };
+        }
+
+        [Route("Department")]
         [HttpGet]
         public object GetAllDepartment()
         {
@@ -282,7 +315,7 @@ namespace ChamCongVN_BE.Controllers
             return Departments;
         }
 
-        [Route("GetDepartmentByID")]
+        [Route("Department/{id?}")]
         [HttpGet]
         public object GetDepartmentByID(int ID)
         {
@@ -299,14 +332,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Degrees ------------------------------ //
-        [Route("AddOrEditDegrees")]
+        [Route("Degrees")]
         [HttpPost]
-        public object AddOrEditDegrees(Degree1 degree1)
+        public object AddDegrees(Degree1 degree1)
         {
             if (degree1.DegreeID == 0)
             {
@@ -319,34 +352,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.Degrees.Where(x => x.DegreeID == degree1.DegreeID).FirstOrDefault();
-                if (obj.DegreeID > 0)
-                {
-                    obj.DegreeName = degree1.DegreeName;
-                    obj.Note = degree1.Note;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllDegrees")]
+        [Route("Degrees/{id?}")]
+        [HttpPut]
+        public object EditDegrees(Degree1 degree1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Degrees.Where(x => x.DegreeID == degree1.DegreeID).FirstOrDefault();
+            if (obj.DegreeID > 0)
+            {
+                obj.DegreeName = degree1.DegreeName;
+                obj.Note = degree1.Note;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Updated"
+            };
+        }
+
+        [Route("Degrees")]
         [HttpGet]
         public object GetAllDegrees()
         {
@@ -354,7 +395,7 @@ namespace ChamCongVN_BE.Controllers
             return degree;
         }
 
-        [Route("GetDegreeByID")]
+        [Route("Degree/{id?}")]
         [HttpGet]
         public object GetDegreeByID(int ID)
         {
@@ -362,7 +403,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteDegree")]
+        [Route("Degree")]
         [HttpDelete]
         public object DeleteDegree(int ID)
         {
@@ -371,14 +412,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Degrees Detail------------------------------ //
-        [Route("AddOrEditDegreeDetail")]
+        [Route("DegreeDetail")]
         [HttpPost]
-        public object AddOrEditDegreeDetail(DegreeDetail1 degreedetail1)
+        public object AddDegreeDetail(DegreeDetail1 degreedetail1)
         {
             if (degreedetail1.DegreeDetailID == 0)
             {
@@ -391,34 +432,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.DegreeDetails.Where(x => x.DegreeDetailID == degreedetail1.DegreeDetailID).FirstOrDefault();
-                if (obj.DegreeDetailID > 0)
-                {
-                    obj.EmployeeID = degreedetail1.EmployeeID;
-                    obj.DegreeID = degreedetail1.DegreeID;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllDegreeDetail")]
+        [Route("DegreeDetail/{id?}")]
+        [HttpPut]
+        public object EditDegreeDetail(DegreeDetail1 degreedetail1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.DegreeDetails.Where(x => x.DegreeDetailID == id).FirstOrDefault();
+            if (obj.DegreeDetailID > 0)
+            {
+                obj.EmployeeID = degreedetail1.EmployeeID;
+                obj.DegreeID = degreedetail1.DegreeID;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("DegreeDetail")]
         [HttpGet]
         public object GetAllDegreeDetail()
         {
@@ -426,7 +475,7 @@ namespace ChamCongVN_BE.Controllers
             return degree;
         }
 
-        [Route("GetDegreeDetailByID")]
+        [Route("DegreeDetail/{id?}")]
         [HttpGet]
         public object GetDegreeDetailByID(int ID)
         {
@@ -434,7 +483,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteDegreeDetail")]
+        [Route("DegreeDetail/{id?}")]
         [HttpDelete]
         public object DeleteDegreeDetail(int ID)
         {
@@ -443,14 +492,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Specialities ------------------------------ //
-        [Route("AddOrEditSpecialities")]
+        [Route("Specialities")]
         [HttpPost]
-        public object AddOrEditSpecialities(Speciality1 speciality1)
+        public object AddSpecialities(Speciality1 speciality1)
         {
             if (speciality1.SpecialtyID == 0)
             {
@@ -463,34 +512,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.Specialities.Where(x => x.SpecialtyID == speciality1.SpecialtyID).FirstOrDefault();
-                if (obj.SpecialtyID > 0)
-                {
-                    obj.SpecialtyName = speciality1.SpecialtyName;
-                    obj.Note = speciality1.Note;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllSpecialities")]
+        [Route("Specialities/{id?}")]
+        [HttpPut]
+        public object EditSpecialities(Speciality1 speciality1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Specialities.Where(x => x.SpecialtyID == speciality1.SpecialtyID).FirstOrDefault();
+            if (obj.SpecialtyID > 0)
+            {
+                obj.SpecialtyName = speciality1.SpecialtyName;
+                obj.Note = speciality1.Note;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("Specialities")]
         [HttpGet]
         public object GetAllSpecialities()
         {
@@ -498,7 +555,7 @@ namespace ChamCongVN_BE.Controllers
             return degree;
         }
 
-        [Route("GetSpecialitieByID")]
+        [Route("Specialities/{id?}")]
         [HttpGet]
         public object GetSpecialitieByID(int ID)
         {
@@ -506,7 +563,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteSpecialitie")]
+        [Route("Specialities/{id?}")]
         [HttpDelete]
         public object DeleteSpecialitie(int ID)
         {
@@ -515,14 +572,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Speciality Details------------------------------ //
-        [Route("AddOrEditSpecialityDetail")]
+        [Route("SpecialityDetail")]
         [HttpPost]
-        public object AddOrEditSpecialityDetail(SpecialityDetail1 specialitydetail1)
+        public object AddSpecialityDetail(SpecialityDetail1 specialitydetail1)
         {
             if (specialitydetail1.SpecialityDetailID == 0)
             {
@@ -535,34 +592,42 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.SpecialityDetails.Where(x => x.SpecialityDetailID == specialitydetail1.SpecialityDetailID).FirstOrDefault();
-                if (obj.SpecialityDetailID > 0)
-                {
-                    obj.EmployeeID = specialitydetail1.EmployeeID;
-                    obj.SpecialtyID = specialitydetail1.SpecialtyID;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllSpecialityDetail")]
+        [Route("SpecialityDetail/{id?}")]
+        [HttpPut]
+        public object EditSpecialityDetail(SpecialityDetail1 specialitydetail1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.SpecialityDetails.Where(x => x.SpecialityDetailID == id).FirstOrDefault();
+            if (obj.SpecialityDetailID > 0)
+            {
+                obj.EmployeeID = specialitydetail1.EmployeeID;
+                obj.SpecialtyID = specialitydetail1.SpecialtyID;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Updated"
+            };
+        }
+
+        [Route("SpecialityDetail")]
         [HttpGet]
         public object GetAllSpecialityDetail()
         {
@@ -570,7 +635,7 @@ namespace ChamCongVN_BE.Controllers
             return degree;
         }
 
-        [Route("GetSpecialityDetailByID")]
+        [Route("SpecialityDetail/{id?}")]
         [HttpGet]
         public object GetSpecialityDetailByID(int ID)
         {
@@ -578,7 +643,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteSpecialityDetail")]
+        [Route("SpecialityDetail/{id?}")]
         [HttpDelete]
         public object DeleteSpecialityDetail(int ID)
         {
@@ -587,7 +652,7 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }

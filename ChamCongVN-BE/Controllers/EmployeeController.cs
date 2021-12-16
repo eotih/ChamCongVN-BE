@@ -16,7 +16,7 @@ namespace ChamCongVN_BE.Controllers
     public class EmployeeController : ApiController
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
-        [Route("GetAllEmployee")]
+        [Route("Employee")]
         [HttpGet]
         public object ShowAllEmployees()
         {
@@ -41,7 +41,7 @@ namespace ChamCongVN_BE.Controllers
                           }).ToList();
             return result;
         }
-        [Route("GetEmployeeByID")]
+        [Route("Employee/{id?}")]
         [HttpGet]
         public object GetEmployeeByID(int ID)
         {
@@ -67,9 +67,9 @@ namespace ChamCongVN_BE.Controllers
                           }).FirstOrDefault();
             return result;
         }
-        [Route("AddOrEditEmployee")]
+        [Route("Employee")]
         [HttpPost]
-        public object AddOrEditEmployee(Employee1 emp1)
+        public object AddEmployee(Employee1 emp1)
         {
             if (emp1.EmployeeID == 0)
             {
@@ -104,15 +104,24 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-            else
+            return new Response
             {
-                var obj = db.Employees.Where(x => x.EmployeeID == emp1.EmployeeID).FirstOrDefault();
-                if (obj.EmployeeID > 0)
-                {
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("Employee/{id?}")]
+        [HttpPut]
+        public object EditEmployee(Employee1 emp1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Employees.Where(x => x.EmployeeID == id).FirstOrDefault();
+            if (obj.EmployeeID > 0)
+            {
                     obj.GroupID = emp1.GroupID;
                     obj.PositionID = emp1.PositionID;
                     obj.DepartmentID = emp1.DepartmentID;
@@ -135,25 +144,24 @@ namespace ChamCongVN_BE.Controllers
                     obj.SocialInsurance = emp1.SocialInsurance;
                     obj.HealthInsurance = emp1.HealthInsurance;
                     obj.UnemploymentInsurance = emp1.UnemploymentInsurance;
-                    obj.UpdatedBy = emp1.UpdatedBy;
+                    obj.UpdatedBy = emp1.CreatedBy;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Data Success"
+                };
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
         // ------------------------------ Recruitments ------------------------------ //
 
-        [Route("GetAllRecruitment")]
+        [Route("Recruitment")]
         [HttpGet]
         public object GetAllRecruitment()
         {
@@ -161,7 +169,7 @@ namespace ChamCongVN_BE.Controllers
             return Recruitment;
         }
 
-        [Route("GetRecruitmentByID")]
+        [Route("Recruitment/{id?}")]
         [HttpGet]
         public object GetRecruitmentByID(int ID)
         {
@@ -169,7 +177,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteRecruitment")]
+        [Route("Recruitment/{id?}")]
         [HttpDelete]
         public object DeleteRecruitment(int ID)
         {
@@ -178,13 +186,13 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
-        [Route("UploadListRecruitment")]
+        [Route("Recruitment")]
         [HttpPost]
-        public string ReadFile()
+        public string AddRecruitment()
         {
             try
             {

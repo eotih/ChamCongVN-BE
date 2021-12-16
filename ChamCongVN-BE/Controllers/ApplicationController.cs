@@ -13,9 +13,9 @@ namespace ChamCongVN_BE.Controllers
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
         // ------------------------------ Absent Application ------------------------------ //
-        [Route("AddOrEditAbsentApplications")]
+        [Route("AbsentApplications")]
         [HttpPost]
-        public object AddOrEditAbsentApplications(AbsentApplication1 absentapplication1)
+        public object AddAbsentApplications(AbsentApplication1 absentapplication1)
         {
             if (absentapplication1.AbsentApplicationID == 0)
             {
@@ -34,41 +34,51 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
+            return new Response
             {
-                var obj = db.AbsentApplications.Where(x => x.AbsentApplicationID == absentapplication1.AbsentApplicationID).FirstOrDefault();
-                if (obj.AbsentApplicationID > 0)
+                Status = 500,
+                Message = "Data Success"
+            };
+        }
+
+        [Route("AbsentApplications/{id?}")]
+        [HttpPut]
+        public object EditAbsentApplications(AbsentApplication1 absentapplication1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.AbsentApplications.Where(x => x.AbsentApplicationID == id).FirstOrDefault();
+            if (obj.AbsentApplicationID > 0)
+            {
+                obj.AbsentType = absentapplication1.AbsentType;
+                obj.AbsentDateBegin = absentapplication1.AbsentDateBegin;
+                obj.Reason = absentapplication1.Reason;
+                obj.NumberOfDays = absentapplication1.NumberOfDays;
+                obj.UpdatedBy = absentapplication1.UpdatedBy;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
                 {
-                    obj.AbsentType = absentapplication1.AbsentType;
-                    obj.AbsentDateBegin = absentapplication1.AbsentDateBegin;
-                    obj.Reason = absentapplication1.Reason;
-                    obj.NumberOfDays = absentapplication1.NumberOfDays;
-                    obj.UpdatedBy = absentapplication1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
             }
             return new Response
             {
-                Status = "Error",
-                Message = "Data not insert"
+                Status = 500,
+                Message = "Data not Update"
             };
         }
-        [Route("EditStateAbsentApplication")]
-        [HttpPost]
+
+        [Route("AbsentApplication/EditState/{id?}")]
+        [HttpPut]
         public object EditStateAbsentApplication(AbsentApplication1 absent)
         {
-            var obj = db.AbsentApplications.Where(x => x.AbsentApplicationID == absent.AbsentApplicationID).FirstOrDefault();
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.AbsentApplications.Where(x => x.AbsentApplicationID == id).FirstOrDefault();
             if (obj.AbsentApplicationID > 0)
             {
                 obj.StateID = absent.StateID;
@@ -77,46 +87,50 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Updated",
+                    Status = 200,
                     Message = "Updated Successfully"
                 };
             }
             return new Response
             {
-                Status = "Error",
-                Message = "Data not insert"
+                Status = 500,
+                Message = "Data not update"
             };
         }
-        [Route("GetAllAbsentApplication")]
+
+        [Route("AbsentApplication")]
         [HttpGet]
         public object GetAllAbsentApplication()
         {
             var abs = (from absent in db.AbsentApplications
-                           from emp in db.Employees
-                           where absent.EmployeeID == emp.EmployeeID
-                           select new
-                           {
-                               AbsentApplications = absent,
-                               Employee = emp
-                           }
+                       from emp in db.Employees
+                       where absent.EmployeeID == emp.EmployeeID
+                       select new
+                       {
+                           AbsentApplications = absent,
+                           Employee = emp
+                       }
                            ).ToList();
             return abs;
         }
-        [Route("GetAbsentApplicationByID")]
+
+        [Route("AbsentApplication/{id?}")]
         [HttpGet]
         public object GetAbsentApplicationByID(int ID)
         {
             var abs = db.AbsentApplications.Where(x => x.AbsentApplicationID == ID).FirstOrDefault();
             return abs;
         }
-        [Route("GetAbsentApplicationByEmployeeID")]
+
+        [Route("AbsentApplication/Employee/{id?}")]
         [HttpGet]
         public object GetAbsentApplicationByEmployeeID(int EmployeeID)
         {
             var obj = db.AbsentApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
             return obj;
         }
-        [Route("DeleteAbsentApplication")]
+
+        [Route("AbsentApplication/{id?}")]
         [HttpDelete]
         public object DeleteAbsentApplication(int ID)
         {
@@ -125,14 +139,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
         //--------------------------- OverTime Application------------------------//
-        [Route("AddOrEditOverTimeApplications")]
+        [Route("TimeApplications")]
         [HttpPost]
-        public object AddOrEditOverTimeApplications(OverTimeApplication1 OverTimeapplication1)
+        public object AddOverTimeApplications(OverTimeApplication1 OverTimeapplication1)
         {
             if (OverTimeapplication1.OverTimeApplicationID == 0)
             {
@@ -149,39 +163,49 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
+            return new Response
             {
-                var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == OverTimeapplication1.OverTimeApplicationID).FirstOrDefault();
-                if (obj.OverTimeApplicationID > 0)
+                Status = 500,
+                Message = "Data Success"
+            };
+        }
+
+        [Route("TimeApplications/{id?}")]
+        [HttpPut]
+        public object EditOverTimeApplications(OverTimeApplication1 OverTimeapplication1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == id).FirstOrDefault();
+            if (obj.OverTimeApplicationID > 0)
+            {
+                obj.OverTimeID = OverTimeapplication1.OverTimeID;
+                obj.Note = OverTimeapplication1.Note;
+                obj.UpdatedBy = OverTimeapplication1.UpdatedBy;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
                 {
-                    obj.OverTimeID = OverTimeapplication1.OverTimeID;
-                    obj.Note = OverTimeapplication1.Note;
-                    obj.UpdatedBy = OverTimeapplication1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
-        [Route("EditStateOverTimeApplication")]
-        [HttpPost]
+
+        [Route("OverTimeApplication/EditState/{id?}")]
+        [HttpPut]
         public object EditStateOverTimeApplication(OverTimeApplication1 OverTime)
         {
-            var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == OverTime.OverTimeApplicationID).FirstOrDefault();
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == id).FirstOrDefault();
             if (obj.OverTimeApplicationID > 0)
             {
                 obj.StateID = OverTime.StateID;
@@ -190,17 +214,18 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Updated",
+                    Status = 200,
                     Message = "Updated Successfully"
                 };
             }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
-        [Route("GetAllOverTimeApplication")]
+
+        [Route("OverTimeApplication")]
         [HttpGet]
         public object GetAllOverTimeApplication()
         {
@@ -211,25 +236,27 @@ namespace ChamCongVN_BE.Controllers
                        {
                            OverTimeApplications = OverTime,
                            Employee = emp
-                       }
-                           ).ToList();
+                       }).ToList();
             return abs;
         }
-        [Route("GetOverTimeApplicationByID")]
+
+        [Route("OverTimeApplication/{id?}")]
         [HttpGet]
         public object GetOverTimeApplicationByID(int ID)
         {
             var abs = db.OverTimeApplications.Where(x => x.OverTimeApplicationID == ID).FirstOrDefault();
             return abs;
         }
-        [Route("GetOverTimeApplicationByEmployeeID")]
+
+        [Route("OverTimeApplication/Employee/{id?}")]
         [HttpGet]
         public object GetOverTimeApplicationByEmployeeID(int EmployeeID)
         {
             var obj = db.OverTimeApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
             return obj;
         }
-        [Route("DeleteOverTimeApplication")]
+
+        [Route("OverTimeApplication")]
         [HttpDelete]
         public object DeleteOverTimeApplication(int ID)
         {
@@ -238,14 +265,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
+
         // ------------------------------ Deduction Employees ------------------------------ //
-        [Route("AddOrEditDeductionEmployees")]
+        [Route("DeductionEmployees")]
         [HttpPost]
-        public object AddOrEditDeductionEmployees(DeductionEmployee1 deductionemployee1)
+        public object AddDeductionEmployees(DeductionEmployee1 deductionemployee1)
         {
             if (deductionemployee1.DeductionEmployeeID == 0)
             {
@@ -263,39 +291,47 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.DeductionEmployees.Where(x => x.DeductionEmployeeID == deductionemployee1.DeductionEmployeeID).FirstOrDefault();
-                if (obj.DeductionEmployeeID > 0)
-                {
-                    obj.EmployeeID = deductionemployee1.EmployeeID;
-                    obj.DeductionName = deductionemployee1.DeductionName;
-                    obj.DeductionDate = deductionemployee1.DeductionDate;
-                    obj.Reason = deductionemployee1.Reason;
-                    obj.Amount = deductionemployee1.Amount;
-                    obj.UpdatedBy = deductionemployee1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
-        
-        [Route("GetAllDeductionEmployee")]
+
+        [Route("DeductionEmployees/{id?}")]
+        [HttpPut]
+        public object EditDeductionEmployees(DeductionEmployee1 deductionemployee1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.DeductionEmployees.Where(x => x.DeductionEmployeeID == id).FirstOrDefault();
+            if (obj.DeductionEmployeeID > 0)
+            {
+                obj.EmployeeID = deductionemployee1.EmployeeID;
+                obj.DeductionName = deductionemployee1.DeductionName;
+                obj.DeductionDate = deductionemployee1.DeductionDate;
+                obj.Reason = deductionemployee1.Reason;
+                obj.Amount = deductionemployee1.Amount;
+                obj.UpdatedBy = deductionemployee1.UpdatedBy;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Update"
+            };
+        }
+
+        [Route("DeductionEmployee")]
         [HttpGet]
         public object GetAllDeductionEmployee()
         {
@@ -306,18 +342,19 @@ namespace ChamCongVN_BE.Controllers
                        {
                            DeductionEmployees = deduction,
                            Employee = emp
-                       }
-                           ).ToList();
+                       }).ToList();
             return abs;
         }
-        [Route("GetDeductionEmployeeByID")]
+
+        [Route("DeductionEmployee/{id?}")]
         [HttpGet]
         public object GetDeductionEmployeeByID(int ID)
         {
             var ded = db.DeductionEmployees.Where(x => x.DeductionEmployeeID == ID).FirstOrDefault();
             return ded;
         }
-        [Route("DeleteDeductionEmployee")]
+
+        [Route("DeductionEmployee/{id?}")]
         [HttpDelete]
         public object DeleteDeductionEmployee(int ID)
         {
@@ -326,14 +363,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
+
         // ------------------------------ Regulation Employees ------------------------------ //
-        [Route("AddOrEditRegulationEmployees")]
+        [Route("RegulationEmployees")]
         [HttpPost]
-        public object AddOrEditRegulationEmployees(RegulationEmployee1 Regulationemployee1)
+        public object AddRegulationEmployees(RegulationEmployee1 Regulationemployee1)
         {
             if (Regulationemployee1.RegulationEmployeeID == 0)
             {
@@ -351,39 +389,47 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.RegulationEmployees.Where(x => x.RegulationEmployeeID == Regulationemployee1.RegulationEmployeeID).FirstOrDefault();
-                if (obj.RegulationEmployeeID > 0)
-                {
-                    obj.EmployeeID = Regulationemployee1.EmployeeID;
-                    obj.RegulationName = Regulationemployee1.RegulationName;
-                    obj.RegulationDate = Regulationemployee1.RegulationDate;
-                    obj.Reason = Regulationemployee1.Reason;
-                    obj.RegulationFormat = Regulationemployee1.RegulationFormat;
-                    obj.UpdatedBy = Regulationemployee1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllRegulationEmployee")]
+        [Route("RegulationEmployees/{id?}")]
+        [HttpPut]
+        public object EditRegulationEmployees(RegulationEmployee1 Regulationemployee1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.RegulationEmployees.Where(x => x.RegulationEmployeeID == id).FirstOrDefault();
+            if (obj.RegulationEmployeeID > 0)
+            {
+                obj.EmployeeID = Regulationemployee1.EmployeeID;
+                obj.RegulationName = Regulationemployee1.RegulationName;
+                obj.RegulationDate = Regulationemployee1.RegulationDate;
+                obj.Reason = Regulationemployee1.Reason;
+                obj.RegulationFormat = Regulationemployee1.RegulationFormat;
+                obj.UpdatedBy = Regulationemployee1.UpdatedBy;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+
+        [Route("RegulationEmployee")]
         [HttpGet]
         public object GetAllRegulationEmployee()
         {
@@ -398,14 +444,16 @@ namespace ChamCongVN_BE.Controllers
                            ).ToList();
             return abs;
         }
-        [Route("GetRegulationEmployeeByID")]
+
+        [Route("RegulationEmployee/{id?}")]
         [HttpGet]
         public object GetRegulationEmployeeByID(int ID)
         {
             var ded = db.RegulationEmployees.Where(x => x.RegulationEmployeeID == ID).FirstOrDefault();
             return ded;
         }
-        [Route("DeleteRegulationEmployee")]
+
+        [Route("DeleteRegulationEmployee/{id?}")]
         [HttpDelete]
         public object DeleteRegulationEmployee(int ID)
         {
@@ -414,14 +462,14 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Laudatory Employees ------------------------------ //
-        [Route("AddOrEditLaudatoryEmployees")]
+        [Route("LaudatoryEmployees")]
         [HttpPost]
-        public object AddOrEditLaudatoryEmployees(LaudatoryEmployee1 Laudatoryemployee1)
+        public object AddLaudatoryEmployees(LaudatoryEmployee1 Laudatoryemployee1)
         {
             if (Laudatoryemployee1.LaudatoryEmployeeID == 0)
             {
@@ -439,39 +487,47 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == Laudatoryemployee1.LaudatoryEmployeeID).FirstOrDefault();
-                if (obj.LaudatoryEmployeeID > 0)
-                {
-                    obj.EmployeeID = Laudatoryemployee1.EmployeeID;
-                    obj.LaudatoryName = Laudatoryemployee1.LaudatoryName;
-                    obj.LaudatoryDate = Laudatoryemployee1.LaudatoryDate;
-                    obj.Reason = Laudatoryemployee1.Reason;
-                    obj.Amount = Laudatoryemployee1.Amount;
-                    obj.UpdatedBy = Laudatoryemployee1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllLaudatoryEmployee")]
+        [Route("LaudatoryEmployees/{id?}")]
+        [HttpPut]
+        public object EditLaudatoryEmployees(LaudatoryEmployee1 Laudatoryemployee1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == id).FirstOrDefault();
+            if (obj.LaudatoryEmployeeID > 0)
+            {
+                obj.EmployeeID = Laudatoryemployee1.EmployeeID;
+                obj.LaudatoryName = Laudatoryemployee1.LaudatoryName;
+                obj.LaudatoryDate = Laudatoryemployee1.LaudatoryDate;
+                obj.Reason = Laudatoryemployee1.Reason;
+                obj.Amount = Laudatoryemployee1.Amount;
+                obj.UpdatedBy = Laudatoryemployee1.UpdatedBy;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not update"
+            };
+        }
+
+        [Route("LaudatoryEmployee")]
         [HttpGet]
         public object GetAllLaudatoryEmployee()
         {
@@ -486,14 +542,16 @@ namespace ChamCongVN_BE.Controllers
                            ).ToList();
             return abs;
         }
-        [Route("GetLaudatoryEmployeeByID")]
+
+        [Route("LaudatoryEmployee/{id?}")]
         [HttpGet]
         public object GetLaudatoryEmployeeByID(int ID)
         {
             var ded = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == ID).FirstOrDefault();
             return ded;
         }
-        [Route("DeleteLaudatoryEmployee")]
+
+        [Route("LaudatoryEmployee/{id?}")]
         [HttpDelete]
         public object DeleteLaudatoryEmployee(int ID)
         {
@@ -502,14 +560,15 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
+
         // ------------------------------ Advances ------------------------------ //
-        [Route("AddOrEditAdvances")]
+        [Route("Advances")]
         [HttpPost]
-        public object AddOrEditAdvances(Advance1 adv)
+        public object AddAdvances(Advance1 adv)
         {
             if (adv.AdvanceID == 0)
             {
@@ -527,39 +586,47 @@ namespace ChamCongVN_BE.Controllers
                 db.SaveChanges();
                 return new Response
                 {
-                    Status = "Success",
+                    Status = 200,
                     Message = "Data Success"
                 };
             }
-
-            else
-            {
-                var obj = db.Advances.Where(x => x.AdvanceID == adv.AdvanceID).FirstOrDefault();
-                if (obj.AdvanceID > 0)
-                {
-                    obj.EmployeeID = adv.EmployeeID;
-                    obj.AdvanceDate = adv.AdvanceDate;
-                    obj.AdvanceDate = adv.AdvanceDate;
-                    obj.Amount = adv.Amount;
-                    obj.Signer = adv.Signer;
-                    obj.SignDate = adv.SignDate;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = "Updated",
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
             return new Response
             {
-                Status = "Error",
+                Status = 500,
                 Message = "Data not insert"
             };
         }
 
-        [Route("GetAllAdvances")]
+        [Route("Advances/{id?}")]
+        [HttpPut]
+        public object EditAdvances(Advance1 adv)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Advances.Where(x => x.AdvanceID == id).FirstOrDefault();
+            if (obj.AdvanceID > 0)
+            {
+                obj.EmployeeID = adv.EmployeeID;
+                obj.AdvanceDate = adv.AdvanceDate;
+                obj.AdvanceDate = adv.AdvanceDate;
+                obj.Amount = adv.Amount;
+                obj.Signer = adv.Signer;
+                obj.SignDate = adv.SignDate;
+                obj.UpdatedAt = DateTime.Now;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not Updated"
+            };
+        }
+
+        [Route("AllAdvances")]
         [HttpGet]
         public object GetAllAdvances()
         {
@@ -574,14 +641,16 @@ namespace ChamCongVN_BE.Controllers
                            ).ToList();
             return abs;
         }
-        [Route("GetAdvanceByID")]
+
+        [Route("Advance/{id?}")]
         [HttpGet]
         public object GetAdvanceByID(int ID)
         {
             var ded = db.Advances.Where(x => x.AdvanceID == ID).FirstOrDefault();
             return ded;
         }
-        [Route("DeleteAdvance")]
+
+        [Route("Advance/{id?}")]
         [HttpDelete]
         public object DeleteAdvance(int ID)
         {
@@ -590,7 +659,7 @@ namespace ChamCongVN_BE.Controllers
             db.SaveChanges();
             return new Response
             {
-                Status = "Delete",
+                Status = 200,
                 Message = "Delete Successfuly"
             };
         }
