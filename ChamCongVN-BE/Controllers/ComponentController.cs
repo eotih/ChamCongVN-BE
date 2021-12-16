@@ -119,7 +119,7 @@ namespace ChamCongVN_BE.Controllers
             };
         }
 
-        [Route("Work")]
+        [Route("Work/{id?}")]
         [HttpPut]
         public object EditWork(Work1 work1)
         {
@@ -323,7 +323,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteDepartment/{id?}")]
+        [Route("Department/{id?}")]
         [HttpDelete]
         public object DeleteDepartment(int ID)
         {

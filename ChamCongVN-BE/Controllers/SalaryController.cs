@@ -43,7 +43,7 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-        [Route("SalaryTable")]
+        [Route("SalaryTable/{id?}")]
         [HttpPut]
         public object EditSalaryTable(SalaryTable1 st1)
         {

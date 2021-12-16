@@ -94,7 +94,7 @@ namespace ChamCongVN_BE.Controllers
 
         }
 
-        [Route("GetAllTimeKeeping/{id?}")]
+        [Route("TimeKeeping/{id?}")]
         [HttpGet]
         public object GetAllTimeKeepingByEmployeeID(int EmployeeID)
         {
@@ -110,7 +110,7 @@ namespace ChamCongVN_BE.Controllers
                        }).ToList();
             return obj;
         }
-        [Route("GetAllTimeKeeping")]
+        [Route("TimeKeeping")]
         [HttpGet]
         public object GetAllTimeKeeping()
         {
