@@ -12,10 +12,9 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Degrees
+    public partial class Role
     {
-        public int DegreeID { get; set; }
-        public string DegreeName { get; set; }
-        public string Note { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     }
 }

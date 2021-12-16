@@ -12,10 +12,10 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Works
+    public partial class SpecialityDetail
     {
-        public int WorkID { get; set; }
-        public string WorkName { get; set; }
-        public string Note { get; set; }
+        public int SpecialityDetailID { get; set; }
+        public int SpecialtyID { get; set; }
+        public int EmployeeID { get; set; }
     }
 }

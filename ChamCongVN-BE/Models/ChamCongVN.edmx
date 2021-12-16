@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AbsentApplications">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
@@ -523,12 +523,11 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AbsentApplications">
+        <EntityType Name="AbsentApplication">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
           </Key>
@@ -544,7 +543,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Accounts">
+        <EntityType Name="Account">
           <Key>
             <PropertyRef Name="AccountID" />
           </Key>
@@ -557,20 +556,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Advances">
-          <Key>
-            <PropertyRef Name="AdvanceID" />
-          </Key>
-          <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Amount" Type="Double" Nullable="false" />
-          <Property Name="Signer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SignDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BonusSalary">
@@ -586,7 +571,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="CheckIns">
+        <EntityType Name="CheckIn">
           <Key>
             <PropertyRef Name="CheckInCode" />
           </Key>
@@ -599,7 +584,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Latitude" Type="Double" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="CheckOuts">
+        <EntityType Name="CheckOut">
           <Key>
             <PropertyRef Name="CheckOutCode" />
           </Key>
@@ -612,7 +597,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Longitude" Type="Double" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="DeductionEmployees">
+        <EntityType Name="DeductionEmployee">
           <Key>
             <PropertyRef Name="DeductionEmployeeID" />
           </Key>
@@ -627,7 +612,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="DegreeDetails">
+        <EntityType Name="DegreeDetail">
           <Key>
             <PropertyRef Name="DegreeDetailID" />
           </Key>
@@ -635,7 +620,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="DegreeID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Degrees">
+        <EntityType Name="Degree">
           <Key>
             <PropertyRef Name="DegreeID" />
           </Key>
@@ -643,7 +628,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="DegreeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Departments">
+        <EntityType Name="Department">
           <Key>
             <PropertyRef Name="DepartmentID" />
           </Key>
@@ -652,7 +637,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Employees">
+        <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmployeeID" />
           </Key>
@@ -684,7 +669,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Groups">
+        <EntityType Name="Group">
           <Key>
             <PropertyRef Name="GroupID" />
           </Key>
@@ -692,7 +677,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="LaudatoryEmployees">
+        <EntityType Name="LaudatoryEmployee">
           <Key>
             <PropertyRef Name="LaudatoryEmployeeID" />
           </Key>
@@ -707,7 +692,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Levels">
+        <EntityType Name="Level">
           <Key>
             <PropertyRef Name="LevelID" />
           </Key>
@@ -730,7 +715,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="OverTimeApplications">
+        <EntityType Name="OverTimeApplication">
           <Key>
             <PropertyRef Name="OverTimeApplicationID" />
           </Key>
@@ -744,7 +729,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="OverTimes">
+        <EntityType Name="OverTime">
           <Key>
             <PropertyRef Name="OverTimeID" />
           </Key>
@@ -773,7 +758,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Positions">
+        <EntityType Name="Position">
           <Key>
             <PropertyRef Name="PositionID" />
           </Key>
@@ -781,7 +766,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="PositionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Recruitments">
+        <EntityType Name="Recruitment">
           <Key>
             <PropertyRef Name="RecruitmentID" />
           </Key>
@@ -798,7 +783,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="RegulationEmployees">
+        <EntityType Name="RegulationEmployee">
           <Key>
             <PropertyRef Name="RegulationEmployeeID" />
           </Key>
@@ -813,7 +798,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Roles">
+        <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleID" />
           </Key>
@@ -853,7 +838,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Shifts">
+        <EntityType Name="Shift">
           <Key>
             <PropertyRef Name="ShiftID" />
           </Key>
@@ -862,7 +847,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="StartShift" Type="Time" Precision="7" />
           <Property Name="EndShift" Type="Time" Precision="7" />
         </EntityType>
-        <EntityType Name="Specialities">
+        <EntityType Name="Speciality">
           <Key>
             <PropertyRef Name="SpecialtyID" />
           </Key>
@@ -870,7 +855,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="SpecialtyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="SpecialityDetails">
+        <EntityType Name="SpecialityDetail">
           <Key>
             <PropertyRef Name="SpecialityDetailID" />
           </Key>
@@ -878,14 +863,14 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="SpecialtyID" Type="Int32" Nullable="false" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="States">
+        <EntityType Name="State">
           <Key>
             <PropertyRef Name="StateID" />
           </Key>
           <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Works">
+        <EntityType Name="Work">
           <Key>
             <PropertyRef Name="WorkID" />
           </Key>
@@ -938,7 +923,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           </Key>
           <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityType Name="GetCountLates">
+        <EntityType Name="GetCountLate">
           <Key>
             <PropertyRef Name="FullName" />
           </Key>
@@ -954,43 +939,57 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="SpecialtyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplications" />
-          <EntitySet Name="Accounts" EntityType="Self.Accounts" />
-          <EntitySet Name="Advances" EntityType="Self.Advances" />
-          <EntitySet Name="BonusSalary" EntityType="Self.BonusSalary" />
-          <EntitySet Name="CheckIns" EntityType="Self.CheckIns" />
-          <EntitySet Name="CheckOuts" EntityType="Self.CheckOuts" />
-          <EntitySet Name="DeductionEmployees" EntityType="Self.DeductionEmployees" />
-          <EntitySet Name="DegreeDetails" EntityType="Self.DegreeDetails" />
-          <EntitySet Name="Degrees" EntityType="Self.Degrees" />
-          <EntitySet Name="Departments" EntityType="Self.Departments" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" />
-          <EntitySet Name="Groups" EntityType="Self.Groups" />
-          <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployees" />
-          <EntitySet Name="Levels" EntityType="Self.Levels" />
-          <EntitySet Name="Organization" EntityType="Self.Organization" />
-          <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplications" />
-          <EntitySet Name="OverTimes" EntityType="Self.OverTimes" />
-          <EntitySet Name="OvertimeSalary" EntityType="Self.OvertimeSalary" />
-          <EntitySet Name="Positions" EntityType="Self.Positions" />
-          <EntitySet Name="Recruitments" EntityType="Self.Recruitments" />
-          <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployees" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="Salary" EntityType="Self.Salary" />
-          <EntitySet Name="SalaryTable" EntityType="Self.SalaryTable" />
-          <EntitySet Name="Shifts" EntityType="Self.Shifts" />
-          <EntitySet Name="Specialities" EntityType="Self.Specialities" />
-          <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetails" />
-          <EntitySet Name="States" EntityType="Self.States" />
-          <EntitySet Name="Works" EntityType="Self.Works" />
-          <EntitySet Name="DegreesOfEmployee" EntityType="Self.DegreesOfEmployee" />
-          <EntitySet Name="EmployeeForAccount" EntityType="Self.EmployeeForAccount" />
-          <EntitySet Name="GetAllTimeKeeping" EntityType="Self.GetAllTimeKeeping" />
-          <EntitySet Name="GetCountCheckedIn" EntityType="Self.GetCountCheckedIn" />
-          <EntitySet Name="GetCountHaventCheckedIn" EntityType="Self.GetCountHaventCheckedIn" />
-          <EntitySet Name="GetCountLates" EntityType="Self.GetCountLates" />
-          <EntitySet Name="SpecialityOfEmployee" EntityType="Self.SpecialityOfEmployee" />
+          <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
+          <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
+          <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
+          <EntitySet Name="DeductionEmployees" EntityType="Self.DeductionEmployee" />
+          <EntitySet Name="DegreeDetails" EntityType="Self.DegreeDetail" />
+          <EntitySet Name="Degrees" EntityType="Self.Degree" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
+          <EntitySet Name="Levels" EntityType="Self.Level" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplication" />
+          <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
+          <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
+          <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployee" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Salaries" EntityType="Self.Salary" />
+          <EntitySet Name="SalaryTables" EntityType="Self.SalaryTable" />
+          <EntitySet Name="Shifts" EntityType="Self.Shift" />
+          <EntitySet Name="Specialities" EntityType="Self.Speciality" />
+          <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetail" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Works" EntityType="Self.Work" />
+          <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
+          <EntitySet Name="EmployeeForAccounts" EntityType="Self.EmployeeForAccount" />
+          <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
+          <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
+          <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
+          <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
+          <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+          <EntitySet Name="Advances" EntityType="ChamCongVNModel.Advance" />
         </EntityContainer>
+        <EntityType Name="Advance">
+          <Key>
+            <PropertyRef Name="AdvanceID" />
+          </Key>
+          <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+          <Property Name="Signer" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="SignDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -998,7 +997,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ChamCongVNModelStoreContainer" CdmEntityContainer="ChamCongVNEntities">
           <EntitySetMapping Name="AbsentApplications">
-            <EntityTypeMapping TypeName="ChamCongVNModel.AbsentApplications">
+            <EntityTypeMapping TypeName="ChamCongVNModel.AbsentApplication">
               <MappingFragment StoreEntitySet="AbsentApplications">
                 <ScalarProperty Name="AbsentApplicationID" ColumnName="AbsentApplicationID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1015,7 +1014,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Accounts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Account">
               <MappingFragment StoreEntitySet="Accounts">
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1030,22 +1029,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Advances">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Advances">
-              <MappingFragment StoreEntitySet="Advances">
-                <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Signer" ColumnName="Signer" />
-                <ScalarProperty Name="SignDate" ColumnName="SignDate" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BonusSalary">
+          <EntitySetMapping Name="BonusSalaries">
             <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
               <MappingFragment StoreEntitySet="BonusSalary">
                 <ScalarProperty Name="BonusSalaryID" ColumnName="BonusSalaryID" />
@@ -1060,7 +1044,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CheckIns">
-            <EntityTypeMapping TypeName="ChamCongVNModel.CheckIns">
+            <EntityTypeMapping TypeName="ChamCongVNModel.CheckIn">
               <MappingFragment StoreEntitySet="CheckIns">
                 <ScalarProperty Name="CheckInCode" ColumnName="CheckInCode" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1074,7 +1058,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CheckOuts">
-            <EntityTypeMapping TypeName="ChamCongVNModel.CheckOuts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.CheckOut">
               <MappingFragment StoreEntitySet="CheckOuts">
                 <ScalarProperty Name="CheckOutCode" ColumnName="CheckOutCode" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1088,7 +1072,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeductionEmployees">
-            <EntityTypeMapping TypeName="ChamCongVNModel.DeductionEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.DeductionEmployee">
               <MappingFragment StoreEntitySet="DeductionEmployees">
                 <ScalarProperty Name="DeductionEmployeeID" ColumnName="DeductionEmployeeID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1104,7 +1088,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DegreeDetails">
-            <EntityTypeMapping TypeName="ChamCongVNModel.DegreeDetails">
+            <EntityTypeMapping TypeName="ChamCongVNModel.DegreeDetail">
               <MappingFragment StoreEntitySet="DegreeDetails">
                 <ScalarProperty Name="DegreeDetailID" ColumnName="DegreeDetailID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1113,7 +1097,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Degrees">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Degrees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Degree">
               <MappingFragment StoreEntitySet="Degrees">
                 <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
                 <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
@@ -1122,7 +1106,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Departments">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Department">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
@@ -1132,7 +1116,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Employees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
@@ -1165,7 +1149,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Groups">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Group">
               <MappingFragment StoreEntitySet="Groups">
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
@@ -1174,7 +1158,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LaudatoryEmployees">
-            <EntityTypeMapping TypeName="ChamCongVNModel.LaudatoryEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.LaudatoryEmployee">
               <MappingFragment StoreEntitySet="LaudatoryEmployees">
                 <ScalarProperty Name="LaudatoryEmployeeID" ColumnName="LaudatoryEmployeeID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1190,7 +1174,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Levels">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Levels">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Level">
               <MappingFragment StoreEntitySet="Levels">
                 <ScalarProperty Name="LevelID" ColumnName="LevelID" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
@@ -1199,7 +1183,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Organization">
+          <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="ChamCongVNModel.Organization">
               <MappingFragment StoreEntitySet="Organization">
                 <ScalarProperty Name="OrganizationID" ColumnName="OrganizationID" />
@@ -1215,7 +1199,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OverTimeApplications">
-            <EntityTypeMapping TypeName="ChamCongVNModel.OverTimeApplications">
+            <EntityTypeMapping TypeName="ChamCongVNModel.OverTimeApplication">
               <MappingFragment StoreEntitySet="OverTimeApplications">
                 <ScalarProperty Name="OverTimeApplicationID" ColumnName="OverTimeApplicationID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1230,7 +1214,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OverTimes">
-            <EntityTypeMapping TypeName="ChamCongVNModel.OverTimes">
+            <EntityTypeMapping TypeName="ChamCongVNModel.OverTime">
               <MappingFragment StoreEntitySet="OverTimes">
                 <ScalarProperty Name="OverTimeID" ColumnName="OverTimeID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
@@ -1245,7 +1229,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OvertimeSalary">
+          <EntitySetMapping Name="OvertimeSalaries">
             <EntityTypeMapping TypeName="ChamCongVNModel.OvertimeSalary">
               <MappingFragment StoreEntitySet="OvertimeSalary">
                 <ScalarProperty Name="OvertimeSalaryID" ColumnName="OvertimeSalaryID" />
@@ -1261,7 +1245,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Positions">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Position">
               <MappingFragment StoreEntitySet="Positions">
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="PositionName" ColumnName="PositionName" />
@@ -1270,7 +1254,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Recruitments">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Recruitments">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Recruitment">
               <MappingFragment StoreEntitySet="Recruitments">
                 <ScalarProperty Name="RecruitmentID" ColumnName="RecruitmentID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -1288,7 +1272,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegulationEmployees">
-            <EntityTypeMapping TypeName="ChamCongVNModel.RegulationEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.RegulationEmployee">
               <MappingFragment StoreEntitySet="RegulationEmployees">
                 <ScalarProperty Name="RegulationEmployeeID" ColumnName="RegulationEmployeeID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1304,14 +1288,14 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Roles">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Role">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Salary">
+          <EntitySetMapping Name="Salaries">
             <EntityTypeMapping TypeName="ChamCongVNModel.Salary">
               <MappingFragment StoreEntitySet="Salary">
                 <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
@@ -1330,7 +1314,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SalaryTable">
+          <EntitySetMapping Name="SalaryTables">
             <EntityTypeMapping TypeName="ChamCongVNModel.SalaryTable">
               <MappingFragment StoreEntitySet="SalaryTable">
                 <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
@@ -1347,7 +1331,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shifts">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Shifts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Shift">
               <MappingFragment StoreEntitySet="Shifts">
                 <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
                 <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
@@ -1357,7 +1341,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Specialities">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Specialities">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Speciality">
               <MappingFragment StoreEntitySet="Specialities">
                 <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
                 <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
@@ -1366,7 +1350,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpecialityDetails">
-            <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityDetails">
+            <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityDetail">
               <MappingFragment StoreEntitySet="SpecialityDetails">
                 <ScalarProperty Name="SpecialityDetailID" ColumnName="SpecialityDetailID" />
                 <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
@@ -1375,7 +1359,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="ChamCongVNModel.States">
+            <EntityTypeMapping TypeName="ChamCongVNModel.State">
               <MappingFragment StoreEntitySet="States">
                 <ScalarProperty Name="StateID" ColumnName="StateID" />
                 <ScalarProperty Name="StateName" ColumnName="StateName" />
@@ -1383,7 +1367,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Works">
-            <EntityTypeMapping TypeName="ChamCongVNModel.Works">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Work">
               <MappingFragment StoreEntitySet="Works">
                 <ScalarProperty Name="WorkID" ColumnName="WorkID" />
                 <ScalarProperty Name="WorkName" ColumnName="WorkName" />
@@ -1391,7 +1375,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DegreesOfEmployee">
+          <EntitySetMapping Name="DegreesOfEmployees">
             <EntityTypeMapping TypeName="ChamCongVNModel.DegreesOfEmployee">
               <MappingFragment StoreEntitySet="DegreesOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1399,7 +1383,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeForAccount">
+          <EntitySetMapping Name="EmployeeForAccounts">
             <EntityTypeMapping TypeName="ChamCongVNModel.EmployeeForAccount">
               <MappingFragment StoreEntitySet="EmployeeForAccount">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1407,7 +1391,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GetAllTimeKeeping">
+          <EntitySetMapping Name="GetAllTimeKeepings">
             <EntityTypeMapping TypeName="ChamCongVNModel.GetAllTimeKeeping">
               <MappingFragment StoreEntitySet="GetAllTimeKeeping">
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
@@ -1422,7 +1406,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GetCountCheckedIn">
+          <EntitySetMapping Name="GetCountCheckedIns">
             <EntityTypeMapping TypeName="ChamCongVNModel.GetCountCheckedIn">
               <MappingFragment StoreEntitySet="GetCountCheckedIn">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1430,7 +1414,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GetCountHaventCheckedIn">
+          <EntitySetMapping Name="GetCountHaventCheckedIns">
             <EntityTypeMapping TypeName="ChamCongVNModel.GetCountHaventCheckedIn">
               <MappingFragment StoreEntitySet="GetCountHaventCheckedIn">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -1438,18 +1422,33 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GetCountLates">
-            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLates">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetCountLate">
               <MappingFragment StoreEntitySet="GetCountLates">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SpecialityOfEmployee">
+          <EntitySetMapping Name="SpecialityOfEmployees">
             <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
               <MappingFragment StoreEntitySet="SpecialityOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advances">
+            <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
+              <MappingFragment StoreEntitySet="Advances">
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+                <ScalarProperty Name="Signer" ColumnName="Signer" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1467,7 +1466,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -8,7 +8,7 @@
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="AbsentType" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="AbsentDateBegin" Type="date" Nullable="false" />
-    <Property Name="NumberOfDays" Type="int" Nullable="false" />
+    <Property Name="NumberOfDays" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="StateID" Type="int" Nullable="false" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />

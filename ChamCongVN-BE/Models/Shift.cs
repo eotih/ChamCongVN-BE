@@ -12,10 +12,11 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Specialities
+    public partial class Shift
     {
-        public int SpecialtyID { get; set; }
-        public string SpecialtyName { get; set; }
-        public string Note { get; set; }
+        public int ShiftID { get; set; }
+        public string ShiftName { get; set; }
+        public Nullable<System.TimeSpan> StartShift { get; set; }
+        public Nullable<System.TimeSpan> EndShift { get; set; }
     }
 }

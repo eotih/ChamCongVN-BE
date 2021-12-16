@@ -4,43 +4,43 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ddcd878bd3e4aa6beea0a9cf2ac677e" Name="Diagram1">
-        <EntityTypeShape EntityType="ChamCongVNModel.AbsentApplications" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Accounts" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Advances" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.BonusSalary" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.CheckIns" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.CheckOuts" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.DeductionEmployees" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.DegreeDetails" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Degrees" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Departments" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Employees" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Groups" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.LaudatoryEmployees" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Levels" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Organization" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.OverTimeApplications" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.OverTimes" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+      <Diagram DiagramId="d781c90520544a9d93b3a589c92301b2" Name="Diagram1">
+        <EntityTypeShape EntityType="ChamCongVNModel.AbsentApplication" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.BonusSalary" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.CheckIn" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.CheckOut" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DeductionEmployee" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DegreeDetail" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Degree" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Department" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Employee" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Group" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.LaudatoryEmployee" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Level" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Organization" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.OverTimeApplication" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.OverTime" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.OvertimeSalary" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Positions" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Recruitments" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.RegulationEmployees" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Roles" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Salary" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.SalaryTable" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Shifts" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Specialities" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityDetails" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.States" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Works" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.DegreesOfEmployee" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.EmployeeForAccount" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetAllTimeKeeping" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetCountCheckedIn" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetCountHaventCheckedIn" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetCountLates" Width="1.5" PointX="16.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityOfEmployee" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Position" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Recruitment" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.RegulationEmployee" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Role" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Salary" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SalaryTable" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Shift" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Speciality" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityDetail" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.State" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Work" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.DegreesOfEmployee" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.EmployeeForAccount" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetAllTimeKeeping" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetCountCheckedIn" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetCountHaventCheckedIn" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetCountLate" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityOfEmployee" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Advance" Width="1.5" PointX="7.375" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,10 +12,9 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SpecialityDetails
+    public partial class GetCountLate
     {
-        public int SpecialityDetailID { get; set; }
-        public int SpecialtyID { get; set; }
-        public int EmployeeID { get; set; }
+        public Nullable<int> EmployeeID { get; set; }
+        public string FullName { get; set; }
     }
 }

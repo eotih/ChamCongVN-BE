@@ -12,17 +12,19 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DeductionEmployees
+    public partial class Recruitment
     {
-        public int DeductionEmployeeID { get; set; }
-        public int EmployeeID { get; set; }
-        public string DeductionName { get; set; }
-        public System.DateTime DeductionDate { get; set; }
-        public string Reason { get; set; }
-        public double Amount { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public int RecruitmentID { get; set; }
+        public string FullName { get; set; }
+        public string Gender { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public string Address { get; set; }
+        public string TemporaryAddress { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string ApplyFor { get; set; }
+        public string LinkCV { get; set; }
+        public System.DateTime CreatedAt { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

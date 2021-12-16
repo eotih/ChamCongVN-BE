@@ -8,7 +8,7 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AbsentDateBegin" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfDays" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StateID" Type="Int32" Nullable="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -29,20 +29,6 @@
     <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="Advance">
-    <Key>
-      <PropertyRef Name="AdvanceID" />
-    </Key>
-    <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Amount" Type="Double" Nullable="false" />
-    <Property Name="Signer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="SignDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="BonusSalary">
@@ -428,7 +414,6 @@
   <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
     <EntitySet Name="Accounts" EntityType="Self.Account" />
-    <EntitySet Name="Advances" EntityType="Self.Advance" />
     <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
     <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
     <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
@@ -462,5 +447,20 @@
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
     <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+    <EntitySet Name="Advances" EntityType="ChamCongVNModel.Advance" />
   </EntityContainer>
+  <EntityType Name="Advance">
+    <Key>
+      <PropertyRef Name="AdvanceID" />
+    </Key>
+    <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
+    <Property Name="Signer" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SignDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>

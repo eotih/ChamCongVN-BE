@@ -34,21 +34,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Advances">
-      <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
-        <MappingFragment StoreEntitySet="Advances">
-          <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="Signer" ColumnName="Signer" />
-          <ScalarProperty Name="SignDate" ColumnName="SignDate" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="BonusSalaries">
       <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
         <MappingFragment StoreEntitySet="BonusSalary">
@@ -454,6 +439,21 @@
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Advances">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
+        <MappingFragment StoreEntitySet="Advances">
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+          <ScalarProperty Name="Signer" ColumnName="Signer" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
