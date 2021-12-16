@@ -98,7 +98,7 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-        [Route("Account")]
+        [Route("EmployeeForAccount")]
         [HttpGet]
         public object GetEmployeeForAccount()
         {
