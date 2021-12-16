@@ -124,9 +124,9 @@ namespace ChamCongVN_BE.Controllers
 
         [Route("AbsentApplication/Employee/{id?}")]
         [HttpGet]
-        public object GetAbsentApplicationByEmployeeID(int EmployeeID)
+        public object GetAbsentApplicationByEmployeeID(int ID)
         {
-            var obj = db.AbsentApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var obj = db.AbsentApplications.Where(x => x.EmployeeID == ID).ToList();
             return obj;
         }
 
@@ -250,9 +250,9 @@ namespace ChamCongVN_BE.Controllers
 
         [Route("OverTimeApplication/Employee/{id?}")]
         [HttpGet]
-        public object GetOverTimeApplicationByEmployeeID(int EmployeeID)
+        public object GetOverTimeApplicationByEmployeeID(int ID)
         {
-            var obj = db.OverTimeApplications.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var obj = db.OverTimeApplications.Where(x => x.EmployeeID == ID).ToList();
             return obj;
         }
 

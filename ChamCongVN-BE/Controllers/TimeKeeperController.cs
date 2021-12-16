@@ -94,12 +94,12 @@ namespace ChamCongVN_BE.Controllers
 
         }
 
-        [Route("TimeKeeping/{id?}")]
+        [Route("TimeKeeping/Employee/{id?}")]
         [HttpGet]
-        public object GetAllTimeKeepingByEmployeeID(int EmployeeID)
+        public object GetAllTimeKeepingByEmployeeID(int ID)
         {
-            var empIn = db.CheckIns.Where(x => x.EmployeeID == EmployeeID).ToList();
-            var empOut = db.CheckOuts.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var empIn = db.CheckIns.Where(x => x.EmployeeID == ID).ToList();
+            var empOut = db.CheckOuts.Where(x => x.EmployeeID == ID).ToList();
             var obj = (from ci in empIn
                        from co in empOut
                        where ci.EmployeeID == co.EmployeeID
@@ -130,18 +130,18 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("CheckIn/{id?}")]
+        [Route("CheckIn/Employee/{id?}")]
         [HttpGet]
-        public object GetCheckInByEmployeeID(int EmployeeID)
+        public object GetCheckInByEmployeeID(int ID)
         {
-            var ci = db.CheckIns.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var ci = db.CheckIns.Where(x => x.EmployeeID == ID).ToList();
             return ci;
         }
-        [Route("CheckOut/{id?}")]
+        [Route("CheckOut/Employee/{id?}")]
         [HttpGet]
-        public object GetCheckOutByEmployeeID(int EmployeeID)
+        public object GetCheckOutByEmployeeID(int ID)
         {
-            var ci = db.CheckOuts.Where(x => x.EmployeeID == EmployeeID).ToList();
+            var ci = db.CheckOuts.Where(x => x.EmployeeID == ID).ToList();
             return ci;
         }
         // ------------------------------ Handle ci To Python ------------------------------ //

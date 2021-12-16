@@ -391,6 +391,7 @@ namespace ChamCongVN_BE.Controllers
                     obj.StartTime = OverTime1.StartTime;
                     obj.EndTime = OverTime1.EndTime;
                     obj.OverTimeDate = OverTime1.OverTimeDate;
+                    obj.IsActive = OverTime1.IsActive;
                     obj.Quantity = OverTime1.Quantity;
                     obj.UpdatedBy = OverTime1.UpdatedBy;
                     db.SaveChanges();
