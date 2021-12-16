@@ -256,7 +256,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("OverTimeApplication")]
+        [Route("OverTimeApplication/{id?}")]
         [HttpDelete]
         public object DeleteOverTimeApplication(int ID)
         {

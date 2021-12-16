@@ -159,7 +159,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("Work")]
+        [Route("Work/{id?}")]
         [HttpDelete]
         public object DeleteWork(int ID)
         {
@@ -323,7 +323,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("DeleteDepartment")]
+        [Route("DeleteDepartment/{id?}")]
         [HttpDelete]
         public object DeleteDepartment(int ID)
         {
@@ -403,7 +403,7 @@ namespace ChamCongVN_BE.Controllers
             return obj;
         }
 
-        [Route("Degree")]
+        [Route("Degree/{id?}")]
         [HttpDelete]
         public object DeleteDegree(int ID)
         {
