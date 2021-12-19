@@ -19,9 +19,11 @@ namespace ChamCongVN_BE.Models
         public string Department { get; set; }
         public string CheckInImage { get; set; }
         public string CheckInStatus { get; set; }
+        public string CheckInDevice { get; set; }
         public Nullable<System.DateTime> CheckInCreatedAt { get; set; }
         public string CheckOutImage { get; set; }
         public string CheckOutStatus { get; set; }
+        public string CheckOutDevice { get; set; }
         public Nullable<System.DateTime> CheckOutCreatedAt { get; set; }
     }
 }

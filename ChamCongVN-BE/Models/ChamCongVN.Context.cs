@@ -27,6 +27,7 @@ namespace ChamCongVN_BE.Models
     
         public virtual DbSet<AbsentApplication> AbsentApplications { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Advance> Advances { get; set; }
         public virtual DbSet<BonusSalary> BonusSalaries { get; set; }
         public virtual DbSet<CheckIn> CheckIns { get; set; }
         public virtual DbSet<CheckOut> CheckOuts { get; set; }
@@ -60,6 +61,5 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<GetCountHaventCheckedIn> GetCountHaventCheckedIns { get; set; }
         public virtual DbSet<GetCountLate> GetCountLates { get; set; }
         public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
-        public virtual DbSet<Advance> Advances { get; set; }
     }
 }

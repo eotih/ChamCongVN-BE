@@ -70,7 +70,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
         [Route("SalaryTable")]
@@ -130,7 +130,7 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-        [Route("OvertimeSalary")]
+        [Route("OvertimeSalary/{id?}")]
         [HttpPut]
         public object EditOvertimeSalary(OvertimeSalary1 ot1)
         {
@@ -156,7 +156,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
         [Route("OvertimeSalary")]
@@ -252,7 +252,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
         [Route("DeductionEmployee")]
@@ -293,24 +293,23 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
-        // ------------------------------ Laudatory Employee ------------------------------ //
-        [Route("LaudatoryEmployee")]
+        // ------------------------------ Advances ------------------------------ //
+        [Route("Advances")]
         [HttpPost]
-        public object AddLaudatoryEmployee(LaudatoryEmployee1 de1)
+        public object AddAdvances(Advance1 adv)
         {
-            if (de1.LaudatoryEmployeeID == 0)
+            if (adv.AdvanceID == 0)
             {
-                LaudatoryEmployee LaudatoryEmployee = new LaudatoryEmployee
+                Advance advance = new Advance
                 {
-                    EmployeeID = de1.EmployeeID,
-                    LaudatoryName = de1.LaudatoryName,
-                    LaudatoryDate = de1.LaudatoryDate,
-                    Reason = de1.Reason,
-                    Amount = de1.Amount,
-                    CreatedBy = de1.CreatedBy,
-                    CreatedAt = DateTime.Now
+                    EmployeeID = adv.EmployeeID,
+                    AdvanceDate = adv.AdvanceDate,
+                    Reason = adv.Reason,
+                    Amount = adv.Amount,
+                    Signer = adv.Signer,
+                    SignDate = DateTime.Now
                 };
-                db.LaudatoryEmployees.Add(LaudatoryEmployee);
+                db.Advances.Add(advance);
                 db.SaveChanges();
                 return new Response
                 {
@@ -324,67 +323,68 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-        [Route("LaudatoryEmployee/{id}")]
+
+        [Route("Advances/{id?}")]
         [HttpPut]
-        public object EditLaudatoryEmployee(LaudatoryEmployee1 de1)
+        public object EditAdvances(Advance1 adv)
         {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Advances.Where(x => x.AdvanceID == id).FirstOrDefault();
+            if (obj.AdvanceID > 0)
             {
-                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
-                var obj = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == de1.LaudatoryEmployeeID).FirstOrDefault();
-                if (obj.LaudatoryEmployeeID > 0)
+                obj.EmployeeID = adv.EmployeeID;
+                obj.AdvanceDate = adv.AdvanceDate;
+                obj.Reason = adv.Reason;
+                obj.Amount = adv.Amount;
+                obj.UpdatedAt = DateTime.Now;
+                obj.UpdatedBy = adv.UpdatedBy;
+                db.SaveChanges();
+                return new Response
                 {
-                    obj.EmployeeID = de1.EmployeeID;
-                    obj.LaudatoryName = de1.LaudatoryName;
-                    obj.LaudatoryDate = de1.LaudatoryDate;
-                    obj.Reason = de1.Reason;
-                    obj.Amount = de1.Amount;
-                    obj.UpdatedBy = de1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = 200,
-                        Message = "Updated Successfully"
-                    };
-                }
+                    Status = 200,
+                    Message = "Updated Successfully"
+                };
             }
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not Updated"
             };
         }
-        [Route("LaudatoryEmployee")]
+
+        [Route("Advances")]
         [HttpGet]
-        public object GetAllLaudatoryEmployee()
+        public object GetAllAdvances()
         {
-            var ot = (from deduc in db.LaudatoryEmployees
-                      from emp in db.Employees
-                      where deduc.EmployeeID == emp.EmployeeID
-                      select new
-                      {
-                          LaudatoryEmployee = deduc,
-                          Employee = emp,
-                          emp.EmployeeID,
-                          emp.FullName,
-                          emp.Image
-                      }
+            var abs = (from adv in db.Advances
+                       from emp in db.Employees
+                       where adv.EmployeeID == emp.EmployeeID
+                       select new
+                       {
+                           Advance = adv,
+                           Employee = emp,
+                           emp.EmployeeID,
+                           emp.FullName,
+                           emp.Image
+                       }
                            ).ToList();
-            return ot;
+            return abs;
         }
-        [Route("LaudatoryEmployee/{id}")]
+
+        [Route("Advance/{id?}")]
         [HttpGet]
-        public object GetLaudatoryEmployeeByID(int ID)
+        public object GetAdvanceByID(int ID)
         {
-            var ot = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == ID).FirstOrDefault();
-            return ot;
+            var ded = db.Advances.Where(x => x.AdvanceID == ID).FirstOrDefault();
+            return ded;
         }
-        [Route("LaudatoryEmployee/{id}")]
+
+        [Route("Advance/{id?}")]
         [HttpDelete]
-        public object DeleteLaudatoryEmployee(int ID)
+        public object DeleteAdvance(int ID)
         {
-            var obj = db.LaudatoryEmployees.Where(x => x.LaudatoryEmployeeID == ID).FirstOrDefault();
-            db.LaudatoryEmployees.Remove(obj);
+            var obj = db.Advances.Where(x => x.AdvanceID == ID).FirstOrDefault();
+            db.Advances.Remove(obj);
             db.SaveChanges();
             return new Response
             {

@@ -19,6 +19,7 @@ namespace ChamCongVN_BE.Models
         public int PositionID { get; set; }
         public int DepartmentID { get; set; }
         public int WorkID { get; set; }
+        public int LevelID { get; set; }
         public int SalaryTableID { get; set; }
         public string FullName { get; set; }
         public string NickName { get; set; }

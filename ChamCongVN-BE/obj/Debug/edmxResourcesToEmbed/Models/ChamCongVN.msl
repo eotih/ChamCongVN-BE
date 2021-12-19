@@ -34,6 +34,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Advances">
+      <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
+        <MappingFragment StoreEntitySet="Advances">
+          <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Signer" ColumnName="Signer" />
+          <ScalarProperty Name="SignDate" ColumnName="SignDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BonusSalaries">
       <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
         <MappingFragment StoreEntitySet="BonusSalary">
@@ -128,6 +143,7 @@
           <ScalarProperty Name="PositionID" ColumnName="PositionID" />
           <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
           <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+          <ScalarProperty Name="LevelID" ColumnName="LevelID" />
           <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="NickName" ColumnName="NickName" />
@@ -404,9 +420,11 @@
           <ScalarProperty Name="Department" ColumnName="Department" />
           <ScalarProperty Name="CheckInImage" ColumnName="CheckInImage" />
           <ScalarProperty Name="CheckInStatus" ColumnName="CheckInStatus" />
+          <ScalarProperty Name="CheckInDevice" ColumnName="CheckInDevice" />
           <ScalarProperty Name="CheckInCreatedAt" ColumnName="CheckInCreatedAt" />
           <ScalarProperty Name="CheckOutImage" ColumnName="CheckOutImage" />
           <ScalarProperty Name="CheckOutStatus" ColumnName="CheckOutStatus" />
+          <ScalarProperty Name="CheckOutDevice" ColumnName="CheckOutDevice" />
           <ScalarProperty Name="CheckOutCreatedAt" ColumnName="CheckOutCreatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -439,21 +457,6 @@
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Advances">
-      <EntityTypeMapping TypeName="ChamCongVNModel.Advance">
-        <MappingFragment StoreEntitySet="Advances">
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="SignDate" ColumnName="SignDate" />
-          <ScalarProperty Name="Signer" ColumnName="Signer" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="AdvanceDate" ColumnName="AdvanceDate" />
-          <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="AdvanceID" ColumnName="AdvanceID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

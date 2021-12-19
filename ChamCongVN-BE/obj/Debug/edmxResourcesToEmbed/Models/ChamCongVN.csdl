@@ -31,6 +31,20 @@
     <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="Advance">
+    <Key>
+      <PropertyRef Name="AdvanceID" />
+    </Key>
+    <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
+    <Property Name="Signer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SignDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="BonusSalary">
     <Key>
       <PropertyRef Name="BonusSalaryID" />
@@ -119,6 +133,7 @@
     <Property Name="PositionID" Type="Int32" Nullable="false" />
     <Property Name="DepartmentID" Type="Int32" Nullable="false" />
     <Property Name="WorkID" Type="Int32" Nullable="false" />
+    <Property Name="LevelID" Type="Int32" Nullable="false" />
     <Property Name="SalaryTableID" Type="Int32" Nullable="false" />
     <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="NickName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
@@ -378,9 +393,11 @@
     <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckInDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CheckInCreatedAt" Type="DateTime" Precision="3" />
     <Property Name="CheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CheckOutDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CheckOutCreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="GetCountCheckedIn">
@@ -414,6 +431,7 @@
   <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
     <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Advances" EntityType="Self.Advance" />
     <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
     <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
     <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
@@ -447,20 +465,5 @@
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
     <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
-    <EntitySet Name="Advances" EntityType="ChamCongVNModel.Advance" />
   </EntityContainer>
-  <EntityType Name="Advance">
-    <Key>
-      <PropertyRef Name="AdvanceID" />
-    </Key>
-    <Property Name="AdvanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="Reason" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="AdvanceDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Amount" Type="Double" Nullable="false" />
-    <Property Name="Signer" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="SignDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-  </EntityType>
 </Schema>

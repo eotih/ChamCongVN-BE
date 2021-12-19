@@ -200,7 +200,7 @@ namespace ChamCongVN_BE.Controllers
             };
         }
 
-        [Route("Group")]
+        [Route("Group/{id?}")]
         [HttpPut]
         public object EditGroup(Group1 group1)
         {

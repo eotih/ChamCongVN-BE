@@ -20,8 +20,8 @@ namespace ChamCongVN_BE.Models
         public System.DateTime AdvanceDate { get; set; }
         public double Amount { get; set; }
         public string Signer { get; set; }
-        public System.DateTime SignDate { get; set; }
-        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public Nullable<System.DateTime> SignDate { get; set; }
+        public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
     }
 }

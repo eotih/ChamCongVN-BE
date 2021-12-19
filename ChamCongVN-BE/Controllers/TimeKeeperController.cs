@@ -24,8 +24,7 @@ namespace ChamCongVN_BE.Controllers
             var obj = db.CheckIns.ToList();
             return obj;
         }
-        [Route("CheckIn")]
-        [HttpPost]
+        
         public object AddCheckIn(TimeKeeper checkin1)
         {
             if (checkin1.ID == 0)
@@ -62,8 +61,6 @@ namespace ChamCongVN_BE.Controllers
             var obj = db.CheckOuts.ToList();
             return obj;
         }
-        [Route("CheckOut")]
-        [HttpPost]
         public object AddCheckOut(TimeKeeper check)
         {
             if (check.ID == 0)
@@ -98,15 +95,21 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetAllTimeKeepingByEmployeeID(int ID)
         {
-            var empIn = db.CheckIns.Where(x => x.EmployeeID == ID).ToList();
-            var empOut = db.CheckOuts.Where(x => x.EmployeeID == ID).ToList();
-            var obj = (from ci in empIn
-                       from co in empOut
-                       where ci.EmployeeID == co.EmployeeID
+            var obj = (from res in db.GetAllTimeKeepings
+                       where res.EmployeeID == ID
                        select new
                        {
-                           checkin = ci,
-                           checkout = co
+                           res.EmployeeName,
+                           res.EmployeeID,
+                           res.Department,
+                           res.CheckInImage,
+                           res.CheckOutImage,
+                           res.CheckInDevice,
+                           res.CheckOutDevice,
+                           res.CheckInCreatedAt,
+                           res.CheckOutCreatedAt,
+                           res.CheckOutStatus,
+                           res.CheckInStatus
                        }).ToList();
             return obj;
         }
@@ -122,6 +125,8 @@ namespace ChamCongVN_BE.Controllers
                            res.Department,
                            res.CheckInImage,
                            res.CheckOutImage,
+                           res.CheckInDevice,
+                           res.CheckOutDevice,
                            res.CheckInCreatedAt,
                            res.CheckOutCreatedAt,
                            res.CheckOutStatus,

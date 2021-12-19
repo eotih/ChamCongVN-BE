@@ -114,9 +114,9 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Data not insert"
             };
         }
-        [Route("Employee/{id?}")]
+        [Route("Employee/{id?}/Manager")]
         [HttpPut]
-        public object EditEmployee(Employee1 emp1)
+        public object EditEmployeeForManager(Employee1 emp1)
         {
             int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
             var obj = db.Employees.Where(x => x.EmployeeID == id).FirstOrDefault();
@@ -127,24 +127,7 @@ namespace ChamCongVN_BE.Controllers
                     obj.DepartmentID = emp1.DepartmentID;
                     obj.WorkID = emp1.WorkID;
                     obj.SalaryTableID = emp1.SalaryTableID;
-                    obj.FullName = emp1.FullName;
-                    obj.NickName = emp1.NickName;
-                    obj.Gender = emp1.Gender;
-                    obj.Image = emp1.Image;
-                    obj.DateOfBirth = emp1.DateOfBirth;
-                    obj.PlaceOfBirth = emp1.PlaceOfBirth;
-                    obj.Address = emp1.Address;
-                    obj.TemporaryAddress = emp1.TemporaryAddress;
-                    obj.Phone = emp1.Phone;
-                    obj.IdentityCard = emp1.IdentityCard;
-                    obj.DateRange = emp1.DateRange;
-                    obj.IssuedBy = emp1.IssuedBy;
-                    obj.StartDate = emp1.StartDate;
-                    obj.Health = emp1.Health;
-                    obj.SocialInsurance = emp1.SocialInsurance;
-                    obj.HealthInsurance = emp1.HealthInsurance;
-                    obj.UnemploymentInsurance = emp1.UnemploymentInsurance;
-                    obj.UpdatedBy = emp1.CreatedBy;
+                    obj.UpdatedBy = emp1.UpdatedBy;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
                 return new Response
@@ -156,7 +139,33 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
+            };
+        }
+        [Route("Employee/{id?}")]
+        [HttpPut]
+        public object EditEmployeeForEmployee(Employee1 emp1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Employees.Where(x => x.EmployeeID == id).FirstOrDefault();
+            if (obj.EmployeeID > 0)
+            {
+                    obj.Image = emp1.Image;
+                    obj.TemporaryAddress = emp1.TemporaryAddress;
+                    obj.Phone = emp1.Phone;
+                    obj.UpdatedBy = emp1.UpdatedBy;
+                    obj.UpdatedAt = DateTime.Now;
+                    db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not updated"
             };
         }
         // ------------------------------ Recruitments ------------------------------ //

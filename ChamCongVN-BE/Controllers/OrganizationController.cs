@@ -70,7 +70,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 
@@ -82,7 +82,7 @@ namespace ChamCongVN_BE.Controllers
             var obj = db.Accounts.Where(x => x.AccountID == id).FirstOrDefault();
             if (obj.AccountID > 0)
             {
-                obj.Password = account.Password;
+                obj.Password = Utilities.GetMD5(account.Password);
                 obj.UpdatedAt = DateTime.Now;
                 obj.UpdatedBy = account.UpdatedBy;
                 db.SaveChanges();
@@ -95,7 +95,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
         [Route("EmployeeForAccount")]
@@ -109,7 +109,27 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetAccountByID(int ID)
         {
-            var account = db.Accounts.Where(x => x.AccountID == ID).FirstOrDefault();
+            var objaccount = db.Accounts.Where(x => x.AccountID == ID).ToList();
+            var account = (from acc in objaccount
+                           from emp in db.Employees
+                           from role in db.Roles
+                           from state in db.States
+                           where acc.EmployeeID == emp.EmployeeID
+                           where role.RoleID == acc.RoleID
+                           where state.StateID == acc.StateID
+                           select new
+                           {
+                               Account = acc,
+                               acc.AccountID,
+                               acc.EmployeeID,
+                               acc.RoleID,
+                               acc.StateID,
+                               Employee = emp,
+                               emp.Image,
+                               role.RoleName,
+                               state.StateName
+                           }
+                           ).FirstOrDefault();
             return account;
         }
 
@@ -199,7 +219,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 
@@ -312,7 +332,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 
@@ -405,7 +425,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 
@@ -494,7 +514,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 
@@ -578,7 +598,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 
@@ -678,7 +698,7 @@ namespace ChamCongVN_BE.Controllers
             return new Response
             {
                 Status = 500,
-                Message = "Data not insert"
+                Message = "Data not updated"
             };
         }
 

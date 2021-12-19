@@ -40,9 +40,9 @@
     <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AdvanceDate" Type="date" Nullable="false" />
     <Property Name="Amount" Type="float" Nullable="false" />
-    <Property Name="Signer" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="SignDate" Type="date" Nullable="false" />
-    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="Signer" Type="nvarchar" MaxLength="150" />
+    <Property Name="SignDate" Type="date" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
     <Property Name="UpdatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="BonusSalary">
@@ -133,6 +133,7 @@
     <Property Name="PositionID" Type="int" Nullable="false" />
     <Property Name="DepartmentID" Type="int" Nullable="false" />
     <Property Name="WorkID" Type="int" Nullable="false" />
+    <Property Name="LevelID" Type="int" Nullable="false" />
     <Property Name="SalaryTableID" Type="int" Nullable="false" />
     <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="NickName" Type="nvarchar" MaxLength="200" Nullable="false" />
@@ -398,9 +399,11 @@ warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a 
     <Property Name="Department" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CheckInImage" Type="nvarchar(max)" />
     <Property Name="CheckInStatus" Type="nvarchar(max)" />
+    <Property Name="CheckInDevice" Type="nvarchar(max)" />
     <Property Name="CheckInCreatedAt" Type="datetime" />
     <Property Name="CheckOutImage" Type="nvarchar(max)" />
     <Property Name="CheckOutStatus" Type="nvarchar(max)" />
+    <Property Name="CheckOutDevice" Type="nvarchar(max)" />
     <Property Name="CheckOutCreatedAt" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
@@ -488,9 +491,11 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [GetAllTimeKeeping].[Department] AS [Department], 
     [GetAllTimeKeeping].[CheckInImage] AS [CheckInImage], 
     [GetAllTimeKeeping].[CheckInStatus] AS [CheckInStatus], 
+    [GetAllTimeKeeping].[CheckInDevice] AS [CheckInDevice], 
     [GetAllTimeKeeping].[CheckInCreatedAt] AS [CheckInCreatedAt], 
     [GetAllTimeKeeping].[CheckOutImage] AS [CheckOutImage], 
     [GetAllTimeKeeping].[CheckOutStatus] AS [CheckOutStatus], 
+    [GetAllTimeKeeping].[CheckOutDevice] AS [CheckOutDevice], 
     [GetAllTimeKeeping].[CheckOutCreatedAt] AS [CheckOutCreatedAt]
     FROM [dbo].[GetAllTimeKeeping] AS [GetAllTimeKeeping]</DefiningQuery>
     </EntitySet>
