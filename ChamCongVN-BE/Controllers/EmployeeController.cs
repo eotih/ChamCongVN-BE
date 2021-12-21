@@ -97,6 +97,7 @@ namespace ChamCongVN_BE.Controllers
                     SocialInsurance = emp1.SocialInsurance,
                     HealthInsurance = emp1.HealthInsurance,
                     UnemploymentInsurance = emp1.UnemploymentInsurance,
+                    PaidLeave = true,
                     CreatedBy = emp1.CreatedBy,
                     CreatedAt = DateTime.Now
                 };
@@ -166,6 +167,41 @@ namespace ChamCongVN_BE.Controllers
             {
                 Status = 500,
                 Message = "Data not updated"
+            };
+        }
+        [Route("Employee/{id?}/PaidLeave")]
+        [HttpPut]
+        public object EditPaidLeaveForEmployee(Employee1 emp1)
+        {
+            int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
+            var obj = db.Employees.Where(x => x.EmployeeID == id).FirstOrDefault();
+            if (obj.EmployeeID > 0)
+            {
+                obj.PaidLeave = true;
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not updated"
+            };
+        }
+        [Route("Employee/{id?}")]
+        [HttpDelete]
+        public object DeleteEmployee(int ID)
+        {
+            var obj = db.Employees.Where(x => x.EmployeeID == ID).FirstOrDefault();
+            db.Employees.Remove(obj);
+            db.SaveChanges();
+            return new Response
+            {
+                Status = 200,
+                Message = "Delete Successfuly"
             };
         }
         // ------------------------------ Recruitments ------------------------------ //

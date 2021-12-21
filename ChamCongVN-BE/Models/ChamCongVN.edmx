@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AbsentApplications">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
@@ -48,6 +48,16 @@
           <Property Name="Signer" Type="nvarchar" MaxLength="150" />
           <Property Name="SignDate" Type="date" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AnotherCost">
+          <Key>
+            <PropertyRef Name="AnotherCostID" />
+          </Key>
+          <Property Name="AnotherCostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="TypeOfCost" Type="nvarchar" MaxLength="50" />
+          <Property Name="Total" Type="float" />
           <Property Name="UpdatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="BonusSalary">
@@ -157,6 +167,7 @@
           <Property Name="SocialInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="HealthInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="UnemploymentInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PaidLeave" Type="bit" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="CreatedAt" Type="datetime" />
@@ -207,6 +218,32 @@
           <Property Name="Website" Type="nvarchar(max)" />
           <Property Name="PublicIP" Type="varchar" MaxLength="50" />
           <Property Name="PythonIP" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="OTCheckIns">
+          <Key>
+            <PropertyRef Name="OTCheckInsID" />
+          </Key>
+          <Property Name="OTCheckInsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="Device" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OTCheckOuts">
+          <Key>
+            <PropertyRef Name="OTCheckOutsID" />
+          </Key>
+          <Property Name="OTCheckOutsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="Device" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="CreatedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="OverTimeApplications">
           <Key>
@@ -392,6 +429,26 @@ warning 6002: The table/view 'ChamCongVN.dbo.EmployeeForAccount' does not have a
           <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetAllOTTimeKeeping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GetAllOTTimeKeeping">
+          <Key>
+            <PropertyRef Name="EmployeeName" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Department" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OTCheckInImage" Type="nvarchar(max)" />
+          <Property Name="OTCheckInStatus" Type="nvarchar(max)" />
+          <Property Name="OTCheckInDevice" Type="nvarchar(max)" />
+          <Property Name="OTCheckInCreatedAt" Type="datetime" />
+          <Property Name="OTCheckOutImage" Type="nvarchar(max)" />
+          <Property Name="OTCheckOutStatus" Type="nvarchar(max)" />
+          <Property Name="OTCheckOutDevice" Type="nvarchar(max)" />
+          <Property Name="OTCheckOutCreatedAt" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GetAllTimeKeeping">
           <Key>
@@ -451,6 +508,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Advances" EntityType="Self.Advances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnotherCost" EntityType="Self.AnotherCost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BonusSalary" EntityType="Self.BonusSalary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckIns" EntityType="Self.CheckIns" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckOuts" EntityType="Self.CheckOuts" Schema="dbo" store:Type="Tables" />
@@ -463,6 +521,8 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTCheckIns" EntityType="Self.OTCheckIns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTCheckOuts" EntityType="Self.OTCheckOuts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OverTimes" EntityType="Self.OverTimes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OvertimeSalary" EntityType="Self.OvertimeSalary" Schema="dbo" store:Type="Tables" />
@@ -488,6 +548,21 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [EmployeeForAccount].[EmployeeID] AS [EmployeeID], 
     [EmployeeForAccount].[FullName] AS [FullName]
     FROM [dbo].[EmployeeForAccount] AS [EmployeeForAccount]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GetAllOTTimeKeeping" EntityType="Self.GetAllOTTimeKeeping" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GetAllOTTimeKeeping].[EmployeeName] AS [EmployeeName], 
+    [GetAllOTTimeKeeping].[EmployeeID] AS [EmployeeID], 
+    [GetAllOTTimeKeeping].[Department] AS [Department], 
+    [GetAllOTTimeKeeping].[OTCheckInImage] AS [OTCheckInImage], 
+    [GetAllOTTimeKeeping].[OTCheckInStatus] AS [OTCheckInStatus], 
+    [GetAllOTTimeKeeping].[OTCheckInDevice] AS [OTCheckInDevice], 
+    [GetAllOTTimeKeeping].[OTCheckInCreatedAt] AS [OTCheckInCreatedAt], 
+    [GetAllOTTimeKeeping].[OTCheckOutImage] AS [OTCheckOutImage], 
+    [GetAllOTTimeKeeping].[OTCheckOutStatus] AS [OTCheckOutStatus], 
+    [GetAllOTTimeKeeping].[OTCheckOutDevice] AS [OTCheckOutDevice], 
+    [GetAllOTTimeKeeping].[OTCheckOutCreatedAt] AS [OTCheckOutCreatedAt]
+    FROM [dbo].[GetAllOTTimeKeeping] AS [GetAllOTTimeKeeping]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GetAllTimeKeeping" EntityType="Self.GetAllTimeKeeping" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -528,8 +603,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -576,6 +650,16 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Signer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="SignDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AnotherCost">
+          <Key>
+            <PropertyRef Name="AnotherCostID" />
+          </Key>
+          <Property Name="AnotherCostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="TypeOfCost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="Double" />
           <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BonusSalary">
@@ -685,6 +769,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="SocialInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HealthInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UnemploymentInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaidLeave" Type="Boolean" />
           <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Precision="3" />
@@ -735,6 +820,32 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OTCheckIn">
+          <Key>
+            <PropertyRef Name="OTCheckInsID" />
+          </Key>
+          <Property Name="OTCheckInsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OTCheckOut">
+          <Key>
+            <PropertyRef Name="OTCheckOutsID" />
+          </Key>
+          <Property Name="OTCheckOutsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="OverTimeApplication">
           <Key>
@@ -965,6 +1076,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Advances" EntityType="Self.Advance" />
+          <EntitySet Name="AnotherCosts" EntityType="Self.AnotherCost" />
           <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
           <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
           <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
@@ -977,6 +1089,8 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
           <EntitySet Name="Levels" EntityType="Self.Level" />
           <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="OTCheckIns" EntityType="Self.OTCheckIn" />
+          <EntitySet Name="OTCheckOuts" EntityType="Self.OTCheckOut" />
           <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplication" />
           <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
           <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
@@ -998,7 +1112,26 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
           <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
           <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
           <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+          <EntitySet Name="GetAllOTTimeKeepings" EntityType="ChamCongVNModel.GetAllOTTimeKeeping" />
         </EntityContainer>
+        <EntityType Name="GetAllOTTimeKeeping">
+          <Key>
+            <PropertyRef Name="EmployeeName" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="Department" />
+          </Key>
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckInDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckInCreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="OTCheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckOutDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OTCheckOutCreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1049,6 +1182,17 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Signer" ColumnName="Signer" />
                 <ScalarProperty Name="SignDate" ColumnName="SignDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnotherCosts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.AnotherCost">
+              <MappingFragment StoreEntitySet="AnotherCost">
+                <ScalarProperty Name="AnotherCostID" ColumnName="AnotherCostID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="TypeOfCost" ColumnName="TypeOfCost" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1166,6 +1310,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="SocialInsurance" ColumnName="SocialInsurance" />
                 <ScalarProperty Name="HealthInsurance" ColumnName="HealthInsurance" />
                 <ScalarProperty Name="UnemploymentInsurance" ColumnName="UnemploymentInsurance" />
+                <ScalarProperty Name="PaidLeave" ColumnName="PaidLeave" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -1220,6 +1365,34 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
                 <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTCheckIns">
+            <EntityTypeMapping TypeName="ChamCongVNModel.OTCheckIn">
+              <MappingFragment StoreEntitySet="OTCheckIns">
+                <ScalarProperty Name="OTCheckInsID" ColumnName="OTCheckInsID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTCheckOuts">
+            <EntityTypeMapping TypeName="ChamCongVNModel.OTCheckOut">
+              <MappingFragment StoreEntitySet="OTCheckOuts">
+                <ScalarProperty Name="OTCheckOutsID" ColumnName="OTCheckOutsID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1461,6 +1634,23 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
               <MappingFragment StoreEntitySet="SpecialityOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetAllOTTimeKeepings">
+            <EntityTypeMapping TypeName="ChamCongVNModel.GetAllOTTimeKeeping">
+              <MappingFragment StoreEntitySet="GetAllOTTimeKeeping">
+                <ScalarProperty Name="OTCheckOutCreatedAt" ColumnName="OTCheckOutCreatedAt" />
+                <ScalarProperty Name="OTCheckOutDevice" ColumnName="OTCheckOutDevice" />
+                <ScalarProperty Name="OTCheckOutStatus" ColumnName="OTCheckOutStatus" />
+                <ScalarProperty Name="OTCheckOutImage" ColumnName="OTCheckOutImage" />
+                <ScalarProperty Name="OTCheckInCreatedAt" ColumnName="OTCheckInCreatedAt" />
+                <ScalarProperty Name="OTCheckInDevice" ColumnName="OTCheckInDevice" />
+                <ScalarProperty Name="OTCheckInStatus" ColumnName="OTCheckInStatus" />
+                <ScalarProperty Name="OTCheckInImage" ColumnName="OTCheckInImage" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

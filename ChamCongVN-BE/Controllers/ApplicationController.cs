@@ -104,11 +104,17 @@ namespace ChamCongVN_BE.Controllers
         {
             var abs = (from absent in db.AbsentApplications
                        from emp in db.Employees
+                       from state in db.States
                        where absent.EmployeeID == emp.EmployeeID
+                       where state.StateID == absent.StateID
                        select new
                        {
                            AbsentApplications = absent,
-                           Employee = emp
+                           Employee = emp,
+                           emp.EmployeeID,
+                           emp.FullName,
+                           emp.Image,
+                           state.StateName
                        }
                            ).ToList();
             return abs;
@@ -229,13 +235,23 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetAllOverTimeApplication()
         {
-            var abs = (from OverTime in db.OverTimeApplications
+            var abs = (from Otapp in db.OverTimeApplications
                        from emp in db.Employees
-                       where OverTime.EmployeeID == emp.EmployeeID
+                       from state in db.States
+                       from ot in db.OverTimes
+                       where state.StateID == Otapp.StateID
+                       where Otapp.EmployeeID == emp.EmployeeID
+                       where ot.OverTimeID == Otapp.OverTimeID
                        select new
                        {
-                           OverTimeApplications = OverTime,
-                           Employee = emp
+                           OverTimeApplications = Otapp,
+                           Employee = emp,
+                           OverTime = ot,
+                           ot.OverTimeName,
+                           state.StateName,
+                           emp.EmployeeID,
+                           emp.FullName,
+                           emp.Image
                        }).ToList();
             return abs;
         }

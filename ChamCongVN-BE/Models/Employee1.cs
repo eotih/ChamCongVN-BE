@@ -31,6 +31,7 @@ namespace ChamCongVN_BE.Models
         public string SocialInsurance { get; set; }
         public string HealthInsurance { get; set; }
         public string UnemploymentInsurance { get; set; }
+        public Nullable<bool> PaidLeave { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }

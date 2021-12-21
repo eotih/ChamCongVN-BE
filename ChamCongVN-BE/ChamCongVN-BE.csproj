@@ -211,6 +211,9 @@
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Advance1.cs" />
+    <Compile Include="Models\AnotherCost.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\BonusSalary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
@@ -257,6 +260,9 @@
     <Compile Include="Models\EmployeeForAccount.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAllOTTimeKeeping.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetAllTimeKeeping.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
@@ -280,6 +286,12 @@
     </Compile>
     <Compile Include="Models\Level1.cs" />
     <Compile Include="Models\Organization.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OTCheckIn.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OTCheckOut.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OverTime.cs">

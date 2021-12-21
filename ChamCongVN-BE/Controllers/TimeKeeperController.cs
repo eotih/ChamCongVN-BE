@@ -149,6 +149,140 @@ namespace ChamCongVN_BE.Controllers
             var ci = db.CheckOuts.Where(x => x.EmployeeID == ID).ToList();
             return ci;
         }
+        //------------------------------- Overtime TimeKeeper ------------------------------  //
+        [Route("OTCheckIn")]
+        [HttpGet]
+        public object GetAllOTCheckIn()
+        {
+            var obj = db.OTCheckIns.ToList();
+            return obj;
+        }
+
+        public object AddOTCheckIn(TimeKeeper OTCheckIn1)
+        {
+            if (OTCheckIn1.ID == 0)
+            {
+                OTCheckIn OTCheckIn = new OTCheckIn
+                {
+                    EmployeeID = OTCheckIn1.EmployeeID,
+                    Image = OTCheckIn1.Image,
+                    Status = OTCheckIn1.Status,
+                    Device = OTCheckIn1.Device,
+                    Latitude = OTCheckIn1.Latitude,
+                    Longitude = OTCheckIn1.Longitude,
+                    CreatedAt = DateTime.Now
+                };
+                db.OTCheckIns.Add(OTCheckIn);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data Not Insert"
+            };
+
+        }
+        [Route("OTCheckOut")]
+        [HttpGet]
+        public object GetAllOTCheckOut()
+        {
+            var obj = db.OTCheckOuts.ToList();
+            return obj;
+        }
+        public object AddOTCheckOut(TimeKeeper check)
+        {
+            if (check.ID == 0)
+            {
+                OTCheckOut OTCheckOut = new OTCheckOut
+                {
+                    EmployeeID = check.EmployeeID,
+                    Image = check.Image,
+                    Status = check.Status,
+                    Device = check.Device,
+                    Latitude = check.Latitude,
+                    Longitude = check.Longitude,
+                    CreatedAt = DateTime.Now
+                };
+                db.OTCheckOuts.Add(OTCheckOut);
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data Not Insert"
+            };
+
+        }
+        
+        [Route("OTTimeKeeping/Employee/{id?}")]
+        [HttpGet]
+        public object GetAllOTTimeKeepingByEmployeeID(int ID)
+        {
+            var obj = (from res in db.GetAllOTTimeKeepings
+                       where res.EmployeeID == ID
+                       select new
+                       {
+                           res.EmployeeName,
+                           res.EmployeeID,
+                           res.Department,
+                           res.OTCheckInImage,
+                           res.OTCheckOutImage,
+                           res.OTCheckInDevice,
+                           res.OTCheckOutDevice,
+                           res.OTCheckInCreatedAt,
+                           res.OTCheckOutCreatedAt,
+                           res.OTCheckOutStatus,
+                           res.OTCheckInStatus
+                       }).ToList();
+            return obj;
+        }
+        [Route("AllOTTimeKeepings")]
+        [HttpGet]
+        public object GetAllOTTimeKeepings()
+        {
+            var obj = (from res in db.GetAllOTTimeKeepings
+                       select new
+                       {
+                           res.EmployeeName,
+                           res.EmployeeID,
+                           res.Department,
+                           res.OTCheckInImage,
+                           res.OTCheckOutImage,
+                           res.OTCheckInDevice,
+                           res.OTCheckOutDevice,
+                           res.OTCheckInCreatedAt,
+                           res.OTCheckOutCreatedAt,
+                           res.OTCheckOutStatus,
+                           res.OTCheckInStatus
+                       }).ToList();
+            return obj;
+        }
+
+        [Route("OTCheckIn/Employee/{id?}")]
+        [HttpGet]
+        public object GetOTCheckInByEmployeeID(int ID)
+        {
+            var ci = db.OTCheckIns.Where(x => x.EmployeeID == ID).ToList();
+            return ci;
+        }
+        [Route("OTCheckOut/Employee/{id?}")]
+        [HttpGet]
+        public object GetOTCheckOutByEmployeeID(int ID)
+        {
+            var ci = db.OTCheckOuts.Where(x => x.EmployeeID == ID).ToList();
+            return ci;
+        }
+
         // ------------------------------ Handle ci To Python ------------------------------ //
 
         [Route("HandleSendToPython")]
