@@ -302,9 +302,6 @@
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OverTimeApplication1.cs" />
-    <Compile Include="Models\OvertimeSalary.cs">
-      <DependentUpon>ChamCongVN.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Position.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
@@ -362,6 +359,12 @@
     <Compile Include="Models\SpecialityDetail1.cs" />
     <Compile Include="Models\State1.cs" />
     <Compile Include="Models\TokenManager.cs" />
+    <Compile Include="Models\TotalOvertimeSalary.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalSalaryPerMonth.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Models\Work.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>

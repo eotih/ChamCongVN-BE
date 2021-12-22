@@ -11,8 +11,8 @@ namespace ChamCongVN_BE.Models
         public string SalaryTableName { get; set; }
         public string Month { get; set; }
         public string Year { get; set; }
-        public double MinSalary { get; set; }
-        public double TotalTimeRegulation { get; set; }
+        public double SalaryPerHour { get; set; }
+        public Nullable<double> OTCoefficient { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }

@@ -24,8 +24,8 @@ namespace ChamCongVN_BE.Controllers
                     SalaryTableName = st1.SalaryTableName,
                     Month = st1.Month,
                     Year = st1.Year,
-                    MinSalary = st1.MinSalary,
-                    TotalTimeRegulation = st1.TotalTimeRegulation,
+                    SalaryPerHour = st1.SalaryPerHour,
+                    OTCoefficient = st1.OTCoefficient,
                     CreatedBy = st1.CreatedBy,
                     CreatedAt = DateTime.Now
                 };
@@ -55,8 +55,8 @@ namespace ChamCongVN_BE.Controllers
                     obj.SalaryTableName = st1.SalaryTableName;
                     obj.Month = st1.Month;
                     obj.Year = st1.Year;
-                    obj.MinSalary = st1.MinSalary;
-                    obj.TotalTimeRegulation = st1.TotalTimeRegulation;
+                    obj.SalaryPerHour = st1.SalaryPerHour;
+                    obj.OTCoefficient = st1.OTCoefficient;
                     obj.UpdatedBy = st1.UpdatedBy;
                     obj.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
@@ -93,100 +93,6 @@ namespace ChamCongVN_BE.Controllers
         {
             var obj = db.SalaryTables.Where(x => x.SalaryTableID == ID).FirstOrDefault();
             db.SalaryTables.Remove(obj);
-            db.SaveChanges();
-            return new Response
-            {
-                Status = 200,
-                Message = "Delete Successfuly"
-            };
-        }
-        // ------------------------------ Overtime Salary ------------------------------ //
-        [Route("OvertimeSalary")]
-        [HttpPost]
-        public object AddOvertimeSalary(OvertimeSalary1 ot1)
-        {
-            if (ot1.OvertimeSalaryID == 0)
-            {
-                OvertimeSalary overtimesalary = new OvertimeSalary
-                {
-                    EmployeeID = ot1.EmployeeID,
-                    OvertimeSalaryName = ot1.OvertimeSalaryName,
-                    Time = ot1.Time,
-                    OvertimeType = ot1.OvertimeType,
-                    CreatedBy = ot1.CreatedBy,
-                    CreatedAt = DateTime.Now
-                };
-                db.OvertimeSalaries.Add(overtimesalary);
-                db.SaveChanges();
-                return new Response
-                {
-                    Status = 200,
-                    Message = "Data Success"
-                };
-            }
-            return new Response
-            {
-                Status = 500,
-                Message = "Data not insert"
-            };
-        }
-        [Route("OvertimeSalary/{id?}")]
-        [HttpPut]
-        public object EditOvertimeSalary(OvertimeSalary1 ot1)
-        {
-            {
-                int id = Convert.ToInt32(Request.GetRouteData().Values["id"]);
-                var obj = db.OvertimeSalaries.Where(x => x.OvertimeSalaryID == id).FirstOrDefault();
-                if (obj.OvertimeSalaryID > 0)
-                {
-                    obj.EmployeeID = ot1.EmployeeID;
-                    obj.OvertimeSalaryName = ot1.OvertimeSalaryName;
-                    obj.Time = ot1.Time;
-                    obj.OvertimeType = ot1.OvertimeType;
-                    obj.UpdatedBy = ot1.UpdatedBy;
-                    obj.UpdatedAt = DateTime.Now;
-                    db.SaveChanges();
-                    return new Response
-                    {
-                        Status = 200,
-                        Message = "Updated Successfully"
-                    };
-                }
-            }
-            return new Response
-            {
-                Status = 500,
-                Message = "Data not updated"
-            };
-        }
-        [Route("OvertimeSalary")]
-        [HttpGet]
-        public object GetAllOvertimeSalary()
-        {
-            var ot = (from overtime in db.OvertimeSalaries
-                       from emp in db.Employees
-                       where overtime.EmployeeID == emp.EmployeeID
-                       select new
-                       {
-                           OvertimeSalary = overtime,
-                           Employee = emp
-                       }
-                           ).ToList();
-            return ot;
-        }
-        [Route("OvertimeSalary/{id?}")]
-        [HttpGet]
-        public object GetOvertimeSalaryByID(int ID)
-        {
-            var ot = db.OvertimeSalaries.Where(x => x.OvertimeSalaryID == ID).FirstOrDefault();
-            return ot;
-        }
-        [Route("OvertimeSalary/{id?}")]
-        [HttpDelete]
-        public object DeleteOvertimeSalary(int ID)
-        {
-            var obj = db.OvertimeSalaries.Where(x => x.OvertimeSalaryID == ID).FirstOrDefault();
-            db.OvertimeSalaries.Remove(obj);
             db.SaveChanges();
             return new Response
             {

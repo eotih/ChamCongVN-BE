@@ -285,18 +285,16 @@ namespace ChamCongVN_BE.Controllers
 
         // ------------------------------ Handle ci To Python ------------------------------ //
 
-        [Route("HandleSendToPython")]
+        [Route("AuthPermission")]
         [HttpPost]
-        public async System.Threading.Tasks.Task<object> HandleciToPythonAsync(TimeKeeper ci)
+        public object AuthPermission(TimeKeeper ci)
         {
             var objOrganizations = db.Organizations.FirstOrDefault();
             var hour = dateTime.Hour;
             var minute = dateTime.Minute;
-            var objOvertime = db.OverTimes.ToList();
-            var checkTime = objOvertime.Where(x => x.StartTime <= dateTime.TimeOfDay && x.EndTime >= dateTime.TimeOfDay).FirstOrDefault();
-            string apiPython = objOrganizations.PythonIP + "nhandienkhuonmat";
             string IPOrganiztion = objOrganizations.PublicIP;
             string publicIPRequest = ci.PublicIP;
+
             double latOrganiztion = Convert.ToDouble(objOrganizations.Latitude);
             double longOrganiztion = Convert.ToDouble(objOrganizations.Longitude);
             double latRequest = Convert.ToDouble(ci.Latitude);
@@ -306,124 +304,11 @@ namespace ChamCongVN_BE.Controllers
 
             if (IPOrganiztion == publicIPRequest && radius < 50)
             {
-                try
+                return new Response
                 {
-                    using (var client = new HttpClient())
-                    {
-                        client.BaseAddress = new Uri(apiPython);
-                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/form-data"));
-                        MultipartFormDataContent form = new MultipartFormDataContent
-                        {
-                            {
-                                new StringContent(ci.Image), "base64"
-                            }
-                        };
-                        var response = await client.PostAsync(apiPython, form);
-                        var success = response.IsSuccessStatusCode;
-                        if (success)
-                        {
-                            var responsebody = await response.Content.ReadAsStringAsync();
-                            var obj = JObject.Parse(responsebody);
-                            var objResult = obj["name"].ToString();
-                            var objResult1 = obj["name"].ToString();
-                            if (responsebody != null)
-                            {
-                                var empID = Convert.ToInt32(objResult.Substring(0, 1));
-                                ci.EmployeeID = empID;
-                                var haveItCheckIn = db.CheckIns.Where(x => x.EmployeeID == empID).ToList();
-                                var haveItCheckOut = db.CheckOuts.Where(x => x.EmployeeID == empID).ToList();
-                                var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
-                                var checkOut = haveItCheckOut.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
-
-                                if (hour >= 8 && hour < 12)
-                                {
-                                    if (checkIn == null)
-                                    {
-                                        if (hour >= 8 && minute >= 15)
-                                        {
-                                            ci.Status = "Đi muộn";
-                                            AddCheckIn(ci);
-                                        }
-                                        else
-                                        {
-                                            ci.Status = "Đúng giờ";
-                                            AddCheckIn(ci);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        return new Response
-                                        {
-                                            Status = 403,
-                                            Message = "Bạn đã check in hôm nay rồi"
-                                        };
-                                    }
-                                }
-                                else if (hour >= 13 && hour <= 19)
-                                {
-                                    if (checkOut == null)
-                                    {
-                                        if (hour < 17)
-                                        {
-                                            ci.Status = "Về sớm";
-                                            AddCheckOut(ci);
-                                        }
-                                        else
-                                        {
-                                            ci.Status = "Đúng giờ";
-                                            AddCheckOut(ci);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        return new Response
-                                        {
-                                            Status = 403,
-                                            Message = "Bạn đã check out hôm nay rồi"
-                                        };
-                                    }
-                                }
-                                /*
-                                else if(dateTime.TimeOfDay >= checkTime.StartTime && minute <= 30)
-                                {
-                                    if(minute <= 15)
-                                    {
-                                        ci.Status = "Đúng giờ";
-                                        AddCheckIn(ci);
-                                    }
-                                    else
-                                    {
-                                        ci.Status = "Đi muộn";
-                                        AddCheckIn(ci);
-                                    }
-                                }
-                                else if(dateTime.TimeOfDay >= checkTime.EndTime && minute > 30)
-                                {
-                                    if(minute <= 15)
-                                    {
-                                        ci.Status = "Đúng giờ";
-                                        AddCheckIn(ci);
-                                    }
-                                    else
-                                    {
-                                        ci.Status = "Đi muộn";
-                                        AddCheckIn(ci);
-                                    }
-                                }*/
-                            }
-                            else
-                            {
-                                return responsebody;
-                            }
-
-                        }
-                        return response;
-                    }
-                }
-                catch (Exception err)
-                {
-                    return err;
-                }
+                    Status = 200,
+                    Message = "Permission Approved"
+                };
             }
             else if (radius > 50)
             {
@@ -449,6 +334,75 @@ namespace ChamCongVN_BE.Controllers
                     Message = "Access Deined"
                 };
             }
+        }
+
+        [Route("CheckTime")]
+        [HttpPost]
+        public object CheckTime(TimeKeeper time)
+        {
+            var hour = dateTime.Hour;
+            var minute = dateTime.Minute;
+            var objOvertime = db.OverTimes.ToList();
+            var checkTime = objOvertime.Where(x => x.StartTime <= dateTime.TimeOfDay && x.EndTime >= dateTime.TimeOfDay).FirstOrDefault();
+
+            var empID = time.EmployeeID;
+
+            var haveItCheckIn = db.CheckIns.Where(x => x.EmployeeID == empID).ToList();
+            var haveItCheckOut = db.CheckOuts.Where(x => x.EmployeeID == empID).ToList();
+            var checkIn = haveItCheckIn.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
+            var checkOut = haveItCheckOut.Where(x => ((DateTime)x.CreatedAt).ToString("yyyy-MM-dd") == dateTime.Date.ToString("yyyy-MM-dd")).FirstOrDefault(); // Kiểm tra đã check in hay chưa
+
+            if (hour >= 8 && hour < 12)
+            {
+                if (checkIn == null)
+                {
+                    if (hour >= 8 && minute >= 15)
+                    {
+                        time.Status = "Đi muộn";
+                        AddCheckIn(time);
+                    }
+                    else
+                    {
+                        time.Status = "Đúng giờ";
+                        AddCheckIn(time);
+                    }
+                }
+                else
+                {
+                    return new Response
+                    {
+                        Status = 403,
+                        Message = "Bạn đã check in hôm nay rồi"
+                    };
+                }
+            }
+            else if (hour >= 13 && hour <= 19)
+            {
+                if (checkOut == null)
+                {
+                    if (hour < 17)
+                    {
+                        time.Status = "Về sớm";
+                        AddCheckOut(time);
+                    }
+                    else
+                    {
+                        time.Status = "Đúng giờ";
+                        AddCheckOut(time);
+                    }
+                }
+                else
+                {
+                    return new Response
+                    {
+                        Status = 403,
+                        Message = "Bạn đã check out hôm nay rồi"
+                    };
+                }
+            }
+            else
+                return null;
+            return "Ok";
         }
 
         [Route("CheckIn/checked")]

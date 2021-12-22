@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cd3e292aaba244b386d00c0091fe88dd" Name="Diagram1">
+      <Diagram DiagramId="2cc40424d02348628043105d9324bee1" Name="Diagram1">
         <EntityTypeShape EntityType="ChamCongVNModel.AbsentApplication" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.Account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.Advance" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -25,26 +25,27 @@
         <EntityTypeShape EntityType="ChamCongVNModel.OTCheckOut" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.OverTimeApplication" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.OverTime" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.OvertimeSalary" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Position" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Recruitment" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.RegulationEmployee" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Role" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Salary" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.SalaryTable" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Shift" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.Speciality" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityDetail" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.State" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Position" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Recruitment" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.RegulationEmployee" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Role" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Salary" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SalaryTable" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Shift" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.Speciality" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityDetail" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.State" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.TotalSalaryPerMonth" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.Work" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.DegreesOfEmployee" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChamCongVNModel.EmployeeForAccount" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetAllTimeKeeping" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetCountCheckedIn" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetCountHaventCheckedIn" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetCountLate" Width="1.5" PointX="16.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityOfEmployee" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChamCongVNModel.GetAllOTTimeKeeping" Width="1.5" PointX="15.375" PointY="16.75" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetAllOTTimeKeeping" Width="1.5" PointX="6.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetAllTimeKeeping" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetCountCheckedIn" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetCountHaventCheckedIn" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.GetCountLate" Width="1.5" PointX="8.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.SpecialityOfEmployee" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChamCongVNModel.TotalOvertimeSalary" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

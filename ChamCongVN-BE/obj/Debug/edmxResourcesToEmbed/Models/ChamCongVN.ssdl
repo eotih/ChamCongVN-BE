@@ -45,6 +45,17 @@
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
     <Property Name="UpdatedAt" Type="datetime" />
   </EntityType>
+  <EntityType Name="AnotherCost">
+    <Key>
+      <PropertyRef Name="AnotherCostID" />
+    </Key>
+    <Property Name="AnotherCostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="TotalDeduction" Type="float" />
+    <Property Name="TotalLaudatory" Type="float" />
+    <Property Name="TotalAdvance" Type="float" />
+    <Property Name="UpdatedAt" Type="datetime" />
+  </EntityType>
   <EntityType Name="BonusSalary">
     <Key>
       <PropertyRef Name="BonusSalaryID" />
@@ -152,6 +163,7 @@
     <Property Name="SocialInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="HealthInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="UnemploymentInsurance" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="PaidLeave" Type="bit" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
     <Property Name="CreatedAt" Type="datetime" />
@@ -203,6 +215,32 @@
     <Property Name="PublicIP" Type="varchar" MaxLength="50" />
     <Property Name="PythonIP" Type="varchar(max)" />
   </EntityType>
+  <EntityType Name="OTCheckIns">
+    <Key>
+      <PropertyRef Name="OTCheckInsID" />
+    </Key>
+    <Property Name="OTCheckInsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar(max)" />
+    <Property Name="Device" Type="nvarchar(max)" />
+    <Property Name="Longitude" Type="float" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OTCheckOuts">
+    <Key>
+      <PropertyRef Name="OTCheckOutsID" />
+    </Key>
+    <Property Name="OTCheckOutsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar(max)" />
+    <Property Name="Device" Type="nvarchar(max)" />
+    <Property Name="Longitude" Type="float" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="CreatedAt" Type="datetime" />
+  </EntityType>
   <EntityType Name="OverTimeApplications">
     <Key>
       <PropertyRef Name="OverTimeApplicationID" />
@@ -231,20 +269,6 @@
     <Property Name="Quantity" Type="int" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="OvertimeSalary">
-    <Key>
-      <PropertyRef Name="OvertimeSalaryID" />
-    </Key>
-    <Property Name="OvertimeSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
-    <Property Name="OvertimeSalaryName" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="Time" Type="datetime" Nullable="false" />
-    <Property Name="OvertimeType" Type="float" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="250" />
-    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="250" />
-    <Property Name="CreatedAt" Type="datetime" />
-    <Property Name="UpdatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="Positions">
     <Key>
@@ -319,8 +343,8 @@
     <Property Name="SalaryTableName" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Month" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Year" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="MinSalary" Type="float" Nullable="false" />
-    <Property Name="TotalTimeRegulation" Type="float" Nullable="false" />
+    <Property Name="SalaryPerHour" Type="float" Nullable="false" />
+    <Property Name="OTCoefficient" Type="float" />
     <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
     <Property Name="CreatedAt" Type="datetime" />
@@ -358,6 +382,22 @@
     <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StateName" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="TotalSalaryPerMonth">
+    <Key>
+      <PropertyRef Name="TotalSalaryID" />
+    </Key>
+    <Property Name="TotalSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="Month" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Year" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TotalTime" Type="int" Nullable="false" />
+    <Property Name="Salary" Type="float" />
+    <Property Name="TotalAdvance" Type="float" />
+    <Property Name="TotalDeduction" Type="float" />
+    <Property Name="TotalLaudatory" Type="float" />
+    <Property Name="TotalOvertimeSalary" Type="float" />
+    <Property Name="TotalSalary" Type="float" />
+  </EntityType>
   <EntityType Name="Works">
     <Key>
       <PropertyRef Name="WorkID" />
@@ -385,6 +425,26 @@ warning 6002: The table/view 'ChamCongVN.dbo.EmployeeForAccount' does not have a
     </Key>
     <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.GetAllOTTimeKeeping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="GetAllOTTimeKeeping">
+    <Key>
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="Department" />
+    </Key>
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="Department" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OTCheckInImage" Type="nvarchar(max)" />
+    <Property Name="OTCheckInStatus" Type="nvarchar(max)" />
+    <Property Name="OTCheckInDevice" Type="nvarchar(max)" />
+    <Property Name="OTCheckInCreatedAt" Type="datetime" />
+    <Property Name="OTCheckOutImage" Type="nvarchar(max)" />
+    <Property Name="OTCheckOutStatus" Type="nvarchar(max)" />
+    <Property Name="OTCheckOutDevice" Type="nvarchar(max)" />
+    <Property Name="OTCheckOutCreatedAt" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.GetAllTimeKeeping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -433,6 +493,20 @@ warning 6002: The table/view 'ChamCongVN.dbo.GetCountLates' does not have a prim
     <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6013: The table/view 'ChamCongVN.dbo.SalaryNoOvertimeSalary' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SalaryNoOvertimeSalary">
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="TotalTime" Type="int" />
+          <Property Name="Salary" Type="float" />
+          <Property Name="TotalAdvance" Type="float" />
+          <Property Name="TotalDeduction" Type="float" />
+          <Property Name="TotalLaudatory" Type="float" />
+          <Property Name="TotalSalary" Type="float" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SpecialityOfEmployee">
     <Key>
@@ -442,10 +516,40 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="SpecialtyName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.TotalOvertimeSalary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TotalOvertimeSalary">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="EmployeeName" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="Year" Type="int" />
+    <Property Name="TotalTime" Type="int" />
+    <Property Name="TotalOvertimeSalary" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TotalSalary">
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="TotalTime" Type="int" />
+          <Property Name="Salary" Type="float" />
+          <Property Name="TotalAdvance" Type="float" />
+          <Property Name="TotalDeduction" Type="float" />
+          <Property Name="TotalLaudatory" Type="float" />
+          <Property Name="TotalOvertimeSalary" Type="float" />
+          <Property Name="TotalSalary" Type="float" />
+        </EntityType>-->
   <EntityContainer Name="ChamCongVNModelStoreContainer">
     <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Advances" EntityType="Self.Advances" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnotherCost" EntityType="Self.AnotherCost" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BonusSalary" EntityType="Self.BonusSalary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheckIns" EntityType="Self.CheckIns" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheckOuts" EntityType="Self.CheckOuts" Schema="dbo" store:Type="Tables" />
@@ -458,9 +562,10 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Levels" EntityType="Self.Levels" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OTCheckIns" EntityType="Self.OTCheckIns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OTCheckOuts" EntityType="Self.OTCheckOuts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplications" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OverTimes" EntityType="Self.OverTimes" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="OvertimeSalary" EntityType="Self.OvertimeSalary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Recruitments" EntityType="Self.Recruitments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployees" Schema="dbo" store:Type="Tables" />
@@ -471,6 +576,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     <EntitySet Name="Specialities" EntityType="Self.Specialities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TotalSalaryPerMonth" EntityType="Self.TotalSalaryPerMonth" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Works" EntityType="Self.Works" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DegreesOfEmployee" EntityType="Self.DegreesOfEmployee" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -483,6 +589,21 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [EmployeeForAccount].[EmployeeID] AS [EmployeeID], 
     [EmployeeForAccount].[FullName] AS [FullName]
     FROM [dbo].[EmployeeForAccount] AS [EmployeeForAccount]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="GetAllOTTimeKeeping" EntityType="Self.GetAllOTTimeKeeping" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [GetAllOTTimeKeeping].[EmployeeName] AS [EmployeeName], 
+    [GetAllOTTimeKeeping].[EmployeeID] AS [EmployeeID], 
+    [GetAllOTTimeKeeping].[Department] AS [Department], 
+    [GetAllOTTimeKeeping].[OTCheckInImage] AS [OTCheckInImage], 
+    [GetAllOTTimeKeeping].[OTCheckInStatus] AS [OTCheckInStatus], 
+    [GetAllOTTimeKeeping].[OTCheckInDevice] AS [OTCheckInDevice], 
+    [GetAllOTTimeKeeping].[OTCheckInCreatedAt] AS [OTCheckInCreatedAt], 
+    [GetAllOTTimeKeeping].[OTCheckOutImage] AS [OTCheckOutImage], 
+    [GetAllOTTimeKeeping].[OTCheckOutStatus] AS [OTCheckOutStatus], 
+    [GetAllOTTimeKeeping].[OTCheckOutDevice] AS [OTCheckOutDevice], 
+    [GetAllOTTimeKeeping].[OTCheckOutCreatedAt] AS [OTCheckOutCreatedAt]
+    FROM [dbo].[GetAllOTTimeKeeping] AS [GetAllOTTimeKeeping]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="GetAllTimeKeeping" EntityType="Self.GetAllTimeKeeping" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -521,6 +642,16 @@ warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have
     [SpecialityOfEmployee].[EmployeeID] AS [EmployeeID], 
     [SpecialityOfEmployee].[SpecialtyName] AS [SpecialtyName]
     FROM [dbo].[SpecialityOfEmployee] AS [SpecialityOfEmployee]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TotalOvertimeSalary" EntityType="Self.TotalOvertimeSalary" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TotalOvertimeSalary].[EmployeeID] AS [EmployeeID], 
+    [TotalOvertimeSalary].[EmployeeName] AS [EmployeeName], 
+    [TotalOvertimeSalary].[Month] AS [Month], 
+    [TotalOvertimeSalary].[Year] AS [Year], 
+    [TotalOvertimeSalary].[TotalTime] AS [TotalTime], 
+    [TotalOvertimeSalary].[TotalOvertimeSalary] AS [TotalOvertimeSalary]
+    FROM [dbo].[TotalOvertimeSalary] AS [TotalOvertimeSalary]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

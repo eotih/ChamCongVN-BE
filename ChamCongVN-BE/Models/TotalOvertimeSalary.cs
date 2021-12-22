@@ -12,13 +12,13 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AnotherCost
+    public partial class TotalOvertimeSalary
     {
-        public int AnotherCostID { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public Nullable<double> TotalDeduction { get; set; }
-        public Nullable<double> TotalLaudatory { get; set; }
-        public Nullable<double> TotalAdvance { get; set; }
-        public Nullable<System.DateTime> UpdatedAt { get; set; }
+        public int EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public Nullable<int> Month { get; set; }
+        public Nullable<int> Year { get; set; }
+        public Nullable<int> TotalTime { get; set; }
+        public Nullable<double> TotalOvertimeSalary1 { get; set; }
     }
 }

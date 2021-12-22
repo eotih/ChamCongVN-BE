@@ -45,6 +45,17 @@
     <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="AnotherCost">
+    <Key>
+      <PropertyRef Name="AnotherCostID" />
+    </Key>
+    <Property Name="AnotherCostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="TotalDeduction" Type="Double" />
+    <Property Name="TotalLaudatory" Type="Double" />
+    <Property Name="TotalAdvance" Type="Double" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="BonusSalary">
     <Key>
       <PropertyRef Name="BonusSalaryID" />
@@ -152,6 +163,7 @@
     <Property Name="SocialInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="HealthInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="UnemploymentInsurance" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PaidLeave" Type="Boolean" />
     <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
@@ -203,6 +215,32 @@
     <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="OTCheckIn">
+    <Key>
+      <PropertyRef Name="OTCheckInsID" />
+    </Key>
+    <Property Name="OTCheckInsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="Double" />
+    <Property Name="Latitude" Type="Double" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OTCheckOut">
+    <Key>
+      <PropertyRef Name="OTCheckOutsID" />
+    </Key>
+    <Property Name="OTCheckOutsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Device" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="Double" />
+    <Property Name="Latitude" Type="Double" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="OverTimeApplication">
     <Key>
       <PropertyRef Name="OverTimeApplicationID" />
@@ -231,20 +269,6 @@
     <Property Name="Quantity" Type="Int32" />
     <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="OvertimeSalary">
-    <Key>
-      <PropertyRef Name="OvertimeSalaryID" />
-    </Key>
-    <Property Name="OvertimeSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="OvertimeSalaryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="OvertimeType" Type="Double" Nullable="false" />
-    <Property Name="CreatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Position">
     <Key>
@@ -319,8 +343,8 @@
     <Property Name="SalaryTableName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MinSalary" Type="Double" Nullable="false" />
-    <Property Name="TotalTimeRegulation" Type="Double" Nullable="false" />
+    <Property Name="SalaryPerHour" Type="Double" Nullable="false" />
+    <Property Name="OTCoefficient" Type="Double" />
     <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="CreatedAt" Type="DateTime" Precision="3" />
@@ -358,6 +382,22 @@
     <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityType Name="TotalSalaryPerMonth">
+    <Key>
+      <PropertyRef Name="TotalSalaryID" />
+    </Key>
+    <Property Name="TotalSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TotalTime" Type="Int32" Nullable="false" />
+    <Property Name="Salary" Type="Double" />
+    <Property Name="TotalAdvance" Type="Double" />
+    <Property Name="TotalDeduction" Type="Double" />
+    <Property Name="TotalLaudatory" Type="Double" />
+    <Property Name="TotalOvertimeSalary" Type="Double" />
+    <Property Name="TotalSalary" Type="Double" />
+  </EntityType>
   <EntityType Name="Work">
     <Key>
       <PropertyRef Name="WorkID" />
@@ -381,6 +421,24 @@
     </Key>
     <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GetAllOTTimeKeeping">
+    <Key>
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="Department" />
+    </Key>
+    <Property Name="EmployeeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OTCheckInImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OTCheckInStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OTCheckInDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OTCheckInCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="OTCheckOutImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OTCheckOutStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OTCheckOutDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OTCheckOutCreatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="GetAllTimeKeeping">
     <Key>
@@ -428,10 +486,23 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="SpecialtyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityType Name="TotalOvertimeSalary">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="EmployeeName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="TotalTime" Type="Int32" />
+    <Property Name="TotalOvertimeSalary1" Type="Double" />
+  </EntityType>
   <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Advances" EntityType="Self.Advance" />
+    <EntitySet Name="AnotherCosts" EntityType="Self.AnotherCost" />
     <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
     <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
     <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
@@ -444,9 +515,10 @@
     <EntitySet Name="LaudatoryEmployees" EntityType="Self.LaudatoryEmployee" />
     <EntitySet Name="Levels" EntityType="Self.Level" />
     <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <EntitySet Name="OTCheckIns" EntityType="Self.OTCheckIn" />
+    <EntitySet Name="OTCheckOuts" EntityType="Self.OTCheckOut" />
     <EntitySet Name="OverTimeApplications" EntityType="Self.OverTimeApplication" />
     <EntitySet Name="OverTimes" EntityType="Self.OverTime" />
-    <EntitySet Name="OvertimeSalaries" EntityType="Self.OvertimeSalary" />
     <EntitySet Name="Positions" EntityType="Self.Position" />
     <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
     <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployee" />
@@ -457,13 +529,16 @@
     <EntitySet Name="Specialities" EntityType="Self.Speciality" />
     <EntitySet Name="SpecialityDetails" EntityType="Self.SpecialityDetail" />
     <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="TotalSalaryPerMonths" EntityType="Self.TotalSalaryPerMonth" />
     <EntitySet Name="Works" EntityType="Self.Work" />
     <EntitySet Name="DegreesOfEmployees" EntityType="Self.DegreesOfEmployee" />
     <EntitySet Name="EmployeeForAccounts" EntityType="Self.EmployeeForAccount" />
+    <EntitySet Name="GetAllOTTimeKeepings" EntityType="Self.GetAllOTTimeKeeping" />
     <EntitySet Name="GetAllTimeKeepings" EntityType="Self.GetAllTimeKeeping" />
     <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
     <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
+    <EntitySet Name="TotalOvertimeSalaries" EntityType="Self.TotalOvertimeSalary" />
   </EntityContainer>
 </Schema>

@@ -49,6 +49,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AnotherCosts">
+      <EntityTypeMapping TypeName="ChamCongVNModel.AnotherCost">
+        <MappingFragment StoreEntitySet="AnotherCost">
+          <ScalarProperty Name="AnotherCostID" ColumnName="AnotherCostID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
+          <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
+          <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
+          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BonusSalaries">
       <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
         <MappingFragment StoreEntitySet="BonusSalary">
@@ -162,6 +174,7 @@
           <ScalarProperty Name="SocialInsurance" ColumnName="SocialInsurance" />
           <ScalarProperty Name="HealthInsurance" ColumnName="HealthInsurance" />
           <ScalarProperty Name="UnemploymentInsurance" ColumnName="UnemploymentInsurance" />
+          <ScalarProperty Name="PaidLeave" ColumnName="PaidLeave" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -219,6 +232,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OTCheckIns">
+      <EntityTypeMapping TypeName="ChamCongVNModel.OTCheckIn">
+        <MappingFragment StoreEntitySet="OTCheckIns">
+          <ScalarProperty Name="OTCheckInsID" ColumnName="OTCheckInsID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Device" ColumnName="Device" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OTCheckOuts">
+      <EntityTypeMapping TypeName="ChamCongVNModel.OTCheckOut">
+        <MappingFragment StoreEntitySet="OTCheckOuts">
+          <ScalarProperty Name="OTCheckOutsID" ColumnName="OTCheckOutsID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Device" ColumnName="Device" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="OverTimeApplications">
       <EntityTypeMapping TypeName="ChamCongVNModel.OverTimeApplication">
         <MappingFragment StoreEntitySet="OverTimeApplications">
@@ -247,21 +288,6 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OvertimeSalaries">
-      <EntityTypeMapping TypeName="ChamCongVNModel.OvertimeSalary">
-        <MappingFragment StoreEntitySet="OvertimeSalary">
-          <ScalarProperty Name="OvertimeSalaryID" ColumnName="OvertimeSalaryID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="OvertimeSalaryName" ColumnName="OvertimeSalaryName" />
-          <ScalarProperty Name="Time" ColumnName="Time" />
-          <ScalarProperty Name="OvertimeType" ColumnName="OvertimeType" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -342,8 +368,8 @@
           <ScalarProperty Name="SalaryTableName" ColumnName="SalaryTableName" />
           <ScalarProperty Name="Month" ColumnName="Month" />
           <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="MinSalary" ColumnName="MinSalary" />
-          <ScalarProperty Name="TotalTimeRegulation" ColumnName="TotalTimeRegulation" />
+          <ScalarProperty Name="SalaryPerHour" ColumnName="SalaryPerHour" />
+          <ScalarProperty Name="OTCoefficient" ColumnName="OTCoefficient" />
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
           <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
@@ -387,6 +413,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TotalSalaryPerMonths">
+      <EntityTypeMapping TypeName="ChamCongVNModel.TotalSalaryPerMonth">
+        <MappingFragment StoreEntitySet="TotalSalaryPerMonth">
+          <ScalarProperty Name="TotalSalaryID" ColumnName="TotalSalaryID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
+          <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
+          <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
+          <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
+          <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Works">
       <EntityTypeMapping TypeName="ChamCongVNModel.Work">
         <MappingFragment StoreEntitySet="Works">
@@ -409,6 +452,23 @@
         <MappingFragment StoreEntitySet="EmployeeForAccount">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GetAllOTTimeKeepings">
+      <EntityTypeMapping TypeName="ChamCongVNModel.GetAllOTTimeKeeping">
+        <MappingFragment StoreEntitySet="GetAllOTTimeKeeping">
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="OTCheckInImage" ColumnName="OTCheckInImage" />
+          <ScalarProperty Name="OTCheckInStatus" ColumnName="OTCheckInStatus" />
+          <ScalarProperty Name="OTCheckInDevice" ColumnName="OTCheckInDevice" />
+          <ScalarProperty Name="OTCheckInCreatedAt" ColumnName="OTCheckInCreatedAt" />
+          <ScalarProperty Name="OTCheckOutImage" ColumnName="OTCheckOutImage" />
+          <ScalarProperty Name="OTCheckOutStatus" ColumnName="OTCheckOutStatus" />
+          <ScalarProperty Name="OTCheckOutDevice" ColumnName="OTCheckOutDevice" />
+          <ScalarProperty Name="OTCheckOutCreatedAt" ColumnName="OTCheckOutCreatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -457,6 +517,18 @@
         <MappingFragment StoreEntitySet="SpecialityOfEmployee">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="SpecialtyName" ColumnName="SpecialtyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalOvertimeSalaries">
+      <EntityTypeMapping TypeName="ChamCongVNModel.TotalOvertimeSalary">
+        <MappingFragment StoreEntitySet="TotalOvertimeSalary">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+          <ScalarProperty Name="TotalOvertimeSalary1" ColumnName="TotalOvertimeSalary" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -45,7 +45,6 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<OTCheckOut> OTCheckOuts { get; set; }
         public virtual DbSet<OverTimeApplication> OverTimeApplications { get; set; }
         public virtual DbSet<OverTime> OverTimes { get; set; }
-        public virtual DbSet<OvertimeSalary> OvertimeSalaries { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Recruitment> Recruitments { get; set; }
         public virtual DbSet<RegulationEmployee> RegulationEmployees { get; set; }
@@ -56,14 +55,16 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<Speciality> Specialities { get; set; }
         public virtual DbSet<SpecialityDetail> SpecialityDetails { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<TotalSalaryPerMonth> TotalSalaryPerMonths { get; set; }
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<DegreesOfEmployee> DegreesOfEmployees { get; set; }
         public virtual DbSet<EmployeeForAccount> EmployeeForAccounts { get; set; }
+        public virtual DbSet<GetAllOTTimeKeeping> GetAllOTTimeKeepings { get; set; }
         public virtual DbSet<GetAllTimeKeeping> GetAllTimeKeepings { get; set; }
         public virtual DbSet<GetCountCheckedIn> GetCountCheckedIns { get; set; }
         public virtual DbSet<GetCountHaventCheckedIn> GetCountHaventCheckedIns { get; set; }
         public virtual DbSet<GetCountLate> GetCountLates { get; set; }
         public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
-        public virtual DbSet<GetAllOTTimeKeeping> GetAllOTTimeKeepings { get; set; }
+        public virtual DbSet<TotalOvertimeSalary> TotalOvertimeSalaries { get; set; }
     }
 }
