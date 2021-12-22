@@ -298,5 +298,27 @@ namespace ChamCongVN_BE.Controllers
                 Message = "Delete Successfuly"
             };
         }
+        //----------Quyền admin mới chạy -------------------//
+        [Route("TotalSalaryPerMonth/{month?}/{year?}")]
+        [HttpGet]
+        public object TotalSalaryPerMonthYear(int month, int year)
+        {
+            var total = db.TotalSalaries.Where(x => x.Month == month && x.Year == year).ToList();
+            return total;
+        }
+        [Route("TotalSalaryPerYear/{year?}")]
+        [HttpGet]
+        public object TotalSalaryPerYear(int year)
+        {
+            var total = db.TotalSalaries.Where(x =>x.Year == year).ToList();
+            return total;
+        }
+        [Route("TotalSalary")]
+        [HttpGet]
+        public object TotalSalary()
+        {
+            var total = db.TotalSalaries.ToList();
+            return total;
+        }
     }
 }

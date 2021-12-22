@@ -317,6 +317,9 @@
     <Compile Include="Models\Salary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SalaryNoOvertimeSalary.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SalaryTable.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
@@ -360,6 +363,9 @@
     <Compile Include="Models\State1.cs" />
     <Compile Include="Models\TokenManager.cs" />
     <Compile Include="Models\TotalOvertimeSalary.cs">
+      <DependentUpon>ChamCongVN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalSalary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TotalSalaryPerMonth.cs">

@@ -478,6 +478,22 @@
     <Property Name="EmployeeID" Type="Int32" />
     <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
+  <EntityType Name="SalaryNoOvertimeSalary">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="EmployeeName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="TotalTime" Type="Int32" />
+    <Property Name="Salary" Type="Double" />
+    <Property Name="TotalAdvance" Type="Double" />
+    <Property Name="TotalDeduction" Type="Double" />
+    <Property Name="TotalLaudatory" Type="Double" />
+    <Property Name="TotalSalary" Type="Double" />
+  </EntityType>
   <EntityType Name="SpecialityOfEmployee">
     <Key>
       <PropertyRef Name="EmployeeID" />
@@ -538,7 +554,25 @@
     <EntitySet Name="GetCountCheckedIns" EntityType="Self.GetCountCheckedIn" />
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
     <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
+    <EntitySet Name="SalaryNoOvertimeSalaries" EntityType="Self.SalaryNoOvertimeSalary" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
     <EntitySet Name="TotalOvertimeSalaries" EntityType="Self.TotalOvertimeSalary" />
+    <EntitySet Name="TotalSalaries" EntityType="ChamCongVNModel.TotalSalary" />
   </EntityContainer>
+  <EntityType Name="TotalSalary">
+    <Key>
+      <PropertyRef Name="FullName" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="TotalTime" Type="Int32" />
+    <Property Name="Salary" Type="Double" />
+    <Property Name="TotalAdvance" Type="Double" />
+    <Property Name="TotalDeduction" Type="Double" />
+    <Property Name="TotalLaudatory" Type="Double" />
+    <Property Name="TotalOvertimeSalary" Type="Double" />
+    <Property Name="TotalSalary1" Type="Double" />
+  </EntityType>
 </Schema>
