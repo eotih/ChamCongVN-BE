@@ -371,6 +371,7 @@
     <Compile Include="Models\TotalSalaryPerMonth.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TotalSalaryPerMonth1.cs" />
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Models\Work.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>

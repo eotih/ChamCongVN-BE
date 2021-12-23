@@ -388,8 +388,9 @@
     </Key>
     <Property Name="TotalSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
-    <Property Name="Month" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Year" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Month" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
     <Property Name="TotalTime" Type="int" Nullable="false" />
     <Property Name="Salary" Type="float" />
     <Property Name="TotalAdvance" Type="float" />

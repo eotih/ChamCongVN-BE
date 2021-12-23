@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChamCongVNModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AbsentApplications">
           <Key>
             <PropertyRef Name="AbsentApplicationID" />
@@ -393,8 +393,9 @@
           </Key>
           <Property Name="TotalSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeID" Type="int" Nullable="false" />
-          <Property Name="Month" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Year" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="TotalTime" Type="int" Nullable="false" />
           <Property Name="Salary" Type="float" />
           <Property Name="TotalAdvance" Type="float" />
@@ -695,7 +696,8 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
     FROM [dbo].[TotalSalary] AS [TotalSalary]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChamCongVNModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1087,8 +1089,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           </Key>
           <Property Name="TotalSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="TotalTime" Type="Int32" Nullable="false" />
           <Property Name="Salary" Type="Double" />
           <Property Name="TotalAdvance" Type="Double" />
@@ -1213,6 +1216,22 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <Property Name="TotalTime" Type="Int32" />
           <Property Name="TotalOvertimeSalary1" Type="Double" />
         </EntityType>
+        <EntityType Name="TotalSalary">
+          <Key>
+            <PropertyRef Name="FullName" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="TotalTime" Type="Int32" />
+          <Property Name="Salary" Type="Double" />
+          <Property Name="TotalAdvance" Type="Double" />
+          <Property Name="TotalDeduction" Type="Double" />
+          <Property Name="TotalLaudatory" Type="Double" />
+          <Property Name="TotalOvertimeSalary" Type="Double" />
+          <Property Name="TotalSalary1" Type="Double" />
+        </EntityType>
         <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
           <EntitySet Name="Accounts" EntityType="Self.Account" />
@@ -1256,24 +1275,8 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <EntitySet Name="SalaryNoOvertimeSalaries" EntityType="Self.SalaryNoOvertimeSalary" />
           <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
           <EntitySet Name="TotalOvertimeSalaries" EntityType="Self.TotalOvertimeSalary" />
-          <EntitySet Name="TotalSalaries" EntityType="ChamCongVNModel.TotalSalary" />
+          <EntitySet Name="TotalSalaries" EntityType="Self.TotalSalary" />
         </EntityContainer>
-        <EntityType Name="TotalSalary">
-          <Key>
-            <PropertyRef Name="FullName" />
-          </Key>
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Month" Type="Int32" />
-          <Property Name="Year" Type="Int32" />
-          <Property Name="TotalTime" Type="Int32" />
-          <Property Name="Salary" Type="Double" />
-          <Property Name="TotalAdvance" Type="Double" />
-          <Property Name="TotalDeduction" Type="Double" />
-          <Property Name="TotalLaudatory" Type="Double" />
-          <Property Name="TotalOvertimeSalary" Type="Double" />
-          <Property Name="TotalSalary1" Type="Double" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1697,6 +1700,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
               <MappingFragment StoreEntitySet="TotalSalaryPerMonth">
                 <ScalarProperty Name="TotalSalaryID" ColumnName="TotalSalaryID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Month" ColumnName="Month" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
@@ -1830,17 +1834,17 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <EntitySetMapping Name="TotalSalaries">
             <EntityTypeMapping TypeName="ChamCongVNModel.TotalSalary">
               <MappingFragment StoreEntitySet="TotalSalary">
-                <ScalarProperty Name="TotalSalary1" ColumnName="TotalSalary" />
-                <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
-                <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
-                <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
-                <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Month" ColumnName="Month" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
+                <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
+                <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
+                <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
+                <ScalarProperty Name="TotalSalary1" ColumnName="TotalSalary" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

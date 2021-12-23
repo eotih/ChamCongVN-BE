@@ -13,6 +13,7 @@ namespace ChamCongVN_BE.Controllers
     {
         ChamCongVNEntities db = new ChamCongVNEntities();
         // ------------------------------ Salary Table ------------------------------ //
+        public DateTime dateTime = DateTime.Now;
         [Route("SalaryTable")]
         [HttpPost]
         public object AddSalaryTable(SalaryTable1 st1)
@@ -299,14 +300,14 @@ namespace ChamCongVN_BE.Controllers
             };
         }
         //----------Quyền admin mới chạy -------------------//
-        [Route("TotalSalaryPerMonth/{month?}/{year?}")]
+        [Route("TotalSalary/{year?}/{month?}")]
         [HttpGet]
         public object TotalSalaryPerMonthYear(int month, int year)
         {
             var total = db.TotalSalaries.Where(x => x.Month == month && x.Year == year).ToList();
             return total;
         }
-        [Route("TotalSalaryPerYear/{year?}")]
+        [Route("TotalSalary/{year?}")]
         [HttpGet]
         public object TotalSalaryPerYear(int year)
         {
@@ -318,6 +319,38 @@ namespace ChamCongVN_BE.Controllers
         public object TotalSalary()
         {
             var total = db.TotalSalaries.ToList();
+            return total;
+        }
+        //
+        [Route("TotalSalaryPerMonths")]
+        [HttpPost]
+        public object AddTotalSalaryPerMonths(List<TotalSalaryPerMonth> total1)
+        {
+            var check = db.TotalSalaryPerMonths.Where(x => x.Month == (dateTime.Month - 1)).ToList();
+            if(check == null)
+            {
+                foreach (TotalSalaryPerMonth i in total1)
+                {
+                    db.TotalSalaryPerMonths.Add(i);
+                }
+                db.SaveChanges();
+                return new Response
+                {
+                    Status = 200,
+                    Message = "Data Success"
+                };
+            }
+            return new Response
+            {
+                Status = 500,
+                Message = "Data not insert"
+            };
+        }
+        [Route("TotalSalaryPerMonth/{id?}")]
+        [HttpGet]
+        public object TotalSalaryPerMonthYear1(int id)
+        {
+            var total = db.TotalSalaryPerMonths.Where(x => x.EmployeeID == id).ToList();
             return total;
         }
     }

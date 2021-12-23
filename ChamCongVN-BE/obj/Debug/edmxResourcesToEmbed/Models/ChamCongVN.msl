@@ -418,6 +418,7 @@
         <MappingFragment StoreEntitySet="TotalSalaryPerMonth">
           <ScalarProperty Name="TotalSalaryID" ColumnName="TotalSalaryID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="Month" ColumnName="Month" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
@@ -551,17 +552,17 @@
     <EntitySetMapping Name="TotalSalaries">
       <EntityTypeMapping TypeName="ChamCongVNModel.TotalSalary">
         <MappingFragment StoreEntitySet="TotalSalary">
-          <ScalarProperty Name="TotalSalary1" ColumnName="TotalSalary" />
-          <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
-          <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
-          <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
-          <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
-          <ScalarProperty Name="Salary" ColumnName="Salary" />
-          <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="Month" ColumnName="Month" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TotalTime" ColumnName="TotalTime" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
+          <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
+          <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
+          <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
+          <ScalarProperty Name="TotalSalary1" ColumnName="TotalSalary" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
