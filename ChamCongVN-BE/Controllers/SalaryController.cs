@@ -304,21 +304,21 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object TotalSalaryPerMonthYear(int month, int year)
         {
-            var total = db.TotalSalaries.Where(x => x.Month == month && x.Year == year).ToList();
+            var total = db.TotalSalaryOfEmployees.Where(x => x.Month == month && x.Year == year).ToList();
             return total;
         }
         [Route("TotalSalary/{year?}")]
         [HttpGet]
         public object TotalSalaryPerYear(int year)
         {
-            var total = db.TotalSalaries.Where(x =>x.Year == year).ToList();
+            var total = db.TotalSalaryOfEmployees.Where(x =>x.Year == year).ToList();
             return total;
         }
         [Route("TotalSalary")]
         [HttpGet]
         public object TotalSalary()
         {
-            var total = db.TotalSalaries.ToList();
+            var total = db.TotalSalaryOfEmployees.Where(x=>x.Month == (dateTime.Month -1) && x.Year== (dateTime.Year)).ToList();
             return total;
         }
         //
@@ -348,9 +348,22 @@ namespace ChamCongVN_BE.Controllers
         }
         [Route("TotalSalaryPerMonth/{id?}")]
         [HttpGet]
-        public object TotalSalaryPerMonthYear1(int id)
+        public object TotalSalaryPerMonthYear(int id)
         {
             var total = db.TotalSalaryPerMonths.Where(x => x.EmployeeID == id).ToList();
+            return total;
+        }
+        [Route("TotalSalaryPerMonth")]
+        [HttpGet]
+        public object TotalSalaryPerMonth()
+        {
+            var total = (from obj in db.TotalSalaryPerMonths
+                         from emp in db.Employees
+                         where obj.EmployeeID == emp.EmployeeID
+                         select new {
+                             TotalSalary = obj,
+                             emp.Image,
+                         }).ToList();
             return total;
         }
     }

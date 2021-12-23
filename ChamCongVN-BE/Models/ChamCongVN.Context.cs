@@ -65,8 +65,9 @@ namespace ChamCongVN_BE.Models
         public virtual DbSet<GetCountHaventCheckedIn> GetCountHaventCheckedIns { get; set; }
         public virtual DbSet<GetCountLate> GetCountLates { get; set; }
         public virtual DbSet<SalaryNoOvertimeSalary> SalaryNoOvertimeSalaries { get; set; }
+        public virtual DbSet<SalaryPaidLeave> SalaryPaidLeaves { get; set; }
         public virtual DbSet<SpecialityOfEmployee> SpecialityOfEmployees { get; set; }
         public virtual DbSet<TotalOvertimeSalary> TotalOvertimeSalaries { get; set; }
-        public virtual DbSet<TotalSalary> TotalSalaries { get; set; }
+        public virtual DbSet<TotalSalaryOfEmployee> TotalSalaryOfEmployees { get; set; }
     }
 }

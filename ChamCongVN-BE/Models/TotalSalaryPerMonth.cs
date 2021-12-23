@@ -24,6 +24,7 @@ namespace ChamCongVN_BE.Models
         public Nullable<double> TotalAdvance { get; set; }
         public Nullable<double> TotalDeduction { get; set; }
         public Nullable<double> TotalLaudatory { get; set; }
+        public Nullable<int> TotalOvertime { get; set; }
         public Nullable<double> TotalOvertimeSalary { get; set; }
         public Nullable<double> TotalSalary { get; set; }
     }

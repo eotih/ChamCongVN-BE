@@ -13,7 +13,7 @@
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="AbsentType" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="AbsentDateBegin" Type="date" Nullable="false" />
-          <Property Name="NumberOfDays" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="NumberOfDays" Type="int" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="StateID" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
@@ -401,6 +401,7 @@
           <Property Name="TotalAdvance" Type="float" />
           <Property Name="TotalDeduction" Type="float" />
           <Property Name="TotalLaudatory" Type="float" />
+          <Property Name="TotalOvertime" Type="int" />
           <Property Name="TotalOvertimeSalary" Type="float" />
           <Property Name="TotalSalary" Type="float" />
         </EntityType>
@@ -517,6 +518,17 @@ warning 6002: The table/view 'ChamCongVN.dbo.SalaryNoOvertimeSalary' does not ha
           <Property Name="TotalSalary" Type="float" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ChamCongVN.dbo.SalaryPaidLeave' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalaryPaidLeave">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="TimePaidLeave" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="TimePaidLeave" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ChamCongVN.dbo.SpecialityOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SpecialityOfEmployee">
           <Key>
@@ -541,21 +553,28 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalOvertimeSalary' does not have 
           <Property Name="TotalOvertimeSalary" Type="float" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="TotalSalary">
+warning 6002: The table/view 'ChamCongVN.dbo.TotalSalaryOfEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TotalSalaryOfEmployee">
           <Key>
             <PropertyRef Name="FullName" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="TotalAdvance" />
+            <PropertyRef Name="TotalDeduction" />
+            <PropertyRef Name="TotalLaudatory" />
+            <PropertyRef Name="TotalOvertime" />
+            <PropertyRef Name="TotalOvertimeSalary" />
           </Key>
           <Property Name="EmployeeID" Type="int" />
           <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Month" Type="int" />
           <Property Name="Year" Type="int" />
           <Property Name="TotalTime" Type="int" />
-          <Property Name="Salary" Type="float" />
-          <Property Name="TotalAdvance" Type="float" />
-          <Property Name="TotalDeduction" Type="float" />
-          <Property Name="TotalLaudatory" Type="float" />
-          <Property Name="TotalOvertimeSalary" Type="float" />
+          <Property Name="Salary" Type="float" Nullable="false" />
+          <Property Name="TotalAdvance" Type="float" Nullable="false" />
+          <Property Name="TotalDeduction" Type="float" Nullable="false" />
+          <Property Name="TotalLaudatory" Type="float" Nullable="false" />
+          <Property Name="TotalOvertime" Type="int" Nullable="false" />
+          <Property Name="TotalOvertimeSalary" Type="float" Nullable="false" />
           <Property Name="TotalSalary" Type="float" />
         </EntityType>
         <EntityContainer Name="ChamCongVNModelStoreContainer">
@@ -664,6 +683,13 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
     [SalaryNoOvertimeSalary].[TotalSalary] AS [TotalSalary]
     FROM [dbo].[SalaryNoOvertimeSalary] AS [SalaryNoOvertimeSalary]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="SalaryPaidLeave" EntityType="Self.SalaryPaidLeave" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SalaryPaidLeave].[EmployeeID] AS [EmployeeID], 
+    [SalaryPaidLeave].[TimePaidLeave] AS [TimePaidLeave], 
+    [SalaryPaidLeave].[Month] AS [Month]
+    FROM [dbo].[SalaryPaidLeave] AS [SalaryPaidLeave]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SpecialityOfEmployee" EntityType="Self.SpecialityOfEmployee" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SpecialityOfEmployee].[EmployeeID] AS [EmployeeID], 
@@ -680,20 +706,21 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
     [TotalOvertimeSalary].[TotalOvertimeSalary] AS [TotalOvertimeSalary]
     FROM [dbo].[TotalOvertimeSalary] AS [TotalOvertimeSalary]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="TotalSalary" EntityType="Self.TotalSalary" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="TotalSalaryOfEmployee" EntityType="Self.TotalSalaryOfEmployee" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [TotalSalary].[EmployeeID] AS [EmployeeID], 
-    [TotalSalary].[FullName] AS [FullName], 
-    [TotalSalary].[Month] AS [Month], 
-    [TotalSalary].[Year] AS [Year], 
-    [TotalSalary].[TotalTime] AS [TotalTime], 
-    [TotalSalary].[Salary] AS [Salary], 
-    [TotalSalary].[TotalAdvance] AS [TotalAdvance], 
-    [TotalSalary].[TotalDeduction] AS [TotalDeduction], 
-    [TotalSalary].[TotalLaudatory] AS [TotalLaudatory], 
-    [TotalSalary].[TotalOvertimeSalary] AS [TotalOvertimeSalary], 
-    [TotalSalary].[TotalSalary] AS [TotalSalary]
-    FROM [dbo].[TotalSalary] AS [TotalSalary]</DefiningQuery>
+    [TotalSalaryOfEmployee].[EmployeeID] AS [EmployeeID], 
+    [TotalSalaryOfEmployee].[FullName] AS [FullName], 
+    [TotalSalaryOfEmployee].[Month] AS [Month], 
+    [TotalSalaryOfEmployee].[Year] AS [Year], 
+    [TotalSalaryOfEmployee].[TotalTime] AS [TotalTime], 
+    [TotalSalaryOfEmployee].[Salary] AS [Salary], 
+    [TotalSalaryOfEmployee].[TotalAdvance] AS [TotalAdvance], 
+    [TotalSalaryOfEmployee].[TotalDeduction] AS [TotalDeduction], 
+    [TotalSalaryOfEmployee].[TotalLaudatory] AS [TotalLaudatory], 
+    [TotalSalaryOfEmployee].[TotalOvertime] AS [TotalOvertime], 
+    [TotalSalaryOfEmployee].[TotalOvertimeSalary] AS [TotalOvertimeSalary], 
+    [TotalSalaryOfEmployee].[TotalSalary] AS [TotalSalary]
+    FROM [dbo].[TotalSalaryOfEmployee] AS [TotalSalaryOfEmployee]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema>
@@ -709,7 +736,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <Property Name="EmployeeID" Type="Int32" Nullable="false" />
           <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AbsentDateBegin" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="NumberOfDays" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
           <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StateID" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -1097,6 +1124,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <Property Name="TotalAdvance" Type="Double" />
           <Property Name="TotalDeduction" Type="Double" />
           <Property Name="TotalLaudatory" Type="Double" />
+          <Property Name="TotalOvertime" Type="Int32" />
           <Property Name="TotalOvertimeSalary" Type="Double" />
           <Property Name="TotalSalary" Type="Double" />
         </EntityType>
@@ -1196,6 +1224,15 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <Property Name="TotalLaudatory" Type="Double" />
           <Property Name="TotalSalary" Type="Double" />
         </EntityType>
+        <EntityType Name="SalaryPaidLeave">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="TimePaidLeave" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="TimePaidLeave" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" />
+        </EntityType>
         <EntityType Name="SpecialityOfEmployee">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -1216,21 +1253,28 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <Property Name="TotalTime" Type="Int32" />
           <Property Name="TotalOvertimeSalary1" Type="Double" />
         </EntityType>
-        <EntityType Name="TotalSalary">
+        <EntityType Name="TotalSalaryOfEmployee">
           <Key>
             <PropertyRef Name="FullName" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="TotalAdvance" />
+            <PropertyRef Name="TotalDeduction" />
+            <PropertyRef Name="TotalLaudatory" />
+            <PropertyRef Name="TotalOvertime" />
+            <PropertyRef Name="TotalOvertimeSalary" />
           </Key>
           <Property Name="EmployeeID" Type="Int32" />
           <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Month" Type="Int32" />
           <Property Name="Year" Type="Int32" />
           <Property Name="TotalTime" Type="Int32" />
-          <Property Name="Salary" Type="Double" />
-          <Property Name="TotalAdvance" Type="Double" />
-          <Property Name="TotalDeduction" Type="Double" />
-          <Property Name="TotalLaudatory" Type="Double" />
-          <Property Name="TotalOvertimeSalary" Type="Double" />
-          <Property Name="TotalSalary1" Type="Double" />
+          <Property Name="Salary" Type="Double" Nullable="false" />
+          <Property Name="TotalAdvance" Type="Double" Nullable="false" />
+          <Property Name="TotalDeduction" Type="Double" Nullable="false" />
+          <Property Name="TotalLaudatory" Type="Double" Nullable="false" />
+          <Property Name="TotalOvertime" Type="Int32" Nullable="false" />
+          <Property Name="TotalOvertimeSalary" Type="Double" Nullable="false" />
+          <Property Name="TotalSalary" Type="Double" />
         </EntityType>
         <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
@@ -1273,9 +1317,10 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
           <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
           <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
           <EntitySet Name="SalaryNoOvertimeSalaries" EntityType="Self.SalaryNoOvertimeSalary" />
+          <EntitySet Name="SalaryPaidLeaves" EntityType="Self.SalaryPaidLeave" />
           <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
           <EntitySet Name="TotalOvertimeSalaries" EntityType="Self.TotalOvertimeSalary" />
-          <EntitySet Name="TotalSalaries" EntityType="Self.TotalSalary" />
+          <EntitySet Name="TotalSalaryOfEmployees" EntityType="Self.TotalSalaryOfEmployee" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -1708,6 +1753,7 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
                 <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
                 <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
                 <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
+                <ScalarProperty Name="TotalOvertime" ColumnName="TotalOvertime" />
                 <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
                 <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
               </MappingFragment>
@@ -1811,6 +1857,15 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SalaryPaidLeaves">
+            <EntityTypeMapping TypeName="ChamCongVNModel.SalaryPaidLeave">
+              <MappingFragment StoreEntitySet="SalaryPaidLeave">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="TimePaidLeave" ColumnName="TimePaidLeave" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SpecialityOfEmployees">
             <EntityTypeMapping TypeName="ChamCongVNModel.SpecialityOfEmployee">
               <MappingFragment StoreEntitySet="SpecialityOfEmployee">
@@ -1831,9 +1886,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TotalSalaries">
-            <EntityTypeMapping TypeName="ChamCongVNModel.TotalSalary">
-              <MappingFragment StoreEntitySet="TotalSalary">
+          <EntitySetMapping Name="TotalSalaryOfEmployees">
+            <EntityTypeMapping TypeName="ChamCongVNModel.TotalSalaryOfEmployee">
+              <MappingFragment StoreEntitySet="TotalSalaryOfEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Month" ColumnName="Month" />
@@ -1843,8 +1898,9 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalary' does not have a primar
                 <ScalarProperty Name="TotalAdvance" ColumnName="TotalAdvance" />
                 <ScalarProperty Name="TotalDeduction" ColumnName="TotalDeduction" />
                 <ScalarProperty Name="TotalLaudatory" ColumnName="TotalLaudatory" />
+                <ScalarProperty Name="TotalOvertime" ColumnName="TotalOvertime" />
                 <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
-                <ScalarProperty Name="TotalSalary1" ColumnName="TotalSalary" />
+                <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

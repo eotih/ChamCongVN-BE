@@ -8,7 +8,7 @@
     <Property Name="EmployeeID" Type="Int32" Nullable="false" />
     <Property Name="AbsentType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AbsentDateBegin" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="NumberOfDays" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumberOfDays" Type="Int32" Nullable="false" />
     <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="StateID" Type="Int32" Nullable="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -396,6 +396,7 @@
     <Property Name="TotalAdvance" Type="Double" />
     <Property Name="TotalDeduction" Type="Double" />
     <Property Name="TotalLaudatory" Type="Double" />
+    <Property Name="TotalOvertime" Type="Int32" />
     <Property Name="TotalOvertimeSalary" Type="Double" />
     <Property Name="TotalSalary" Type="Double" />
   </EntityType>
@@ -495,6 +496,15 @@
     <Property Name="TotalLaudatory" Type="Double" />
     <Property Name="TotalSalary" Type="Double" />
   </EntityType>
+  <EntityType Name="SalaryPaidLeave">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="TimePaidLeave" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="TimePaidLeave" Type="Int32" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+  </EntityType>
   <EntityType Name="SpecialityOfEmployee">
     <Key>
       <PropertyRef Name="EmployeeID" />
@@ -515,21 +525,28 @@
     <Property Name="TotalTime" Type="Int32" />
     <Property Name="TotalOvertimeSalary1" Type="Double" />
   </EntityType>
-  <EntityType Name="TotalSalary">
+  <EntityType Name="TotalSalaryOfEmployee">
     <Key>
       <PropertyRef Name="FullName" />
+      <PropertyRef Name="Salary" />
+      <PropertyRef Name="TotalAdvance" />
+      <PropertyRef Name="TotalDeduction" />
+      <PropertyRef Name="TotalLaudatory" />
+      <PropertyRef Name="TotalOvertime" />
+      <PropertyRef Name="TotalOvertimeSalary" />
     </Key>
     <Property Name="EmployeeID" Type="Int32" />
     <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Month" Type="Int32" />
     <Property Name="Year" Type="Int32" />
     <Property Name="TotalTime" Type="Int32" />
-    <Property Name="Salary" Type="Double" />
-    <Property Name="TotalAdvance" Type="Double" />
-    <Property Name="TotalDeduction" Type="Double" />
-    <Property Name="TotalLaudatory" Type="Double" />
-    <Property Name="TotalOvertimeSalary" Type="Double" />
-    <Property Name="TotalSalary1" Type="Double" />
+    <Property Name="Salary" Type="Double" Nullable="false" />
+    <Property Name="TotalAdvance" Type="Double" Nullable="false" />
+    <Property Name="TotalDeduction" Type="Double" Nullable="false" />
+    <Property Name="TotalLaudatory" Type="Double" Nullable="false" />
+    <Property Name="TotalOvertime" Type="Int32" Nullable="false" />
+    <Property Name="TotalOvertimeSalary" Type="Double" Nullable="false" />
+    <Property Name="TotalSalary" Type="Double" />
   </EntityType>
   <EntityContainer Name="ChamCongVNEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AbsentApplications" EntityType="Self.AbsentApplication" />
@@ -572,8 +589,9 @@
     <EntitySet Name="GetCountHaventCheckedIns" EntityType="Self.GetCountHaventCheckedIn" />
     <EntitySet Name="GetCountLates" EntityType="Self.GetCountLate" />
     <EntitySet Name="SalaryNoOvertimeSalaries" EntityType="Self.SalaryNoOvertimeSalary" />
+    <EntitySet Name="SalaryPaidLeaves" EntityType="Self.SalaryPaidLeave" />
     <EntitySet Name="SpecialityOfEmployees" EntityType="Self.SpecialityOfEmployee" />
     <EntitySet Name="TotalOvertimeSalaries" EntityType="Self.TotalOvertimeSalary" />
-    <EntitySet Name="TotalSalaries" EntityType="Self.TotalSalary" />
+    <EntitySet Name="TotalSalaryOfEmployees" EntityType="Self.TotalSalaryOfEmployee" />
   </EntityContainer>
 </Schema>

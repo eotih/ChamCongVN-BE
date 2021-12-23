@@ -132,7 +132,20 @@ namespace ChamCongVN_BE.Controllers
                            ).FirstOrDefault();
             return account;
         }
-
+        [Route("Account/Employee/{id?}")]
+        [HttpGet]
+        public object GetAccountForEmployeeByID(int ID)
+        {
+            var account = (from acc in db.Accounts
+                           from role in db.Roles
+                           where acc.RoleID == role.RoleID
+                           select new
+                           {
+                               Account = acc,
+                               role.RoleName
+                           }).FirstOrDefault();
+            return account;
+        }
         [Route("Account")]
         [HttpGet]
         public object GetAllAccount()

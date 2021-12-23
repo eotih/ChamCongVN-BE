@@ -12,18 +12,19 @@ namespace ChamCongVN_BE.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TotalSalary
+    public partial class TotalSalaryOfEmployee
     {
         public Nullable<int> EmployeeID { get; set; }
         public string FullName { get; set; }
         public Nullable<int> Month { get; set; }
         public Nullable<int> Year { get; set; }
         public Nullable<int> TotalTime { get; set; }
-        public Nullable<double> Salary { get; set; }
-        public Nullable<double> TotalAdvance { get; set; }
-        public Nullable<double> TotalDeduction { get; set; }
-        public Nullable<double> TotalLaudatory { get; set; }
-        public Nullable<double> TotalOvertimeSalary { get; set; }
-        public Nullable<double> TotalSalary1 { get; set; }
+        public double Salary { get; set; }
+        public double TotalAdvance { get; set; }
+        public double TotalDeduction { get; set; }
+        public double TotalLaudatory { get; set; }
+        public int TotalOvertime { get; set; }
+        public double TotalOvertimeSalary { get; set; }
+        public Nullable<double> TotalSalary { get; set; }
     }
 }
