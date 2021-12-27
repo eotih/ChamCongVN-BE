@@ -237,12 +237,11 @@ namespace ChamCongVN_BE.Controllers
         }
         [Route("Recruitment")]
         [HttpPost]
-        public string AddRecruitment()
+        public object AddRecruitment()
         {
             try
             {
                 #region Variable Declaration  
-                string message = "";
                 HttpResponseMessage ResponseMessage = null;
                 var httpRequest = HttpContext.Current.Request;
                 DataSet dsexcelRecords = new DataSet();
@@ -266,8 +265,11 @@ namespace ChamCongVN_BE.Controllers
                             else if (Inputfile.FileName.EndsWith(".xlsx"))
                                 reader = ExcelReaderFactory.CreateOpenXmlReader(FileStream);
                             else
-                                message = "The file format is not supported.";
-
+                                return new Response
+                                {
+                                    Status = 500,
+                                    Message = "No file"
+                                };
                             dsexcelRecords = reader.AsDataSet();
                             reader.Close();
 
@@ -292,20 +294,36 @@ namespace ChamCongVN_BE.Controllers
 
                                 int output = db.SaveChanges();
                                 if (output > 0)
-                                    message = "The Excel file has been successfully uploaded.";
+                                    return new Response
+                                    {
+                                        Status = 200,
+                                        Message = "Data Success"
+                                    };
                                 else
-                                    message = "Something Went Wrong!, The Excel file uploaded has fiald.";
+                                    return new Response
+                                    {
+                                        Status = 500,
+                                        Message = "Data not insert"
+                                    };
                             }
                             else
-                                message = "Selected file is empty.";
+                                return new Response
+                                {
+                                    Status = 404,
+                                    Message = "File is emty"
+                                };
                         }
                         else
-                            message = "Invalid File.";
+                            return new Response
+                            {
+                                Status = 404,
+                                Message = "Invalid File"
+                            };
                     }
                     else
                         ResponseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
-                return message;
+                return null;
                 #endregion
             }
             catch (Exception)
@@ -313,5 +331,5 @@ namespace ChamCongVN_BE.Controllers
                 throw;
             }
         }
-        }
+    }
 }

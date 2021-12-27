@@ -665,6 +665,7 @@ namespace ChamCongVN_BE.Controllers
                     Email = or1.Email,
                     Latitude = or1.Latitude,
                     Longitude = or1.Longitude,
+                    Radius = or1.Radius,
                     Website = or1.Website,
                     PublicIP = or1.PublicIP,
                     PythonIP = or1.PythonIP,
@@ -697,6 +698,7 @@ namespace ChamCongVN_BE.Controllers
                     obj.Email = or1.Email;
                     obj.Latitude = or1.Latitude;
                     obj.Longitude = or1.Longitude;
+                    obj.Radius = or1.Radius;
                     obj.Website = or1.Website;
                     obj.PublicIP = or1.PublicIP;
                     obj.PythonIP = or1.PythonIP;

@@ -61,20 +61,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BonusSalaries">
-      <EntityTypeMapping TypeName="ChamCongVNModel.BonusSalary">
-        <MappingFragment StoreEntitySet="BonusSalary">
-          <ScalarProperty Name="BonusSalaryID" ColumnName="BonusSalaryID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="BonusSalaryName" ColumnName="BonusSalaryName" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CheckIns">
       <EntityTypeMapping TypeName="ChamCongVNModel.CheckIn">
         <MappingFragment StoreEntitySet="CheckIns">
@@ -226,6 +212,7 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Radius" ColumnName="Radius" />
           <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="PublicIP" ColumnName="PublicIP" />
           <ScalarProperty Name="PythonIP" ColumnName="PythonIP" />
@@ -339,25 +326,6 @@
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Salaries">
-      <EntityTypeMapping TypeName="ChamCongVNModel.Salary">
-        <MappingFragment StoreEntitySet="Salary">
-          <ScalarProperty Name="SalaryID" ColumnName="SalaryID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="SalaryTableID" ColumnName="SalaryTableID" />
-          <ScalarProperty Name="CoefficientSalary" ColumnName="CoefficientSalary" />
-          <ScalarProperty Name="TotalWorkTime" ColumnName="TotalWorkTime" />
-          <ScalarProperty Name="TotalAbsentApplications" ColumnName="TotalAbsentApplications" />
-          <ScalarProperty Name="TotalAdvances" ColumnName="TotalAdvances" />
-          <ScalarProperty Name="TotalOvertimeSalary" ColumnName="TotalOvertimeSalary" />
-          <ScalarProperty Name="TotalBonusSalary" ColumnName="TotalBonusSalary" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,9 +1,13 @@
 ﻿using ChamCongVN_BE.Models;
+using ExcelDataReader;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace ChamCongVN_BE.Controllers
@@ -324,27 +328,101 @@ namespace ChamCongVN_BE.Controllers
         //
         [Route("TotalSalaryPerMonths")]
         [HttpPost]
-        public object AddTotalSalaryPerMonths(List<TotalSalaryPerMonth> total1)
+        public object TotalSalaryPerMonths()
         {
-            var check = db.TotalSalaryPerMonths.Where(x => x.Month == (dateTime.Month - 1)).ToList();
-            if(check == null)
+            try
             {
-                foreach (TotalSalaryPerMonth i in total1)
+                #region Variable Declaration  
+                HttpResponseMessage ResponseMessage = null;
+                var httpRequest = HttpContext.Current.Request;
+                DataSet dsexcelRecords = new DataSet();
+                IExcelDataReader reader = null;
+                HttpPostedFile Inputfile = null;
+                Stream FileStream = null;
+                #endregion
+
+                #region Save Student Detail From Excel  
+                using (ChamCongVNEntities db = new ChamCongVNEntities())
                 {
-                    db.TotalSalaryPerMonths.Add(i);
+                    if (httpRequest.Files.Count > 0)
+                    {
+                        Inputfile = httpRequest.Files[0];
+                        FileStream = Inputfile.InputStream;
+
+                        if (Inputfile != null && FileStream != null)
+                        {
+                            if (Inputfile.FileName.EndsWith(".xls"))
+                                reader = ExcelReaderFactory.CreateBinaryReader(FileStream);
+                            else if (Inputfile.FileName.EndsWith(".xlsx"))
+                                reader = ExcelReaderFactory.CreateOpenXmlReader(FileStream);
+                            else
+                                return new Response
+                                {
+                                    Status = 500,
+                                    Message = "No file"
+                                };
+                            dsexcelRecords = reader.AsDataSet();
+                            reader.Close();
+
+                            if (dsexcelRecords != null && dsexcelRecords.Tables.Count > 0)
+                            {
+                                DataTable dtStudentRecords = dsexcelRecords.Tables[0];
+                                for (int i = 1; i < dtStudentRecords.Rows.Count; i++)
+                                {
+                                    TotalSalaryPerMonth total = new TotalSalaryPerMonth();
+                                    total.EmployeeID = Convert.ToInt16(dtStudentRecords.Rows[i][1]);
+                                    total.FullName = Convert.ToString(dtStudentRecords.Rows[i][2]);
+                                    total.Month = Convert.ToInt16(dtStudentRecords.Rows[i][3]);
+                                    total.Year = Convert.ToInt16(dtStudentRecords.Rows[i][4]);
+                                    total.TotalTime = Convert.ToInt16(dtStudentRecords.Rows[i][5]);
+                                    total.Salary = Convert.ToDouble(dtStudentRecords.Rows[i][6]);
+                                    total.TotalAdvance = Convert.ToDouble(dtStudentRecords.Rows[i][7]);
+                                    total.TotalDeduction = Convert.ToDouble(dtStudentRecords.Rows[i][8]);
+                                    total.TotalLaudatory = Convert.ToDouble(dtStudentRecords.Rows[i][9]);
+                                    total.TotalOvertime = Convert.ToInt16(dtStudentRecords.Rows[i][10]);
+                                    total.TotalOvertimeSalary = Convert.ToDouble(dtStudentRecords.Rows[i][11]);
+                                    total.TotalSalary = Convert.ToDouble(dtStudentRecords.Rows[i][12]);
+                                    db.TotalSalaryPerMonths.Add(total);
+                                }
+
+                                int output = db.SaveChanges();
+                                if (output > 0)
+                                    return new Response
+                                    {
+                                        Status = 200,
+                                        Message = "Data Success"
+                                    };
+                                else
+                                    return new Response
+                                    {
+                                        Status = 500,
+                                        Message = "Data not insert"
+                                    };
+                            }
+                            else
+                                return new Response
+                                {
+                                    Status = 404,
+                                    Message = "File is emty"
+                                };
+                        }
+                        else
+                            return new Response
+                            {
+                                Status = 404,
+                                Message = "Invalid File"
+                            };
+                    }
+                    else
+                        ResponseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
                 }
-                db.SaveChanges();
-                return new Response
-                {
-                    Status = 200,
-                    Message = "Data Success"
-                };
+                return null;
+                #endregion
             }
-            return new Response
+            catch (Exception)
             {
-                Status = 500,
-                Message = "Data not insert"
-            };
+                throw;
+            }
         }
         [Route("TotalSalaryPerMonth/{id?}")]
         [HttpGet]

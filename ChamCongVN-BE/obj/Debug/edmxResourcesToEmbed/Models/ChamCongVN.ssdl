@@ -56,19 +56,6 @@
     <Property Name="TotalAdvance" Type="float" />
     <Property Name="UpdatedAt" Type="datetime" />
   </EntityType>
-  <EntityType Name="BonusSalary">
-    <Key>
-      <PropertyRef Name="BonusSalaryID" />
-    </Key>
-    <Property Name="BonusSalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
-    <Property Name="BonusSalaryName" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="Amount" Type="float" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="150" />
-    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
-    <Property Name="CreatedAt" Type="datetime" />
-    <Property Name="UpdatedAt" Type="datetime" />
-  </EntityType>
   <EntityType Name="CheckIns">
     <Key>
       <PropertyRef Name="CheckInCode" />
@@ -211,6 +198,7 @@
     <Property Name="Email" Type="nvarchar" MaxLength="200" />
     <Property Name="Latitude" Type="float" />
     <Property Name="Longitude" Type="float" />
+    <Property Name="Radius" Type="int" />
     <Property Name="Website" Type="nvarchar(max)" />
     <Property Name="PublicIP" Type="varchar" MaxLength="50" />
     <Property Name="PythonIP" Type="varchar(max)" />
@@ -316,24 +304,6 @@
     </Key>
     <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleName" Type="nvarchar" MaxLength="100" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Salary">
-    <Key>
-      <PropertyRef Name="SalaryID" />
-    </Key>
-    <Property Name="SalaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
-    <Property Name="SalaryTableID" Type="int" Nullable="false" />
-    <Property Name="CoefficientSalary" Type="float" Nullable="false" />
-    <Property Name="TotalWorkTime" Type="float" Nullable="false" />
-    <Property Name="TotalAbsentApplications" Type="int" Nullable="false" />
-    <Property Name="TotalAdvances" Type="float" Nullable="false" />
-    <Property Name="TotalOvertimeSalary" Type="float" Nullable="false" />
-    <Property Name="TotalBonusSalary" Type="float" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="150" />
-    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="150" />
-    <Property Name="CreatedAt" Type="datetime" />
-    <Property Name="UpdatedAt" Type="datetime" />
   </EntityType>
   <EntityType Name="SalaryTable">
     <Key>
@@ -577,7 +547,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalaryOfEmployee' does not hav
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Advances" EntityType="Self.Advances" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AnotherCost" EntityType="Self.AnotherCost" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="BonusSalary" EntityType="Self.BonusSalary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheckIns" EntityType="Self.CheckIns" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheckOuts" EntityType="Self.CheckOuts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DeductionEmployees" EntityType="Self.DeductionEmployees" Schema="dbo" store:Type="Tables" />
@@ -597,7 +566,6 @@ warning 6002: The table/view 'ChamCongVN.dbo.TotalSalaryOfEmployee' does not hav
     <EntitySet Name="Recruitments" EntityType="Self.Recruitments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalaryTable" EntityType="Self.SalaryTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Specialities" EntityType="Self.Specialities" Schema="dbo" store:Type="Tables" />

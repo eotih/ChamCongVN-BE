@@ -56,19 +56,6 @@
     <Property Name="TotalAdvance" Type="Double" />
     <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="BonusSalary">
-    <Key>
-      <PropertyRef Name="BonusSalaryID" />
-    </Key>
-    <Property Name="BonusSalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="BonusSalaryName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Amount" Type="Double" Nullable="false" />
-    <Property Name="CreatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="CheckIn">
     <Key>
       <PropertyRef Name="CheckInCode" />
@@ -211,6 +198,7 @@
     <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Latitude" Type="Double" />
     <Property Name="Longitude" Type="Double" />
+    <Property Name="Radius" Type="Int32" />
     <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PublicIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PythonIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -316,24 +304,6 @@
     </Key>
     <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Salary">
-    <Key>
-      <PropertyRef Name="SalaryID" />
-    </Key>
-    <Property Name="SalaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="SalaryTableID" Type="Int32" Nullable="false" />
-    <Property Name="CoefficientSalary" Type="Double" Nullable="false" />
-    <Property Name="TotalWorkTime" Type="Double" Nullable="false" />
-    <Property Name="TotalAbsentApplications" Type="Int32" Nullable="false" />
-    <Property Name="TotalAdvances" Type="Double" Nullable="false" />
-    <Property Name="TotalOvertimeSalary" Type="Double" Nullable="false" />
-    <Property Name="TotalBonusSalary" Type="Double" Nullable="false" />
-    <Property Name="CreatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedAt" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="SalaryTable">
     <Key>
@@ -553,7 +523,6 @@
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Advances" EntityType="Self.Advance" />
     <EntitySet Name="AnotherCosts" EntityType="Self.AnotherCost" />
-    <EntitySet Name="BonusSalaries" EntityType="Self.BonusSalary" />
     <EntitySet Name="CheckIns" EntityType="Self.CheckIn" />
     <EntitySet Name="CheckOuts" EntityType="Self.CheckOut" />
     <EntitySet Name="DeductionEmployees" EntityType="Self.DeductionEmployee" />
@@ -573,7 +542,6 @@
     <EntitySet Name="Recruitments" EntityType="Self.Recruitment" />
     <EntitySet Name="RegulationEmployees" EntityType="Self.RegulationEmployee" />
     <EntitySet Name="Roles" EntityType="Self.Role" />
-    <EntitySet Name="Salaries" EntityType="Self.Salary" />
     <EntitySet Name="SalaryTables" EntityType="Self.SalaryTable" />
     <EntitySet Name="Shifts" EntityType="Self.Shift" />
     <EntitySet Name="Specialities" EntityType="Self.Speciality" />

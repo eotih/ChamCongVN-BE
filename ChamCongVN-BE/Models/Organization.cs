@@ -20,6 +20,7 @@ namespace ChamCongVN_BE.Models
         public string Email { get; set; }
         public Nullable<double> Latitude { get; set; }
         public Nullable<double> Longitude { get; set; }
+        public Nullable<int> Radius { get; set; }
         public string Website { get; set; }
         public string PublicIP { get; set; }
         public string PythonIP { get; set; }

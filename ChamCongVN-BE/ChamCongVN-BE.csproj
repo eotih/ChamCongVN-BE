@@ -214,10 +214,6 @@
     <Compile Include="Models\AnotherCost.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BonusSalary.cs">
-      <DependentUpon>ChamCongVN.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BonusSalary1.cs" />
     <Compile Include="Models\ChamCongVN.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -314,9 +310,6 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Salary.cs">
-      <DependentUpon>ChamCongVN.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SalaryNoOvertimeSalary.cs">
       <DependentUpon>ChamCongVN.tt</DependentUpon>
     </Compile>
@@ -357,7 +350,6 @@
     <Compile Include="Models\RegulationEmployee1.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Role1.cs" />
-    <Compile Include="Models\Salary1.cs" />
     <Compile Include="Models\SalaryTable1.cs" />
     <Compile Include="Models\SentToPython.cs" />
     <Compile Include="Models\Shift1.cs" />
