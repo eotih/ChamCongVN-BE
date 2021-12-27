@@ -302,7 +302,7 @@ namespace ChamCongVN_BE.Controllers
 
             double radius = Utilities.Radius(latOrganiztion, longOrganiztion, latRequest, longRequest);
 
-            if (IPOrganiztion == publicIPRequest && radius < 50)
+            if (IPOrganiztion == publicIPRequest && radius < objOrganizations.Radius)
             {
                 return new Response
                 {
@@ -310,7 +310,7 @@ namespace ChamCongVN_BE.Controllers
                     Message = "Permission Approved"
                 };
             }
-            else if (radius > 50)
+            else if (radius > objOrganizations.Radius)
             {
                 return new Response
                 {
