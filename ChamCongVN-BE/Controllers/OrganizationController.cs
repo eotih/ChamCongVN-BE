@@ -120,12 +120,7 @@ namespace ChamCongVN_BE.Controllers
                            select new
                            {
                                Account = acc,
-                               acc.AccountID,
-                               acc.EmployeeID,
-                               acc.RoleID,
-                               acc.StateID,
                                Employee = emp,
-                               emp.Image,
                                role.RoleName,
                                state.StateName
                            }
