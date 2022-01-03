@@ -76,5 +76,41 @@ namespace ChamCongVN_BE.Models
             username = usernameClaim.Value;
             return username;
         }
+        public static string ValidateCheck()
+        {
+            ChamCongVNEntities db = new ChamCongVNEntities();
+            // Get Auth header
+            var handler = new JwtSecurityTokenHandler();
+            string authHeader = HttpContext.Current.Request.Headers["Authorization"];
+            if (authHeader != null)
+            {
+                authHeader = authHeader.Replace("Bearer ", "");
+                var jsonToken = handler.ReadToken(authHeader);
+                var tokenS = handler.ReadToken(authHeader) as JwtSecurityToken;
+                var claims = tokenS.Claims.ToList();
+                // Dòng này để check trong database
+                //string accountID = claims[6].Value;
+                //var checkDatabase = db.Accounts.Where(x => x.IDUser == Convert.ToInt32(accountID)).FirstOrDefault();
+                int getData = Convert.ToInt32(claims[3].Value);
+                var infoEmp = db.Employees.Where(x => x.EmployeeID == getData).FirstOrDefault();
+                if (infoEmp.PositionID == 1 || infoEmp.PositionID == 2 || infoEmp.PositionID == 3 || infoEmp.PositionID == 4)
+                {
+                    if (infoEmp.PositionID == 1)
+                        return "GD";
+                    else if (infoEmp.PositionID == 2)
+                        return "QL";
+                    else if (infoEmp.PositionID == 3)
+                        return "KT";
+                    else
+                        return "NV";
+                }
+                else
+                    return "Access Denied";
+            }
+            else
+            {
+                return "Access Denied";
+            }
+        }
     }
 }

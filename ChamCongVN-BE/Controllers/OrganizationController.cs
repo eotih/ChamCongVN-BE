@@ -114,15 +114,18 @@ namespace ChamCongVN_BE.Controllers
                            from emp in db.Employees
                            from role in db.Roles
                            from state in db.States
+                           from position in db.Positions
                            where acc.EmployeeID == emp.EmployeeID
                            where role.RoleID == acc.RoleID
                            where state.StateID == acc.StateID
+                           where emp.PositionID == position.PositionID
                            select new
                            {
                                Account = acc,
                                Employee = emp,
                                role.RoleName,
-                               state.StateName
+                               state.StateName,
+                               position.PositionName
                            }
                            ).FirstOrDefault();
             return account;

@@ -376,7 +376,7 @@ namespace ChamCongVN_BE.Controllers
                     };
                 }
             }
-            else if (hour >= 13 && hour <= 19)
+            else if (hour >= 13 && hour < 18)
             {
                 if (checkOut == null)
                 {
@@ -398,6 +398,35 @@ namespace ChamCongVN_BE.Controllers
                         Status = 403,
                         Message = "Bạn đã check out hôm nay rồi"
                     };
+                }
+            }
+            else if (hour >= 18)
+            {
+                if (hour >= 19 && hour < 20)
+                {
+                    if (hour < 20 && minute < 15)
+                    {
+                        time.Status = "Đúng giờ";
+                        AddOTCheckIn(time);
+                    }
+                    else
+                    {
+                        time.Status = "Đúng giờ";
+                        AddOTCheckIn(time);
+                    }
+                }
+                else
+                {
+                    if (hour < 21)
+                    {
+                        time.Status = "Về sớm";
+                        AddOTCheckOut(time);
+                    }
+                    else
+                    {
+                        time.Status = "Đúng giờ";
+                        AddOTCheckOut(time);
+                    }
                 }
             }
             else
