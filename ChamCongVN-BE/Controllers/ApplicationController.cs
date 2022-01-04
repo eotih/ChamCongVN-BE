@@ -268,7 +268,14 @@ namespace ChamCongVN_BE.Controllers
         [HttpGet]
         public object GetOverTimeApplicationByEmployeeID(int ID)
         {
-            var obj = db.OverTimeApplications.Where(x => x.EmployeeID == ID).ToList();
+            var obj = (from Otapp in db.OverTimeApplications
+                       from ot in db.OverTimes
+                       where ot.OverTimeID == Otapp.OverTimeID
+                       select new
+                       {
+                           OverTimeApplications = Otapp,
+                           ot.OverTimeName
+                       }).ToList();
             return obj;
         }
 
